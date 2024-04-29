@@ -59,10 +59,10 @@ public class PlayerController : MonoBehaviour
             rb.velocity = Vector3.ClampMagnitude(rb.velocity, 15);
             if (Input.GetKey(KeyCode.Space))
             {
-                Debug.Log("jump");
+                //Debug.Log("jump");
 
                 rb.AddForce(new Vector2(0, jumpForce) * speed * Time.deltaTime, ForceMode2D.Impulse);
-                Debug.Log("pressed");
+                //Debug.Log("pressed");
             }
         }
         // sets the velocity based on a vector3 the clampsthe value inputed wihch is transformed into lenght only.

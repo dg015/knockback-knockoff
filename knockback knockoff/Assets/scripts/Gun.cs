@@ -2,11 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Gun : MonoBehaviour
 {
-    [SerializeField] private Vector3 rot;
     [SerializeField] private Transform pivot;
+    [SerializeField] private GameObject bullet;
+    [SerializeField] private Rigidbody2D playerRb;
+    [SerializeField] private float force;
+    private Vector2 angle;
+    private float direction;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,14 +24,27 @@ public class Gun : MonoBehaviour
         aim();
     }
 
+    private void FixedUpdate()
+    {
+        if(Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            shoot();
+            Debug.Log("shot");
+        }
+    }
 
+    private void shoot()
+    {
+        playerRb.AddForce(-1 * angle * force, ForceMode2D.Force);
+
+
+    }
     private void aim()
     {
         Vector3 mousePos = Input.mousePosition;
         mousePos = Camera.main.ScreenToWorldPoint(mousePos);
-        float angleX = (mousePos.x  - pivot.position.x);
-        float angleY = (mousePos.y - pivot.position.y);
-        float direction = Mathf.Atan2(angleY, angleX) * Mathf.Rad2Deg;
+        angle = new Vector2 ((mousePos.x - pivot.position.x),(mousePos.y - pivot.position.y));
+        direction = Mathf.Atan2(angle.y, angle.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0,0,direction);
     }
 }
