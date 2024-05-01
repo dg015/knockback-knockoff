@@ -17,6 +17,7 @@ public class ColiderKill : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        /*
         if (collision.CompareTag("Player"))
         {
             Transform targetPosition = collision.GetComponent<Transform>();
@@ -31,7 +32,7 @@ public class ColiderKill : MonoBehaviour
 
             //transform.rotation = Quaternion.Euler(0, 0, direction);
             
-        }
+        }*/
     }
 
 
