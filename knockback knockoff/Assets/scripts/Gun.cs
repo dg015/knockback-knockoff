@@ -10,6 +10,7 @@ public class Gun : MonoBehaviour
     [SerializeField] private GameObject bullet;
     [SerializeField] private Rigidbody2D playerRb;
     [SerializeField] private float force;
+    [SerializeField] private Transform barrel;
     private Vector2 angle;
     private float direction;
     // Start is called before the first frame update
@@ -22,22 +23,19 @@ public class Gun : MonoBehaviour
     void Update()
     {
         aim();
-    }
-
-    private void FixedUpdate()
-    {
-        if(Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyUp(KeyCode.Mouse0))
         {
             shoot();
             Debug.Log("shot");
         }
     }
 
+
     private void shoot()
     {
         playerRb.AddForce(-1 * angle * force, ForceMode2D.Force);
-
-
+        Instantiate(bullet, barrel.position, barrel.rotation);
+            
     }
     private void aim()
     {
