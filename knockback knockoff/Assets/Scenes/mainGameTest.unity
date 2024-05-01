@@ -260,6 +260,11 @@ MonoBehaviour:
   velocityMax: 15
   jumpForce: 5
   colisions: 0
+  boxSize: {x: 1.18, y: 1.03}
+  castDistance: 0
+  ground:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!50 &461001143
 Rigidbody2D:
   serializedVersion: 4

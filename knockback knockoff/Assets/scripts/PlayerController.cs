@@ -12,7 +12,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float speed = 5;
     [SerializeField] private float velocityMax;
     [SerializeField] private float jumpForce;
-    [SerializeField] private float colisions;
+    [SerializeField] private Vector2 boxSize;
+    [SerializeField] private float castDistance;
+    [SerializeField] private LayerMask ground;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +26,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         //Debug.Log(rb.velocity);
+        isGrounded();
 
     }
 
@@ -32,15 +35,21 @@ public class PlayerController : MonoBehaviour
         movement();
     }
 
-
-    private void OnCollisionEnter2D(Collision2D collision)
+    private bool isGrounded()
     {
-        colisions++;
+        if (Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, castDistance,ground))
+        {
+            return true;
+        }
+        else 
+        {
+            return false; 
+        }
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    private void OnDrawGizmos()
     {
-        colisions--;
+        Gizmos.DrawWireCube(transform.position - transform.up * castDistance, boxSize);
     }
 
     private void movement()
@@ -54,7 +63,7 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(new Vector2(Hspeed * speed, 0f));
 
         }
-        if (colisions > 0)
+        if (isGrounded())
         {
             rb.velocity = Vector3.ClampMagnitude(rb.velocity, 15);
             if (Input.GetKey(KeyCode.Space))
