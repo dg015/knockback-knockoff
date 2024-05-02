@@ -6,27 +6,31 @@ public class AimAssist : MonoBehaviour
 {
     [SerializeField] private Transform target;
     [SerializeField] private float targetAngle;
+    [SerializeField] private float strenght;
 
     [SerializeField] private Transform Area;
-    [SerializeField] private float  angle;
+    [SerializeField] private Vector2  Targetangle;
 
+    [SerializeField] private bool inRange = false;
     [SerializeField] private Rigidbody2D playerRb;
     private Vector2 lastPosition;
 
-    [SerializeField] private float offset;
 
     // Start is called before the first frame update
     void Start()
     {
-
+  
     }
-
-
-
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-     /*   
+        if (collision.CompareTag("Player"))
+        {
+            target = collision.transform;
+            inRange = true;
+
+        }
+     /*
         if (collision.CompareTag("Player"))
         {
             Transform targetPosition = collision.GetComponent<Transform>();
@@ -43,6 +47,26 @@ public class AimAssist : MonoBehaviour
             
         }
      */
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            inRange = false;
+
+        }
+    }
+
+    private void assist()
+    {
+
+        Vector2 distance = (transform.position - target.position).normalized;
+        /*
+        Targetangle = new Vector2((transform.position.x - target.position.x), (transform.position.y - target.position.y));
+        float angleDistance = Mathf.Atan2(Targetangle.y, Targetangle.x) * Mathf.Rad2Deg;
+        */
+        playerRb.AddForce(distance * strenght);
+        Debug.Log(distance);
     }
 
     private void FindDirection()
@@ -62,14 +86,18 @@ public class AimAssist : MonoBehaviour
         float angle = Mathf.Atan2(movementDirection.y, movementDirection.x) * Mathf.Rad2Deg;
         
         // Apply the rotation to the "Area" transform
-        Area.rotation = Quaternion.Euler(0, 0, angle + offset);
+        Area.rotation = Quaternion.Euler(0, 0, angle -90 );
 
     }
 
     // Update is called once per frame
     void Update()
     {
-
         FindDirection();
+        if (inRange)
+        {
+            assist();
+        }
+
     }
 }
