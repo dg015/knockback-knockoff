@@ -15,6 +15,7 @@ public class AimAssist : MonoBehaviour
     [SerializeField] private Rigidbody2D playerRb;
     private Vector2 lastPosition;
 
+    [SerializeField] private float RequiredSpeed = 0.5f;
 
     // Start is called before the first frame update
     void Start()
@@ -26,47 +27,30 @@ public class AimAssist : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            target = collision.transform;
-            inRange = true;
-
-        }
-     /*
-        if (collision.CompareTag("Player"))
-        {
-            Transform targetPosition = collision.GetComponent<Transform>();
-            Vector2 targetDirection = new Vector2((targetPosition.position.x - transform.position.x), (targetPosition.position.y - transform.position.y));
-            float direction = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg;
-            //might go really wrong
-            float angleDifference = 
-            if ( direction != playerRb.velocity)
+            if (playerRb.velocity.magnitude > RequiredSpeed)
             {
-
+                target = collision.transform;
+                inRange = true;
             }
 
-            //transform.rotation = Quaternion.Euler(0, 0, direction);
-            
         }
-     */
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
             inRange = false;
-
         }
     }
 
     private void assist()
     {
-
+        //get distance
         Vector2 distance = (transform.position - target.position).normalized;
-        /*
-        Targetangle = new Vector2((transform.position.x - target.position.x), (transform.position.y - target.position.y));
-        float angleDistance = Mathf.Atan2(Targetangle.y, Targetangle.x) * Mathf.Rad2Deg;
-        */
+
+        //add force to warlk towards the distance vector between target and player
         playerRb.AddForce(distance * strenght);
-        Debug.Log(distance);
+        Debug.Log("ASSIST");
     }
 
     private void FindDirection()
@@ -93,6 +77,7 @@ public class AimAssist : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         FindDirection();
         if (inRange)
         {
