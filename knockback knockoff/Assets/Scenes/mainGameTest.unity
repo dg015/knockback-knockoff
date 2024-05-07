@@ -215,8 +215,10 @@ GameObject:
   m_Component:
   - component: {fileID: 205111077}
   - component: {fileID: 205111076}
-  m_Layer: 0
-  m_Name: Square (2)
+  - component: {fileID: 205111079}
+  - component: {fileID: 205111078}
+  m_Layer: 6
+  m_Name: player dummy
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -283,12 +285,84 @@ Transform:
   m_GameObject: {fileID: 205111075}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -33.35551, y: 0.62, z: 0}
+  m_LocalPosition: {x: -33.35551, y: -2.97, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &205111078
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 205111075}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!50 &205111079
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 205111075}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 7
 --- !u!1 &461001140
 GameObject:
   m_ObjectHideFlags: 0
@@ -302,7 +376,8 @@ GameObject:
   - component: {fileID: 461001143}
   - component: {fileID: 461001142}
   - component: {fileID: 461001145}
-  m_Layer: 0
+  - component: {fileID: 461001146}
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -440,7 +515,30 @@ MonoBehaviour:
   Targetangle: {x: 0, y: 0}
   inRange: 0
   playerRb: {fileID: 461001143}
+  angle: 0
   RequiredSpeed: 0.5
+--- !u!114 &461001146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 461001140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec5fcfc575c965140bdf4412c5bb82c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 461001143}
+  speedBar: {fileID: 0}
+  velocity: 0
+  maxSpeedReached: 0
+  boxSize: {x: 1.44, y: 1.33}
+  castDistance: 0
+  player:
+    serializedVersion: 2
+    m_Bits: 64
+  maxspeed: 25
 --- !u!1 &531760413
 GameObject:
   m_ObjectHideFlags: 0
@@ -522,7 +620,7 @@ MonoBehaviour:
   pivot: {fileID: 461001141}
   bullet: {fileID: 2207976954983804641, guid: 58e3ce25b856ce6438b65b09e4faf88e, type: 3}
   playerRb: {fileID: 461001143}
-  force: 15
+  force: 40.6
   barrel: {fileID: 1629047713}
 --- !u!1 &740465209
 GameObject:
@@ -874,8 +972,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 29.9, y: -11.2}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 15.640015, y: -11.200012}
+  m_SizeDelta: {x: 114.26, y: 100}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &912986676
 MonoBehaviour:
