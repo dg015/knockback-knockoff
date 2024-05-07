@@ -11,11 +11,14 @@ public class PlayerPointer : MonoBehaviour
 {
     [SerializeField] PlayerController[] pLocation;
     [SerializeField] private Canvas pointer;
+    PlayerController closestPlayer = null;
+    float closestDistanceSqr;
     // Start is called before the first frame update
     void Start()
     {
         pLocation = GameObject.FindObjectsOfType<PlayerController>(); 
         Transform thisPlayerTransform = transform;
+        closestDistanceSqr = Mathf.Infinity;
     }
 
     // Update is called once per frame
@@ -34,21 +37,28 @@ public class PlayerPointer : MonoBehaviour
             if (player.transform != thisPlayerTransform)
             {
                 // Get the position of the player
-                Vector3 playerPosition = player.transform.position;
+                Vector3 playerPosition = this.transform.position;
+
                 // Log the position of the player
                 Debug.Log("Player at position: " + playerPosition);
 
+                float sqrDistanceToPlayer = (player.transform.position - thisPlayerTransform.position).magnitude;
+                if (sqrDistanceToPlayer < closestDistanceSqr)
+                {
+                    closestPlayer = player;
+                    closestDistanceSqr = sqrDistanceToPlayer;
+                }
+
             }
         }
-
-        /*
-        PlayerLocations = new List<Transform> ();
-        for (int i = 0; i< PlayerController.PlayerCount; i++)
+        if (closestPlayer != null)
         {
-            PlayerLocations.Add()
-            PlayerLocations[i] = gameObject.transform;
-
+            Vector3 closestPlayerPosition = closestPlayer.transform.position;
+            Debug.Log("Closest player at position: " + closestPlayerPosition);
         }
-        */
+        else
+        {
+            Debug.Log("No other players found in the scene.");
+        }
     }
 }
