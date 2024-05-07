@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AimAssist : MonoBehaviour
 {
+
     [SerializeField] private Transform target;
     [SerializeField] private float targetAngle;
     [SerializeField] private float strenght;
