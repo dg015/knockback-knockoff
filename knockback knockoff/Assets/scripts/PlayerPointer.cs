@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
 using static UnityEditor.Experimental.GraphView.GraphView;
@@ -10,15 +12,19 @@ using static UnityEditor.FilePathAttribute;
 public class PlayerPointer : MonoBehaviour
 {
     [SerializeField] PlayerController[] pLocation;
-    [SerializeField] private Canvas pointer;
+    [SerializeField] private Canvas pointerCanvas;
+    [SerializeField] private Image pointer;
     PlayerController closestPlayer = null;
     float closestDistanceSqr;
+
+
+
+
     // Start is called before the first frame update
     void Start()
     {
-        pLocation = GameObject.FindObjectsOfType<PlayerController>(); 
-        Transform thisPlayerTransform = transform;
-        closestDistanceSqr = Mathf.Infinity;
+
+
     }
 
     // Update is called once per frame
@@ -30,6 +36,10 @@ public class PlayerPointer : MonoBehaviour
 
     private void Find()
     {
+
+
+        pLocation = GameObject.FindObjectsOfType<PlayerController>();
+        closestDistanceSqr = Mathf.Infinity;
         Transform thisPlayerTransform = transform;
         foreach (PlayerController player in pLocation)
         {
@@ -45,20 +55,33 @@ public class PlayerPointer : MonoBehaviour
                 float sqrDistanceToPlayer = (player.transform.position - thisPlayerTransform.position).magnitude;
                 if (sqrDistanceToPlayer < closestDistanceSqr)
                 {
+
                     closestPlayer = player;
                     closestDistanceSqr = sqrDistanceToPlayer;
+
+
+
                 }
 
             }
         }
         if (closestPlayer != null)
         {
-            Vector3 closestPlayerPosition = closestPlayer.transform.position;
+            Vector2 closestPlayerPosition = closestPlayer.transform.position;
             Debug.Log("Closest player at position: " + closestPlayerPosition);
+
+
+            Vector3 directionToClosestPlayer = closestPlayer.transform.position - pointerCanvas.transform.position;
+            float angle = Mathf.Atan2(directionToClosestPlayer.y, directionToClosestPlayer.x) * Mathf.Rad2Deg;
+            pointerCanvas.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle + 180));
+
+
+
         }
         else
         {
             Debug.Log("No other players found in the scene.");
         }
+
     }
 }
