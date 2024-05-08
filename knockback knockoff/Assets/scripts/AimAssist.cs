@@ -72,6 +72,9 @@ public class AimAssist : MonoBehaviour
         // Apply the rotation to the "Area" transform
         Area.rotation = Quaternion.Euler(0, 0, angle -90 );
 
+
+
+
     }
 
     // Update is called once per frame
