@@ -16,7 +16,10 @@ public class Gun : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        pivot = gameObject.transform.GetComponentInParent<Transform>();
+        playerRb = gameObject.transform.GetComponentInParent<Rigidbody2D>();
+        barrel = GameObject.Find("barrel").GetComponent<Transform>();
+        //barrel = gameObject.transform.GetComponentInChildren<Transform>();
     }
 
     // Update is called once per frame

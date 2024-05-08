@@ -139,7 +139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &54987970
 Transform:
   m_ObjectHideFlags: 0
@@ -573,7 +573,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pLocation: []
-  pointer: {fileID: 1219454564}
+  pointerCanvas: {fileID: 0}
 --- !u!1 &531760413
 GameObject:
   m_ObjectHideFlags: 0
@@ -727,11 +727,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7ba8b3aa6c18a14d87d34765cca5c02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pivot: {fileID: 461001141}
+  pivot: {fileID: 0}
   bullet: {fileID: 2207976954983804641, guid: 58e3ce25b856ce6438b65b09e4faf88e, type: 3}
   playerRb: {fileID: 461001143}
   force: 40.6
-  barrel: {fileID: 1629047713}
+  barrel: {fileID: 0}
 --- !u!1 &740465209
 GameObject:
   m_ObjectHideFlags: 0

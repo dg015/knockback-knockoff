@@ -13,7 +13,6 @@ public class PlayerPointer : MonoBehaviour
 {
     [SerializeField] PlayerController[] pLocation;
     [SerializeField] private Canvas pointerCanvas;
-    [SerializeField] private Image pointer;
     PlayerController closestPlayer = null;
     float closestDistanceSqr;
 
@@ -23,7 +22,7 @@ public class PlayerPointer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        pointerCanvas = gameObject.transform.GetComponentInChildren<Canvas>();
 
     }
 
@@ -50,7 +49,7 @@ public class PlayerPointer : MonoBehaviour
                 Vector3 playerPosition = this.transform.position;
 
                 // Log the position of the player
-                Debug.Log("Player at position: " + playerPosition);
+                
 
                 float sqrDistanceToPlayer = (player.transform.position - thisPlayerTransform.position).magnitude;
                 if (sqrDistanceToPlayer < closestDistanceSqr)
@@ -68,7 +67,7 @@ public class PlayerPointer : MonoBehaviour
         if (closestPlayer != null)
         {
             Vector2 closestPlayerPosition = closestPlayer.transform.position;
-            Debug.Log("Closest player at position: " + closestPlayerPosition);
+            
 
 
             Vector3 directionToClosestPlayer = closestPlayer.transform.position - pointerCanvas.transform.position;
