@@ -4,9 +4,11 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using static UnityEditor.FilePathAttribute;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] public Vector3 location;
     public BoxCollider2D bc;
     public Rigidbody2D rb;
     [SerializeField] private float speed = 5;
@@ -16,10 +18,17 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float castDistance;
     [SerializeField] private LayerMask ground;
 
+    public static int PlayerCount;
+
     // Start is called before the first frame update
     void Start()
     {
 
+    }
+
+    protected void Awake()
+    {
+        PlayerCount++;
     }
 
     // Update is called once per frame
@@ -27,7 +36,7 @@ public class PlayerController : MonoBehaviour
     {
         //Debug.Log(rb.velocity);
         isGrounded();
-
+        location = gameObject.transform.position;
     }
 
     private void FixedUpdate()
@@ -65,17 +74,16 @@ public class PlayerController : MonoBehaviour
         }
         if (isGrounded())
         {
+            // sets the velocity based on a vector3 the clampsthe value inputed wihch is transformed into lenght only.
             rb.velocity = Vector3.ClampMagnitude(rb.velocity, 15);
             if (Input.GetKey(KeyCode.Space))
             {
-                //Debug.Log("jump");
+                
 
                 rb.AddForce(new Vector2(0, jumpForce) * speed * Time.deltaTime, ForceMode2D.Impulse);
-                //Debug.Log("pressed");
+                
             }
         }
-        // sets the velocity based on a vector3 the clampsthe value inputed wihch is transformed into lenght only.
-
     }
 
 

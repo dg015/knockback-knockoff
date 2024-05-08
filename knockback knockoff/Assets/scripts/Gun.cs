@@ -26,7 +26,7 @@ public class Gun : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Mouse0))
         {
             shoot();
-            Debug.Log("shot");
+              
         }
     }
 

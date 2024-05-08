@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AimAssist : MonoBehaviour
 {
+
     [SerializeField] private Transform target;
     [SerializeField] private float targetAngle;
     [SerializeField] private float strenght;
@@ -14,6 +15,8 @@ public class AimAssist : MonoBehaviour
     [SerializeField] private bool inRange = false;
     [SerializeField] private Rigidbody2D playerRb;
     private Vector2 lastPosition;
+
+    public float angle;
 
     [SerializeField] private float RequiredSpeed = 0.5f;
 
@@ -50,7 +53,7 @@ public class AimAssist : MonoBehaviour
 
         //add force to warlk towards the distance vector between target and player
         playerRb.AddForce(distance * strenght);
-        Debug.Log("ASSIST");
+        
     }
 
     private void FindDirection()
@@ -67,7 +70,7 @@ public class AimAssist : MonoBehaviour
 
 
         // Calculate the angle of movement
-        float angle = Mathf.Atan2(movementDirection.y, movementDirection.x) * Mathf.Rad2Deg;
+         angle = Mathf.Atan2(movementDirection.y, movementDirection.x) * Mathf.Rad2Deg;
         
         // Apply the rotation to the "Area" transform
         Area.rotation = Quaternion.Euler(0, 0, angle -90 );

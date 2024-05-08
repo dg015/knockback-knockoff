@@ -13,6 +13,7 @@ public class PlayerPointer : MonoBehaviour
 {
     [SerializeField] PlayerController[] pLocation;
     [SerializeField] private Canvas pointerCanvas;
+    [SerializeField] private Image pointer;
     PlayerController closestPlayer = null;
     float closestDistanceSqr;
 
@@ -22,7 +23,8 @@ public class PlayerPointer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        pointerCanvas = gameObject.transform.GetComponentInChildren<Canvas>();
+
+
     }
 
     // Update is called once per frame

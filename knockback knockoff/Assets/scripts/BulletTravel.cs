@@ -44,7 +44,7 @@ public class BulletTravel : MonoBehaviour
             if  (destructable == true)
             {
                 Destroy(this.gameObject);
-                Debug.Log("destroyed");
+                
             }
         }
         else if (collision.CompareTag("helper"))
@@ -54,7 +54,7 @@ public class BulletTravel : MonoBehaviour
         else
         {
             Destroy(this.gameObject);
-            Debug.Log("destroyed");
+            
         }
 
     }
