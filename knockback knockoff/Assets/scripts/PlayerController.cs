@@ -18,6 +18,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float castDistance;
     [SerializeField] private LayerMask ground;
 
+    //new movement 
+    [SerializeField] private float verticalSpeed;
+    [SerializeField] private float horizontalSpeed;
+
+
+
     public static int PlayerCount;
 
     // Start is called before the first frame update
@@ -34,9 +40,10 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(rb.velocity);
+        Debug.Log(rb.velocity);
         isGrounded();
         location = gameObject.transform.position;
+        
     }
 
     private void FixedUpdate()
@@ -66,16 +73,24 @@ public class PlayerController : MonoBehaviour
 
         float Hspeed = Input.GetAxis("Horizontal") * speed;
 
-        if (Input.GetAxis("Horizontal") > -1.1)
+        if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
         {
 
-            rb.AddForce(new Vector2(Hspeed * speed, 0f));
+
+            //STUDY THIS PART WORKS FINE THO
+            
+            Vector2 newVelocity;
+            newVelocity.x = Hspeed ;
+            newVelocity.y = rb.velocity.y;
+            rb.velocity = newVelocity;
+            
+            //rb.AddForce(new Vector2(Hspeed * speed, 0f));
 
         }
         if (isGrounded())
         {
             // sets the velocity based on a vector3 the clampsthe value inputed wihch is transformed into lenght only.
-            rb.velocity = Vector3.ClampMagnitude(rb.velocity, 15);
+            //rb.velocity = Vector3.ClampMagnitude(rb.velocity, 15); OLD SCRIPT 
             if (Input.GetKey(KeyCode.Space))
             {
                 
