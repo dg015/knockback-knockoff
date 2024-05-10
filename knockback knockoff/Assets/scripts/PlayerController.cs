@@ -8,29 +8,22 @@ using static UnityEditor.FilePathAttribute;
 
 public class PlayerController : MonoBehaviour
 {
+    //basic movement
     [SerializeField] public Vector3 location;
     public BoxCollider2D bc;
     public Rigidbody2D rb;
+
+    //Jump
     [SerializeField] private float speed = 5;
-    [SerializeField] private float velocityMax;
     [SerializeField] private float jumpForce;
+
+    //Is grounded
     [SerializeField] private Vector2 boxSize;
     [SerializeField] private float castDistance;
     [SerializeField] private LayerMask ground;
 
-    //new movement 
-    [SerializeField] private float verticalSpeed;
-    [SerializeField] private float horizontalSpeed;
-
-
-
     public static int PlayerCount;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
 
     protected void Awake()
     {
@@ -72,25 +65,19 @@ public class PlayerController : MonoBehaviour
     {
 
         float Hspeed = Input.GetAxis("Horizontal") * speed;
+       
 
         if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
         {
-
-
-            //STUDY THIS PART WORKS FINE THO
-            
-            Vector2 newVelocity;
-            newVelocity.x = Hspeed ;
-            newVelocity.y = rb.velocity.y;
-            rb.velocity = newVelocity;
-            
-            //rb.AddForce(new Vector2(Hspeed * speed, 0f));
-
+            if (rb.velocity.x > -15 && rb.velocity.x < 15f)
+            {
+                rb.AddForce(new Vector3(Hspeed * speed, 0f));
+            }
         }
         if (isGrounded())
         {
-            // sets the velocity based on a vector3 the clampsthe value inputed wihch is transformed into lenght only.
-            //rb.velocity = Vector3.ClampMagnitude(rb.velocity, 15); OLD SCRIPT 
+            // rb.velocity = Vector3.ClampMagnitude(rb.velocity, 15); //OLD SCRIPT 
+            
             if (Input.GetKey(KeyCode.Space))
             {
                 

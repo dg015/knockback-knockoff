@@ -9,13 +9,21 @@ public class Gun : MonoBehaviour
     [SerializeField] private Transform pivot;
     [SerializeField] private GameObject bullet;
     [SerializeField] private Rigidbody2D playerRb;
-    [SerializeField] private float force;
+    [SerializeField] public float force;
     [SerializeField] private Transform barrel;
     private Vector2 angle;
     private float direction;
+
+
+    
+    [SerializeField] private float knockbackDuration;
+    public bool knocback;
+    public bool isKnockbackCoroutineRunning;
+
     // Start is called before the first frame update
     void Start()
     {
+        
         pivot = gameObject.transform.GetComponentInParent<Transform>();
         playerRb = gameObject.transform.GetComponentInParent<Rigidbody2D>();
         barrel = GameObject.Find("barrel").GetComponent<Transform>();
@@ -36,10 +44,14 @@ public class Gun : MonoBehaviour
 
     private void shoot()
     {
+        
         playerRb.AddForce(-1 * angle * force, ForceMode2D.Force);
         Instantiate(bullet, barrel.position, barrel.rotation);
-            
+        
+        
     }
+
+
     private void aim()
     {
         Vector3 mousePos = Input.mousePosition;

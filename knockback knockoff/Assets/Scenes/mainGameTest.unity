@@ -224,7 +224,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &205111076
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -387,6 +387,9 @@ MonoBehaviour:
   ground:
     serializedVersion: 2
     m_Bits: 8
+  verticalSpeed: 0
+  horizontalSpeed: 0
+  gunScript: {fileID: 603178558}
 --- !u!1 &461001140
 GameObject:
   m_ObjectHideFlags: 0
@@ -441,9 +444,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   location: {x: 0, y: 0, z: 0}
-  bc: {fileID: 0}
+  bc: {fileID: 461001144}
   rb: {fileID: 461001143}
-  speed: 5
+  speed: 2.5
   velocityMax: 15
   jumpForce: 15
   boxSize: {x: 1.18, y: 1.03}
@@ -451,6 +454,9 @@ MonoBehaviour:
   ground:
     serializedVersion: 2
     m_Bits: 8
+  verticalSpeed: 1
+  horizontalSpeed: 1
+  gunScript: {fileID: 603178558}
 --- !u!50 &461001143
 Rigidbody2D:
   serializedVersion: 4
@@ -732,6 +738,9 @@ MonoBehaviour:
   playerRb: {fileID: 461001143}
   force: 40.6
   barrel: {fileID: 0}
+  knockbackDuration: 0.5
+  knocback: 0
+  isKnockbackCoroutineRunning: 0
 --- !u!1 &740465209
 GameObject:
   m_ObjectHideFlags: 0
@@ -1702,7 +1711,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1861101514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1726,6 +1735,9 @@ MonoBehaviour:
   ground:
     serializedVersion: 2
     m_Bits: 8
+  verticalSpeed: 0
+  horizontalSpeed: 9
+  gunScript: {fileID: 603178558}
 --- !u!61 &1861101515
 BoxCollider2D:
   m_ObjectHideFlags: 0

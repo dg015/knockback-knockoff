@@ -79,7 +79,7 @@ public class PlayerPointer : MonoBehaviour
         }
         else
         {
-            Debug.Log("No other players found in the scene.");
+            // Debug.Log("No other players found in the scene.");
         }
 
     }
