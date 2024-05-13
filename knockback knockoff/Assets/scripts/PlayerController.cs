@@ -13,6 +13,9 @@ public class PlayerController : MonoBehaviour
     public BoxCollider2D bc;
     public Rigidbody2D rb;
 
+    //health system
+    public bool alive = true;
+
     //Jump
     [SerializeField] private float speed = 5;
     [SerializeField] private float jumpForce;
@@ -22,6 +25,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float castDistance;
     [SerializeField] private LayerMask ground;
 
+    //multiplayer
     public static int PlayerCount;
 
 
