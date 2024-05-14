@@ -6,19 +6,23 @@ using UnityEngine.UIElements;
 
 public class Gun : MonoBehaviour
 {
+    //spawn
     [SerializeField] private Transform pivot;
     [SerializeField] private GameObject bullet;
+    [SerializeField] private Transform barrel;
+
+    // knockback
     [SerializeField] private Rigidbody2D playerRb;
     [SerializeField] public float force;
-    [SerializeField] private Transform barrel;
+
     private Vector2 angle;
     private float direction;
 
-
+    //shooting
+    [SerializeField] private float timeBetweenShots;
+    [SerializeField] private float RunningTime;
     
-    [SerializeField] private float knockbackDuration;
-    public bool knocback;
-    public bool isKnockbackCoroutineRunning;
+
 
     // Start is called before the first frame update
     void Start()
@@ -33,10 +37,16 @@ public class Gun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        RunningTime += Time.deltaTime;
         aim();
-        if (Input.GetKeyUp(KeyCode.Mouse0))
+        if (Input.GetKey(KeyCode.Mouse0))
         {
-            shoot();
+            if (RunningTime >= timeBetweenShots)
+            {
+                RunningTime = 0;
+                shoot();
+            }
+
               
         }
     }
@@ -47,8 +57,6 @@ public class Gun : MonoBehaviour
         
         playerRb.AddForce(-1 * angle * force, ForceMode2D.Force);
         Instantiate(bullet, barrel.position, barrel.rotation);
-        
-        
     }
 
 

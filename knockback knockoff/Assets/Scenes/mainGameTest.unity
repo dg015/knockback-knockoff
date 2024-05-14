@@ -308,7 +308,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &205111076
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -463,8 +463,9 @@ MonoBehaviour:
   location: {x: 0, y: 0, z: 0}
   bc: {fileID: 205111078}
   rb: {fileID: 205111079}
-  alive: 0
   speed: 5
+  airSpeed: 5
+  alive: 0
   jumpForce: 15
   boxSize: {x: 1.18, y: 1.03}
   castDistance: 0.06
@@ -527,10 +528,11 @@ MonoBehaviour:
   location: {x: 0, y: 0, z: 0}
   bc: {fileID: 461001144}
   rb: {fileID: 461001143}
-  alive: 1
   speed: 5
+  airSpeed: 1.2
+  alive: 1
   jumpForce: 15
-  boxSize: {x: 1.18, y: 1.03}
+  boxSize: {x: 1.18, y: 1.52}
   castDistance: 0.06
   ground:
     serializedVersion: 2
@@ -813,12 +815,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pivot: {fileID: 0}
   bullet: {fileID: 2207976954983804641, guid: 58e3ce25b856ce6438b65b09e4faf88e, type: 3}
-  playerRb: {fileID: 461001143}
-  force: 40.6
   barrel: {fileID: 0}
-  knockbackDuration: 0.5
-  knocback: 0
-  isKnockbackCoroutineRunning: 0
+  playerRb: {fileID: 461001143}
+  force: 65
+  timeBetweenShots: 0.5
+  RunningTime: 0
 --- !u!1 &669791669
 GameObject:
   m_ObjectHideFlags: 0
@@ -830,13 +831,14 @@ GameObject:
   - component: {fileID: 669791670}
   - component: {fileID: 669791672}
   - component: {fileID: 669791671}
+  - component: {fileID: 669791673}
   m_Layer: 0
   m_Name: Coin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &669791670
 Transform:
   m_ObjectHideFlags: 0
@@ -915,6 +917,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!114 &669791673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 669791669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 622a994e7ffc9714385b62404370b52c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manager: {fileID: 0}
 --- !u!1 &740465209
 GameObject:
   m_ObjectHideFlags: 0
@@ -1782,6 +1797,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1686872861
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1686872863}
+  - component: {fileID: 1686872862}
+  m_Layer: 0
+  m_Name: Coin manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &1686872862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1686872861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e757b645d28b63f43beedd3bb5ce36b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coinScore: 0
+--- !u!4 &1686872863
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1686872861}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -20.908258, y: -2.3470223, z: 0.9659897}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1769424415
 GameObject:
   m_ObjectHideFlags: 0
@@ -1885,7 +1945,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1861101514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1901,8 +1961,9 @@ MonoBehaviour:
   location: {x: 0, y: 0, z: 0}
   bc: {fileID: 1861101515}
   rb: {fileID: 1861101516}
-  alive: 0
   speed: 5
+  airSpeed: 5
+  alive: 0
   jumpForce: 15
   boxSize: {x: 1.18, y: 1.03}
   castDistance: 0.06
@@ -2370,3 +2431,4 @@ SceneRoots:
   - {fileID: 1631043075}
   - {fileID: 669791670}
   - {fileID: 3852508417711129359}
+  - {fileID: 1686872863}
