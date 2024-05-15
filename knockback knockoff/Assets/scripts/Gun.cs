@@ -7,20 +7,20 @@ using UnityEngine.UIElements;
 public class Gun : MonoBehaviour
 {
     //spawn
-    [SerializeField] private Transform pivot;
-    [SerializeField] private GameObject bullet;
-    [SerializeField] private Transform barrel;
+    [SerializeField] protected Transform pivot;
+    [SerializeField] protected GameObject bullet;
+    [SerializeField] protected Transform barrel;
 
     // knockback
-    [SerializeField] private Rigidbody2D playerRb;
+    [SerializeField] protected Rigidbody2D playerRb;
     [SerializeField] public float force;
 
-    private Vector2 angle;
-    private float direction;
+    protected Vector2 angle;
+    protected float direction;
 
     //shooting
-    [SerializeField] private float timeBetweenShots;
-    [SerializeField] private float RunningTime;
+    [SerializeField] protected float timeBetweenShots;
+    [SerializeField] protected float RunningTime;
     
 
 
@@ -39,6 +39,11 @@ public class Gun : MonoBehaviour
     {
         RunningTime += Time.deltaTime;
         aim();
+        shootingDelay();
+    }
+
+    protected void shootingDelay()
+    {
         if (Input.GetKey(KeyCode.Mouse0))
         {
             if (RunningTime >= timeBetweenShots)
@@ -47,12 +52,11 @@ public class Gun : MonoBehaviour
                 shoot();
             }
 
-              
+
         }
     }
 
-
-    private void shoot()
+    protected virtual void shoot()
     {
         
         playerRb.AddForce(-1 * angle * force, ForceMode2D.Force);
@@ -60,7 +64,7 @@ public class Gun : MonoBehaviour
     }
 
 
-    private void aim()
+    protected void aim()
     {
         Vector3 mousePos = Input.mousePosition;
         mousePos = Camera.main.ScreenToWorldPoint(mousePos);
