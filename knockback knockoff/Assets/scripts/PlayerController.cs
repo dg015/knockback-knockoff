@@ -103,7 +103,7 @@ public class PlayerController : MonoBehaviour
                 if (rb.velocity.x > -15 && rb.velocity.x < 15f)
                 {
                     rb.AddForce(new Vector3(Hspeed * airSpeed, 0f));
-                    Debug.Log("air running");
+                    
                 }
             }
         }

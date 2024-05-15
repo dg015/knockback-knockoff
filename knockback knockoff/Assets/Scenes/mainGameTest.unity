@@ -139,7 +139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &54987970
 Transform:
   m_ObjectHideFlags: 0
@@ -370,7 +370,7 @@ Transform:
   m_GameObject: {fileID: 205111075}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -33.35551, y: -2.97, z: 0}
+  m_LocalPosition: {x: -33.35551, y: -3.16, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -529,7 +529,7 @@ MonoBehaviour:
   bc: {fileID: 461001144}
   rb: {fileID: 461001143}
   speed: 5
-  airSpeed: 1.2
+  airSpeed: 1
   alive: 1
   jumpForce: 15
   boxSize: {x: 1.18, y: 1.52}
@@ -817,8 +817,8 @@ MonoBehaviour:
   bullet: {fileID: 2207976954983804641, guid: 58e3ce25b856ce6438b65b09e4faf88e, type: 3}
   barrel: {fileID: 0}
   playerRb: {fileID: 461001143}
-  force: 65
-  timeBetweenShots: 0.5
+  force: 35
+  timeBetweenShots: 0.75
   RunningTime: 0
 --- !u!1 &669791669
 GameObject:
@@ -1723,7 +1723,7 @@ Transform:
   m_GameObject: {fileID: 1629047712}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.17, y: 0, z: 0}
+  m_LocalPosition: {x: 2.06, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
