@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -71,5 +72,17 @@ public class Gun : MonoBehaviour
         angle = new Vector2 ((mousePos.x - pivot.position.x),(mousePos.y - pivot.position.y));
         direction = Mathf.Atan2(angle.y, angle.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0,0,direction);
+
+
+        /*
+        if(transform.rotation.eulerAngles.x >= -90 || transform.rotation.eulerAngles.x <= 90)
+        {
+            transform.FindChild("Gun sprite").transform.localScale =  new Vector3(-1, 1, 1);
+        }
+        else
+        {
+            transform.FindChild("Gun sprite").transform.localScale =  = new Vector3(1, 1, 1);
+        }
+        */
     }
 }
