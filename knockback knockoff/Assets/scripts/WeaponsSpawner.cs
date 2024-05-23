@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class WeaponsSpawner : MonoBehaviour
@@ -8,7 +9,8 @@ public class WeaponsSpawner : MonoBehaviour
     [SerializeField] public float GunSpawnerTimer;
     [SerializeField] public List<GameObject> GunTexture;
     [SerializeField] private bool readyToSpawn;
-    private float timer;
+    [SerializeField] private bool weaponSpawned;
+    [SerializeField] private float timer;
 
     //NEED TO MAKE IT INSTANTIATE ONLY ONCE, RN ITS GOING TO INSTANTIATE A LOT OF OBJECTS AT ONCE
 
@@ -17,7 +19,11 @@ public class WeaponsSpawner : MonoBehaviour
         //Instantiate a child game object that has the texture of the gun the player is getting
         if (readyToSpawn)
         {
-            Instantiate(GunTexture[GunIndex],transform);
+            if (!weaponSpawned)
+            {
+                Instantiate(GunTexture[GunIndex],new Vector2(transform.position.x, transform.position.y + 1.25f),transform.rotation);
+                weaponSpawned = true;
+            }
         }
     }
 
@@ -25,11 +31,15 @@ public class WeaponsSpawner : MonoBehaviour
     {
         if (timer < GunSpawnerTimer)
         {
-            timer += Time.deltaTime;
+            if (readyToSpawn == false)
+            {
+                timer += Time.deltaTime;
+            }
         }
-        else if (timer == GunSpawnerTimer)
+        else if (timer >= GunSpawnerTimer)
         {
             readyToSpawn = true;
+            timer = 0;
         }
         else
         {

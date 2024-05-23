@@ -235,13 +235,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0518b5a98f3af944aa8172e2508c48f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GunIndex: 0
-  GunSpawnerTimer: 0
+  GunIndex: 2
+  GunSpawnerTimer: 1.74
   GunTexture:
   - {fileID: 1162492959632761883, guid: fa54bc47943bf574a9d01c012bc41f7f, type: 3}
   - {fileID: 8729642856529583856, guid: 893b0907c80640549b5ba870dae90816, type: 3}
   - {fileID: 5820615910522927308, guid: abf8674909e31184f811b2d6bf5c3aaa, type: 3}
   readyToSpawn: 0
+  weaponSpawned: 0
+  timer: 0
 --- !u!212 &97288953
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -303,7 +305,7 @@ Transform:
   m_GameObject: {fileID: 97288951}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -21.36589, y: -2.9137356, z: 0}
+  m_LocalPosition: {x: -21.36589, y: -2.9137356, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
