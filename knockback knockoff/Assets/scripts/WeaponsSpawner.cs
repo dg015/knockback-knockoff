@@ -53,4 +53,18 @@ public class WeaponsSpawner : MonoBehaviour
         GunSpawnerCountdown();
         getGunIndex();
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        // compare tag to see if its a player
+        //checks if player has the gun its currently spawning
+        // to check if player has the gun check in the gunholder object for children with the script of the gun you want to check
+        //if so instantiate it in the gun holder, destroy game object and start time
+        // if not do nothing
+        if( collision.CompareTag("Player"))
+        {
+
+
+        }
+    }
 }
