@@ -6,6 +6,7 @@ TagManager:
   tags:
   - helper
   - bullet
+  - Weapon spawner
   layers:
   - Default
   - TransparentFX

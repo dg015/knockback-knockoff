@@ -13,7 +13,9 @@ public class WeaponsSpawner : MonoBehaviour
     [SerializeField] private float timer;
 
     //NEED TO MAKE IT INSTANTIATE ONLY ONCE, RN ITS GOING TO INSTANTIATE A LOT OF OBJECTS AT ONCE
-
+    //Gun 1: pistol
+    //Gun 2: leafblower
+    //Gun 3: Sniper rifle
     private void getGunIndex()
     {
         //Instantiate a child game object that has the texture of the gun the player is getting
@@ -56,15 +58,54 @@ public class WeaponsSpawner : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // compare tag to see if its a player
-        //checks if player has the gun its currently spawning
-        // to check if player has the gun check in the gunholder object for children with the script of the gun you want to check
-        //if so instantiate it in the gun holder, destroy game object and start time
-        // if not do nothing
-        if( collision.CompareTag("Player"))
+        if (collision.CompareTag("Player"))
         {
+            Transform gunHolder = collision.transform; // Assuming all weapon objects are children of the player
 
-
+            if (GunIndex == 0)
+            {
+                if (!HasComponentInChildren<Gun>(gunHolder))
+                {
+                    Debug.Log("doesn't have pistol");
+                }
+            }
+            else if (GunIndex == 1)
+            {
+                if (!HasComponentInChildren<Leafblower>(gunHolder))
+                {
+                    Debug.Log("doesn't have leaf blower");
+                }
+            }
+            else if (GunIndex == 2)
+            {
+                if (!HasComponentInChildren<SniperRifle>(gunHolder))
+                {
+                    Debug.Log("doesn't have sniper rifle");
+                }
+            }
+            else
+            {
+                Debug.Log("has spawned weapon");
+            }
         }
+    }
+
+    private bool HasComponentInChildren<T>(Transform parent) where T : Component
+    {
+        foreach (Transform child in parent)
+        {
+            T component = child.GetComponent<T>();
+            if (component != null)
+            {
+                return true;
+            }
+
+            if (HasComponentInChildren<T>(child))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
