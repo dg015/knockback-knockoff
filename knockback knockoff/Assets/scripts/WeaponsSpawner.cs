@@ -11,6 +11,7 @@ public class WeaponsSpawner : MonoBehaviour
     [SerializeField] private bool readyToSpawn;
     [SerializeField] private bool weaponSpawned;
     [SerializeField] private float timer;
+    [SerializeField] private List<GameObject> Weapons;
 
     //NEED TO MAKE IT INSTANTIATE ONLY ONCE, RN ITS GOING TO INSTANTIATE A LOT OF OBJECTS AT ONCE
     //Gun 1: pistol
@@ -56,31 +57,48 @@ public class WeaponsSpawner : MonoBehaviour
         getGunIndex();
     }
 
+   
+
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            Transform gunHolder = collision.transform; // Assuming all weapon objects are children of the player
-
+            Transform PlayerTransform = collision.transform; // Assuming all weapon objects are children of the player
+            Transform gunHolderTransform = collision.transform.Find("Gun holder");
+            gunHolder gunHolderScript = collision.GetComponentInChildren<gunHolder>();
+            //I have to create a new script to add the singular weapon
             if (GunIndex == 0)
             {
-                if (!HasComponentInChildren<Gun>(gunHolder))
+                if (!HasComponentInChildren<Gun>(PlayerTransform))
                 {
+                    
                     Debug.Log("doesn't have pistol");
+                    Instantiate(Weapons[GunIndex], gunHolderTransform);
+                    gunHolderScript.weapons.Add(Weapons[GunIndex]);
+                    gunHolderScript.getWeapons();
                 }
             }
             else if (GunIndex == 1)
             {
-                if (!HasComponentInChildren<Leafblower>(gunHolder))
+                if (!HasComponentInChildren<Leafblower>(PlayerTransform))
                 {
+                    
                     Debug.Log("doesn't have leaf blower");
+                    Instantiate(Weapons[GunIndex], gunHolderTransform);
+                    gunHolderScript.weapons.Add(Weapons[GunIndex]);
+                    gunHolderScript.getWeapons();
                 }
             }
             else if (GunIndex == 2)
             {
-                if (!HasComponentInChildren<SniperRifle>(gunHolder))
+                if (!HasComponentInChildren<SniperRifle>(PlayerTransform))
                 {
+                    
                     Debug.Log("doesn't have sniper rifle");
+                    Instantiate(Weapons[GunIndex], gunHolderTransform);
+                    gunHolderScript.weapons.Add(Weapons[GunIndex]);
+                    gunHolderScript.getWeapons();
                 }
             }
             else

@@ -4,23 +4,21 @@ using UnityEngine;
 
 public class gunHolder : MonoBehaviour
 {
-    private int numberOfGuns;
-    [SerializeField] List<GameObject> weapons = new List<GameObject>();
+    
+    [SerializeField]public List<GameObject> weapons = new List<GameObject>();
     [SerializeField] private int selectedWeaponIndex;
     // Start is called before the first frame update
     void Start()
     {
-
-        Debug.Log(selectedWeaponIndex);
+       
         getWeapons();
-
     }
 
-    private void getWeapons()
+    public void getWeapons()
     {
-        
+        weapons.Clear();
+        //adds starting weapons to list
         foreach (Transform child in transform)
-
         {
            weapons.Add(child.gameObject);
         }
