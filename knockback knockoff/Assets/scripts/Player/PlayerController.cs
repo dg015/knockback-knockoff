@@ -88,6 +88,7 @@ public class PlayerController : MonoBehaviour
         PlayerInput.x = Input.GetAxisRaw("Horizontal");
         Movement(PlayerInput);
         VerticalForces();
+        jump();
         rb.velocity = PVelocity;
     }
 
@@ -167,6 +168,7 @@ public class PlayerController : MonoBehaviour
             if (PVelocity.x>0)
             {
                 PVelocity.x -= decelerationRate * Time.deltaTime;
+                //Setting max will help by not allowing the speed to go over/lower the asked amount will make it be moving slightly forever
                 PVelocity.x = Mathf.Max(PVelocity.x, 0);
             }
             else if (PVelocity.x<0)
@@ -183,21 +185,21 @@ public class PlayerController : MonoBehaviour
 
     private void VerticalForces()
     {
-        if( isGrounded())
+        if(isGrounded())
         {
             PVelocity.y = 0;
         }
         else
         {
-            PVelocity.y = gravity;
+            PVelocity.y += gravity;
         }
 
     }
     private void jump()
     {
-        if(isGrounded() == true && (Input.GetAxisRaw("Verical")==0))
+        if(isGrounded() == true && (Input.GetButton("Jump")))
         {
-            
+            PVelocity.y = intialJumpSpeed;
 
 
 
