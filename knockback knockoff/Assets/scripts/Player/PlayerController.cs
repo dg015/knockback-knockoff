@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float apexTime;
     [SerializeField] private float gravity;
     [SerializeField] private float intialJumpSpeed;
-
+    
 
     //health system
     public bool alive = true;
@@ -87,6 +87,7 @@ public class PlayerController : MonoBehaviour
         Vector2 PlayerInput = new Vector2();
         PlayerInput.x = Input.GetAxisRaw("Horizontal");
         Movement(PlayerInput);
+        VerticalForces();
         rb.velocity = PVelocity;
     }
 
@@ -166,10 +167,12 @@ public class PlayerController : MonoBehaviour
             if (PVelocity.x>0)
             {
                 PVelocity.x -= decelerationRate * Time.deltaTime;
+                PVelocity.x = Mathf.Max(PVelocity.x, 0);
             }
             else if (PVelocity.x<0)
             {
                 PVelocity.x += decelerationRate * Time.deltaTime;
+                PVelocity.x = Mathf.Min(PVelocity.x, 0);
             }
 
         }
@@ -177,6 +180,19 @@ public class PlayerController : MonoBehaviour
 
     }
 
+
+    private void VerticalForces()
+    {
+        if( isGrounded())
+        {
+            PVelocity.y = 0;
+        }
+        else
+        {
+            PVelocity.y = gravity;
+        }
+
+    }
     private void jump()
     {
         if(isGrounded() == true && (Input.GetAxisRaw("Verical")==0))
