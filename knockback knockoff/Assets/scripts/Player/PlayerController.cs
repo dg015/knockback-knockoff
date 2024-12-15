@@ -21,8 +21,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Vector2 PVelocity;
 
     [Header("Horizontal")]
-    [SerializeField] private float acelerationTime;
-    [SerializeField] private float acelerationRate;
+    [SerializeField] private float accelerationTime;
+    [SerializeField] private float accelerationRate;
     [SerializeField] private float decelerationTime;
     [SerializeField] private float decelerationRate;
 
@@ -64,20 +64,18 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         //Aceleration formula
-        acelerationRate = maxSpeed / acelerationTime;
+        accelerationRate = maxSpeed / accelerationTime;
         decelerationRate = maxSpeed / decelerationTime;
 
         // jumping formulas
         gravity = -2 * apexHeight / (apexTime * apexHeight);
         intialJumpSpeed = 2 * apexHeight / apexTime;
 
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        
         isGrounded();
         location = gameObject.transform.position;
         
@@ -85,10 +83,11 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.velocity = PVelocity;
+       
         Vector2 PlayerInput = new Vector2();
-        PlayerInput.x = Input.GetAxisRaw("Vertical");
+        PlayerInput.x = Input.GetAxisRaw("Horizontal");
         Movement(PlayerInput);
+        rb.velocity = PVelocity;
     }
 
     private bool isGrounded()
@@ -154,10 +153,11 @@ public class PlayerController : MonoBehaviour
     {
         //uses != so that it checks both for -1 and 1
         //gets aceleration
-        if(Input.GetAxisRaw("Horziontal") != 0)
+        if(Input.GetAxisRaw("Horizontal") != 0)
         {
+            Debug.Log("here");
             //apply velocity
-            PVelocity.x += acelerationRate * playerInput.x * Time.deltaTime;
+            PVelocity.x += accelerationRate * playerInput.x * Time.deltaTime;
         }
         else
         {
