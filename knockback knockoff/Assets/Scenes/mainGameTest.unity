@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -645,12 +644,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   location: {x: 0, y: 0, z: 0}
-  bc: {fileID: 205111078}
   rb: {fileID: 205111079}
-  speed: 5
-  airSpeed: 5
+  PVelocity: {x: 0, y: 0}
+  accelerationTime: 0
+  decelerationTime: 0
+  maxSpeed: 0
+  apexHeight: 0
+  apexTime: 0
   alive: 0
-  jumpForce: 15
   boxSize: {x: 1.18, y: 1.03}
   castDistance: 0.06
   ground:
@@ -710,13 +711,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   location: {x: 0, y: 0, z: 0}
-  bc: {fileID: 461001144}
   rb: {fileID: 461001143}
-  speed: 5
-  airSpeed: 1
+  PVelocity: {x: 0, y: 0}
+  accelerationTime: 0.25
+  decelerationTime: 0.25
+  maxSpeed: 7
+  apexHeight: 10
+  apexTime: 0.5
   alive: 1
-  jumpForce: 15
-  boxSize: {x: 1.18, y: 1.52}
+  boxSize: {x: 1.18, y: 1.16}
   castDistance: 0.06
   ground:
     serializedVersion: 2
@@ -736,7 +739,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -2050,12 +2053,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   location: {x: 0, y: 0, z: 0}
-  bc: {fileID: 1861101515}
   rb: {fileID: 1861101516}
-  speed: 5
-  airSpeed: 5
+  PVelocity: {x: 0, y: 0}
+  accelerationTime: 0
+  decelerationTime: 0
+  maxSpeed: 0
+  apexHeight: 0
+  apexTime: 0
   alive: 0
-  jumpForce: 15
   boxSize: {x: 1.18, y: 1.03}
   castDistance: 0.06
   ground:

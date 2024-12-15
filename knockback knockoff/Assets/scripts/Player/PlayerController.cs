@@ -11,32 +11,25 @@ public class PlayerController : MonoBehaviour
 {
     //basic movement
     [SerializeField] public Vector3 location;
-    public BoxCollider2D bc;
     public Rigidbody2D rb;
-    [SerializeField] private float speed = 5;
-    [SerializeField] private float airSpeed = 5;
-
     //New movement system
 
-    [SerializeField] private Vector2 PVelocity;
+    public Vector2 PVelocity;
 
     [Header("Horizontal")]
     [SerializeField] private float accelerationTime;
-    [SerializeField] private float accelerationRate;
+    private float accelerationRate;
     [SerializeField] private float decelerationTime;
-    [SerializeField] private float decelerationRate;
-
+    private float decelerationRate;
     [SerializeField] private float maxSpeed;
-
-
 
 
     [Header("Veritcal")]
 
     [SerializeField] private float apexHeight;
     [SerializeField] private float apexTime;
-    [SerializeField] private float gravity;
-    [SerializeField] private float intialJumpSpeed;
+    private float gravity;
+    private float intialJumpSpeed;
     
 
     //health system
@@ -44,15 +37,14 @@ public class PlayerController : MonoBehaviour
 
     //Jump
 
-    [SerializeField] private float jumpForce;
-
+    [Header("IsGrounded")]
     //Is grounded
     [SerializeField] private Vector2 boxSize;
     [SerializeField] private float castDistance;
     [SerializeField] private LayerMask ground;
 
 
-
+    [Header("Multiplayer")]
     //multiplayer
     public static int PlayerCount;
 
@@ -78,12 +70,10 @@ public class PlayerController : MonoBehaviour
     {
         isGrounded();
         location = gameObject.transform.position;
-        
     }
 
     private void FixedUpdate()
     {
-       
         Vector2 PlayerInput = new Vector2();
         PlayerInput.x = Input.GetAxisRaw("Horizontal");
         Movement(PlayerInput);
@@ -100,9 +90,7 @@ public class PlayerController : MonoBehaviour
         }
         else 
         {
-            
             return false;
-            
         }
     }
 
@@ -176,10 +164,7 @@ public class PlayerController : MonoBehaviour
                 PVelocity.x += decelerationRate * Time.deltaTime;
                 PVelocity.x = Mathf.Min(PVelocity.x, 0);
             }
-
         }
-
-
     }
 
 
@@ -200,9 +185,6 @@ public class PlayerController : MonoBehaviour
         if(isGrounded() == true && (Input.GetButton("Jump")))
         {
             PVelocity.y = intialJumpSpeed;
-
-
-
         }
     }
 
