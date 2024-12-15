@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -15,6 +16,29 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float speed = 5;
     [SerializeField] private float airSpeed = 5;
 
+    //New movement system
+
+    [SerializeField] private Vector2 PVelocity;
+
+    [Header("Horizontal")]
+    [SerializeField] private float acelerationTime;
+    [SerializeField] private float acelerationRate;
+    [SerializeField] private float decelerationTime;
+    [SerializeField] private float decelerationRate;
+
+    [SerializeField] private float maxSpeed;
+
+
+
+
+    [Header("Veritcal")]
+
+    [SerializeField] private float apexHeight;
+    [SerializeField] private float apexTime;
+    [SerializeField] private float gravity;
+    [SerializeField] private float intialJumpSpeed;
+
+
     //health system
     public bool alive = true;
 
@@ -27,6 +51,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float castDistance;
     [SerializeField] private LayerMask ground;
 
+
+
     //multiplayer
     public static int PlayerCount;
 
@@ -34,6 +60,18 @@ public class PlayerController : MonoBehaviour
     protected void Awake()
     {
         PlayerCount++;
+    }
+    private void Start()
+    {
+        //Aceleration formula
+        acelerationRate = maxSpeed / acelerationTime;
+        decelerationRate = maxSpeed / decelerationTime;
+
+        // jumping formulas
+        gravity = -2 * apexHeight / (apexTime * apexHeight);
+        intialJumpSpeed = 2 * apexHeight / apexTime;
+
+
     }
 
     // Update is called once per frame
@@ -47,7 +85,8 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        movement();
+        rb.velocity = PVelocity;
+        Movement();
     }
 
     private bool isGrounded()
@@ -69,13 +108,12 @@ public class PlayerController : MonoBehaviour
         Gizmos.DrawWireCube(transform.position - transform.up * castDistance, boxSize);
     }
 
+    /*
     private void movement()
     {
 
         float Hspeed = Input.GetAxis("Horizontal") * speed;
-       
 
-  
         if (isGrounded())
         {
             if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
@@ -108,6 +146,32 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+    */
+
+    private void Movement(Vector2 playerInput)
+    {
+        if(Input.GetAxisRaw("Horziontal") > 0)
+        {
+            PVelocity.x += acelerationRate * playerInput.x * Time.deltaTime;
+           
+
+
+        }
+
+
+    }
+
+    private void jump()
+    {
+        if(isGrounded() == true && (Input.GetAxisRaw("Verical")==0))
+        {
+            
+
+
+
+        }
+    }
+
 
 
 
