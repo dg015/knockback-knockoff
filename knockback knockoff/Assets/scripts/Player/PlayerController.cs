@@ -86,7 +86,9 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         rb.velocity = PVelocity;
-        Movement();
+        Vector2 PlayerInput = new Vector2();
+        PlayerInput.x = Input.GetAxisRaw("Vertical");
+        Movement(PlayerInput);
     }
 
     private bool isGrounded()
@@ -150,11 +152,25 @@ public class PlayerController : MonoBehaviour
 
     private void Movement(Vector2 playerInput)
     {
-        if(Input.GetAxisRaw("Horziontal") > 0)
+        //uses != so that it checks both for -1 and 1
+        //gets aceleration
+        if(Input.GetAxisRaw("Horziontal") != 0)
         {
+            //apply velocity
             PVelocity.x += acelerationRate * playerInput.x * Time.deltaTime;
-           
-
+        }
+        else
+        {
+            //deceleration
+            //decelrationRate is applied every second eats away the remaining velocity
+            if (PVelocity.x>0)
+            {
+                PVelocity.x -= decelerationRate * Time.deltaTime;
+            }
+            else if (PVelocity.x<0)
+            {
+                PVelocity.x += decelerationRate * Time.deltaTime;
+            }
 
         }
 
