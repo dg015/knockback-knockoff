@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
@@ -77,6 +78,7 @@ public class WeaponsSpawner : MonoBehaviour
                     Instantiate(Weapons[GunIndex], gunHolderTransform);
                     gunHolderScript.weapons.Add(Weapons[GunIndex]);
                     gunHolderScript.getWeapons();
+                    //gunHolderScript.selectedWeaponIndex = gunHolderScript.weapons.Count-1;
                 }
             }
             else if (GunIndex == 1)
@@ -88,6 +90,7 @@ public class WeaponsSpawner : MonoBehaviour
                     Instantiate(Weapons[GunIndex], gunHolderTransform);
                     gunHolderScript.weapons.Add(Weapons[GunIndex]);
                     gunHolderScript.getWeapons();
+                    //gunHolderScript.selectedWeaponIndex = gunHolderScript.weapons.Count - 1;
                 }
             }
             else if (GunIndex == 2)
@@ -99,6 +102,7 @@ public class WeaponsSpawner : MonoBehaviour
                     Instantiate(Weapons[GunIndex], gunHolderTransform);
                     gunHolderScript.weapons.Add(Weapons[GunIndex]);
                     gunHolderScript.getWeapons();
+                    //gunHolderScript.selectedWeaponIndex = gunHolderScript.weapons.Count - 1;
                 }
             }
             else

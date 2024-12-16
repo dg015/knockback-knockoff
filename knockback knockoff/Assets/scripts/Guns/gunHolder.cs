@@ -6,7 +6,7 @@ public class gunHolder : MonoBehaviour
 {
     
     [SerializeField]public List<GameObject> weapons = new List<GameObject>();
-    [SerializeField] private int selectedWeaponIndex;
+    [SerializeField] public int selectedWeaponIndex;
     // Start is called before the first frame update
     void Start()
     {
