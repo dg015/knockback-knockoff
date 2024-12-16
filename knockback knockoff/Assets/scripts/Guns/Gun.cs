@@ -19,7 +19,7 @@ public class Gun : MonoBehaviour
     protected Vector2 angle;
     protected float direction;
 
-    [SerializeField] private PlayerController controller;
+    [SerializeField] protected PlayerController controller;
 
     //shooting
     [SerializeField] protected float timeBetweenShots;
