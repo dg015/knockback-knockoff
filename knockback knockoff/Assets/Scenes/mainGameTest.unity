@@ -651,6 +651,7 @@ MonoBehaviour:
   maxSpeed: 0
   apexHeight: 0
   apexTime: 0
+  GravityStrenght: 0
   alive: 0
   boxSize: {x: 1.18, y: 1.03}
   castDistance: 0.06
@@ -716,8 +717,9 @@ MonoBehaviour:
   accelerationTime: 0.25
   decelerationTime: 0.25
   maxSpeed: 7
-  apexHeight: 10
+  apexHeight: 3
   apexTime: 0.5
+  GravityStrenght: 1
   alive: 1
   boxSize: {x: 1.18, y: 1.16}
   castDistance: 0.06
@@ -750,7 +752,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &461001144
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2060,6 +2062,7 @@ MonoBehaviour:
   maxSpeed: 0
   apexHeight: 0
   apexTime: 0
+  GravityStrenght: 0
   alive: 0
   boxSize: {x: 1.18, y: 1.03}
   castDistance: 0.06

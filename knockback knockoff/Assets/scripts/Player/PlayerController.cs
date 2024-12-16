@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private float apexHeight;
     [SerializeField] private float apexTime;
+    [SerializeField] private float GravityStrenght;
     private float gravity;
     private float intialJumpSpeed;
     
@@ -60,7 +61,7 @@ public class PlayerController : MonoBehaviour
         decelerationRate = maxSpeed / decelerationTime;
 
         // jumping formulas
-        gravity = -2 * apexHeight / (apexTime * apexHeight);
+        gravity = -GravityStrenght * apexHeight / (apexTime * apexHeight);
         intialJumpSpeed = 2 * apexHeight / apexTime;
 
     }

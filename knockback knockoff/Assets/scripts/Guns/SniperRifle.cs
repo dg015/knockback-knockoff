@@ -20,15 +20,11 @@ public class SniperRifle : Gun
         playerRb = gameObject.transform.GetComponentInParent<Rigidbody2D>();
         Cinemachine = GameObject.Find("Virtual Camera").GetComponent<CinemachineVirtualCamera>();
         shake = Cinemachine.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
-        barrel = GameObject.Find("barrel").GetComponent<Transform>();
+        barrel = transform.GetChild(1);
         controller = gameObject.transform.GetComponentInParent<PlayerController>();
 
     }
 
-    private void Awake()
-    {
-        
-    }
     // Update is called once per frame
     void Update()
     {
