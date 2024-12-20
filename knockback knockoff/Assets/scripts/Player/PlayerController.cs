@@ -81,6 +81,7 @@ public class PlayerController : MonoBehaviour
         VerticalForces();
         jump();
         rb.velocity = PVelocity;
+        
     }
 
     private bool isGrounded()
@@ -159,13 +160,20 @@ public class PlayerController : MonoBehaviour
                 PVelocity.x -= decelerationRate * Time.deltaTime;
                 //Setting max will help by not allowing the speed to go over/lower the asked amount will make it be moving slightly forever
                 PVelocity.x = Mathf.Max(PVelocity.x, 0);
+
             }
             else if (PVelocity.x<0)
             {
                 PVelocity.x += decelerationRate * Time.deltaTime;
                 PVelocity.x = Mathf.Min(PVelocity.x, 0);
+
             }
         }
+        if (isGrounded())
+        {
+            PVelocity.x = Mathf.Clamp(PVelocity.x, -maxSpeed, maxSpeed);
+        }
+        
     }
 
 
@@ -188,8 +196,4 @@ public class PlayerController : MonoBehaviour
             PVelocity.y = intialJumpSpeed;
         }
     }
-
-
-
-
 }
