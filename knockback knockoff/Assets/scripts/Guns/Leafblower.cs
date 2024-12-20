@@ -13,7 +13,7 @@ public class Leafblower : Gun
     {
         pivot = gameObject.transform.GetComponentInParent<Transform>();
         playerRb = gameObject.transform.GetComponentInParent<Rigidbody2D>();
-        
+        controller = gameObject.transform.GetComponentInParent<PlayerController>();
     }
 
     // Update is called once per frame
@@ -69,10 +69,4 @@ public class Leafblower : Gun
         }
         
     }
-
-    protected override void shoot()
-    {
-        playerRb.AddForce(-1 * angle * force, ForceMode2D.Force);
-    }
-
 }

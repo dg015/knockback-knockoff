@@ -147,6 +147,7 @@ MonoBehaviour:
   barrel: {fileID: 0}
   playerRb: {fileID: 0}
   force: 2.5
+  controller: {fileID: 0}
   timeBetweenShots: 0
   RunningTime: 0
   overheatMaximum: 2.5

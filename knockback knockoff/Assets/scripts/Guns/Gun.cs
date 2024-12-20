@@ -19,6 +19,8 @@ public class Gun : MonoBehaviour
     protected Vector2 angle;
     protected float direction;
 
+    [SerializeField] protected PlayerController controller;
+
     //shooting
     [SerializeField] protected float timeBetweenShots;
     [SerializeField] protected float RunningTime;
@@ -31,6 +33,7 @@ public class Gun : MonoBehaviour
         
         pivot = gameObject.transform.GetComponentInParent<Transform>();
         playerRb = gameObject.transform.GetComponentInParent<Rigidbody2D>();
+        controller = gameObject.transform.GetComponentInParent<PlayerController>();
         barrel = GameObject.Find("barrel").GetComponent<Transform>();
         //barrel = gameObject.transform.GetComponentInChildren<Transform>();
     }
@@ -52,15 +55,19 @@ public class Gun : MonoBehaviour
                 RunningTime = 0;
                 shoot();
             }
-
-
         }
     }
 
     protected virtual void shoot()
     {
-        
-        playerRb.AddForce(-1 * angle * force, ForceMode2D.Force);
+
+        //playerRb.AddForce(-1 * angle * force, ForceMode2D.Force);
+        Vector2 direction = new Vector2();
+        direction = -angle.normalized;
+        Debug.Log(direction);
+        controller.PVelocity = direction * force;
+
+
         Instantiate(bullet, barrel.position, barrel.rotation);
     }
 

@@ -20,18 +20,19 @@ public class SniperRifle : Gun
         playerRb = gameObject.transform.GetComponentInParent<Rigidbody2D>();
         Cinemachine = GameObject.Find("Virtual Camera").GetComponent<CinemachineVirtualCamera>();
         shake = Cinemachine.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
-        barrel = GameObject.Find("barrel").GetComponent<Transform>();
+        barrel = transform.GetChild(1);
+        controller = gameObject.transform.GetComponentInParent<PlayerController>();
+
     }
 
-    private void Awake()
-    {
-        
-    }
     // Update is called once per frame
     void Update()
     {
         aim();
         CameraShakeTimer();
+        RunningTime += Time.deltaTime;
+        shootingDelay();
+        
         if (Input.GetMouseButton(0) && readyToFire)
         {
             StartCoroutine(shootingCycle());
@@ -65,7 +66,7 @@ public class SniperRifle : Gun
 
     protected override void shoot()
     {
-        playerRb.AddForce(-1 * angle * force, ForceMode2D.Force);
+        base.shoot();
         CameraShake();
     }
 

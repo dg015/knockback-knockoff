@@ -651,6 +651,7 @@ MonoBehaviour:
   maxSpeed: 0
   apexHeight: 0
   apexTime: 0
+  GravityStrenght: 0
   alive: 0
   boxSize: {x: 1.18, y: 1.03}
   castDistance: 0.06
@@ -715,9 +716,10 @@ MonoBehaviour:
   PVelocity: {x: 0, y: 0}
   accelerationTime: 0.25
   decelerationTime: 0.25
-  maxSpeed: 7
-  apexHeight: 10
+  maxSpeed: 8
+  apexHeight: 3
   apexTime: 0.5
+  GravityStrenght: 0.25
   alive: 1
   boxSize: {x: 1.18, y: 1.16}
   castDistance: 0.06
@@ -750,7 +752,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &461001144
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -803,7 +805,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 461001140}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 803ff55c301884a4caa68e57ed55bdee, type: 3}
   m_Name: 
@@ -832,7 +834,7 @@ MonoBehaviour:
   rb: {fileID: 461001143}
   speedBar: {fileID: 0}
   maxSpeedReached: 0
-  maxspeed: 35
+  maxspeed: 50
 --- !u!114 &461001147
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1656,7 +1658,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1219454562
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2060,6 +2062,7 @@ MonoBehaviour:
   maxSpeed: 0
   apexHeight: 0
   apexTime: 0
+  GravityStrenght: 0
   alive: 0
   boxSize: {x: 1.18, y: 1.03}
   castDistance: 0.06
@@ -2527,6 +2530,10 @@ PrefabInstance:
     - target: {fileID: 495355627803746142, guid: e1b5ddfe7928cbe40b8da5f123bff524, type: 3}
       propertyPath: m_Name
       value: Gun
+      objectReference: {fileID: 0}
+    - target: {fileID: 4570528385328545413, guid: e1b5ddfe7928cbe40b8da5f123bff524, type: 3}
+      propertyPath: force
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 4570528385328545413, guid: e1b5ddfe7928cbe40b8da5f123bff524, type: 3}
       propertyPath: playerRb
