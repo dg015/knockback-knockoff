@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float maxSpeed;
 
 
+
     [Header("Veritcal")]
 
     [SerializeField] private float apexHeight;
