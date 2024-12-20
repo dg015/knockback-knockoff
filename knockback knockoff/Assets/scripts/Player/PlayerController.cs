@@ -23,7 +23,8 @@ public class PlayerController : MonoBehaviour
     private float decelerationRate;
     [SerializeField] private float maxSpeed;
 
-
+    //walking speed 
+    [SerializeField] private Vector2 walkingSpeed;
 
     [Header("Veritcal")]
 
@@ -150,7 +151,7 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("here");
             //apply velocity
-            PVelocity.x += accelerationRate * playerInput.x * Time.deltaTime;
+            walkingSpeed.x += accelerationRate * playerInput.x * Time.deltaTime;
         }
         else
         {
@@ -158,23 +159,23 @@ public class PlayerController : MonoBehaviour
             //decelrationRate is applied every second eats away the remaining velocity
             if (PVelocity.x>0)
             {
-                PVelocity.x -= decelerationRate * Time.deltaTime;
+                walkingSpeed.x -= decelerationRate * Time.deltaTime;
                 //Setting max will help by not allowing the speed to go over/lower the asked amount will make it be moving slightly forever
-                PVelocity.x = Mathf.Max(PVelocity.x, 0);
+                walkingSpeed.x = Mathf.Max(PVelocity.x, 0);
 
             }
             else if (PVelocity.x<0)
             {
-                PVelocity.x += decelerationRate * Time.deltaTime;
+                walkingSpeed.x += decelerationRate * Time.deltaTime;
                 PVelocity.x = Mathf.Min(PVelocity.x, 0);
 
             }
         }
         if (isGrounded())
         {
-            PVelocity.x = Mathf.Clamp(PVelocity.x, -maxSpeed, maxSpeed);
+            PVelocity.x = Mathf.Clamp(walkingSpeed.x, -maxSpeed, maxSpeed);
         }
-        
+        PVelocity += walkingSpeed;
     }
 
 
