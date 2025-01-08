@@ -649,6 +649,7 @@ MonoBehaviour:
   accelerationTime: 0
   decelerationTime: 0
   maxSpeed: 0
+  walkingSpeed: {x: 0, y: 0}
   apexHeight: 0
   apexTime: 0
   GravityStrenght: 0
@@ -717,6 +718,7 @@ MonoBehaviour:
   accelerationTime: 0.25
   decelerationTime: 0.25
   maxSpeed: 8
+  walkingSpeed: {x: 0, y: 0}
   apexHeight: 3
   apexTime: 0.5
   GravityStrenght: 0.25
@@ -2060,6 +2062,7 @@ MonoBehaviour:
   accelerationTime: 0
   decelerationTime: 0
   maxSpeed: 0
+  walkingSpeed: {x: 0, y: 0}
   apexHeight: 0
   apexTime: 0
   GravityStrenght: 0
@@ -2595,6 +2598,10 @@ PrefabInstance:
     - target: {fileID: 2824199703836378426, guid: 59b7f7c906abd824bb40382b57580c49, type: 3}
       propertyPath: m_Name
       value: Spike
+      objectReference: {fileID: 0}
+    - target: {fileID: 2824199703836378426, guid: 59b7f7c906abd824bb40382b57580c49, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6540595354280045374, guid: 59b7f7c906abd824bb40382b57580c49, type: 3}
       propertyPath: m_LocalPosition.x

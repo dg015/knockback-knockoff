@@ -159,23 +159,24 @@ public class PlayerController : MonoBehaviour
             //decelrationRate is applied every second eats away the remaining velocity
             if (PVelocity.x>0)
             {
-                walkingSpeed.x -= decelerationRate * Time.deltaTime;
+                PVelocity.x -= decelerationRate * Time.deltaTime;
                 //Setting max will help by not allowing the speed to go over/lower the asked amount will make it be moving slightly forever
-                walkingSpeed.x = Mathf.Max(PVelocity.x, 0);
+                PVelocity.x = Mathf.Max(PVelocity.x, 0);
 
             }
             else if (PVelocity.x<0)
             {
-                walkingSpeed.x += decelerationRate * Time.deltaTime;
+                PVelocity.x += decelerationRate * Time.deltaTime;
                 PVelocity.x = Mathf.Min(PVelocity.x, 0);
 
             }
         }
         if (isGrounded())
         {
-            PVelocity.x = Mathf.Clamp(walkingSpeed.x, -maxSpeed, maxSpeed);
+            PVelocity.x = Mathf.Clamp(PVelocity.x + walkingSpeed.x * Time.deltaTime, -maxSpeed, maxSpeed);
         }
-        PVelocity += walkingSpeed;
+        //Problem is areound here since it keeps addign the speed overtime it doesnt cap
+        PVelocity = PVelocity + walkingSpeed  * Time.deltaTime;
     }
 
 
