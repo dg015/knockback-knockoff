@@ -12,9 +12,10 @@ public class PlayerController : MonoBehaviour
     //basic movement
     [SerializeField] public Vector3 location;
     public Rigidbody2D rb;
-    //New movement system
 
+    //New movement system
     public Vector2 PVelocity;
+    [SerializeField] private bool MaxVelocityReached;
 
     [Header("Horizontal")]
     [SerializeField] private float accelerationTime;
@@ -24,9 +25,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float maxSpeed;
 
 
-
     [Header("Veritcal")]
-
     [SerializeField] private float apexHeight;
     [SerializeField] private float apexTime;
     [SerializeField] private float GravityStrenght;
@@ -38,7 +37,6 @@ public class PlayerController : MonoBehaviour
     public bool alive = true;
 
     //Jump
-
     [Header("IsGrounded")]
     //Is grounded
     [SerializeField] private Vector2 boxSize;
@@ -70,6 +68,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        CheckMaxVelocity();
         isGrounded();
         location = gameObject.transform.position;
     }
@@ -150,7 +149,10 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("here");
             //apply velocity
-            PVelocity.x += accelerationRate * playerInput.x * Time.deltaTime;
+            if (!MaxVelocityReached)
+            {
+                PVelocity.x += accelerationRate * playerInput.x * Time.deltaTime;
+            }
         }
         else
         {
@@ -172,11 +174,23 @@ public class PlayerController : MonoBehaviour
         }
         if (isGrounded())
         {
-            PVelocity.x = Mathf.Clamp(PVelocity.x, -maxSpeed, maxSpeed);
+            //PVelocity.x = Mathf.Clamp(PVelocity.x, -maxSpeed, maxSpeed);
+
         }
         
     }
 
+    private void CheckMaxVelocity()
+    {
+        if(PVelocity.x >= maxSpeed || PVelocity.x <= -maxSpeed)
+        {
+            MaxVelocityReached = true;
+        }
+        else
+        {
+            MaxVelocityReached = false;
+        }
+    }
 
     private void VerticalForces()
     {

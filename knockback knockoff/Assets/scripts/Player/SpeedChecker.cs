@@ -58,9 +58,6 @@ public class SpeedChecker : MonoBehaviour
     private void fill()
     {
         speedBar.fillAmount = rb.velocity.magnitude / maxspeed;
-
-
-
     }
 
 }
