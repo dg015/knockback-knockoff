@@ -81,7 +81,8 @@ MonoBehaviour:
   bullet: {fileID: 2207976954983804641, guid: 58e3ce25b856ce6438b65b09e4faf88e, type: 3}
   barrel: {fileID: 0}
   playerRb: {fileID: 0}
-  force: 1.94
+  force: 60
+  controller: {fileID: 0}
   timeBetweenShots: 4
   RunningTime: 0
   Cinemachine: {fileID: 0}

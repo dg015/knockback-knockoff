@@ -64,7 +64,7 @@ public class Gun : MonoBehaviour
         //playerRb.AddForce(-1 * angle * force, ForceMode2D.Force);
         Vector2 direction = new Vector2();
         direction = -angle.normalized;
-        Debug.Log(direction);
+        //Debug.Log(direction);
         controller.PVelocity = direction * force;
 
 

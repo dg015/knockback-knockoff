@@ -14,6 +14,7 @@ public class WeaponsSpawner : MonoBehaviour
     [SerializeField] private float timer;
     [SerializeField] private List<GameObject> Weapons;
 
+
     //NEED TO MAKE IT INSTANTIATE ONLY ONCE, RN ITS GOING TO INSTANTIATE A LOT OF OBJECTS AT ONCE
     //Gun 1: pistol
     //Gun 2: leafblower
@@ -73,11 +74,15 @@ public class WeaponsSpawner : MonoBehaviour
             {
                 if (!HasComponentInChildren<Gun>(PlayerTransform))
                 {
-                    
+                    GameObject currentSelectedGun;
+                    currentSelectedGun = gunHolderScript.weapons[gunHolderScript.selectedWeaponIndex];
+                    currentSelectedGun.SetActive(false);
+
                     Debug.Log("doesn't have pistol");
                     Instantiate(Weapons[GunIndex], gunHolderTransform);
                     gunHolderScript.weapons.Add(Weapons[GunIndex]);
                     gunHolderScript.getWeapons();
+                    
                     //gunHolderScript.selectedWeaponIndex = gunHolderScript.weapons.Count-1;
                 }
             }
@@ -85,7 +90,10 @@ public class WeaponsSpawner : MonoBehaviour
             {
                 if (!HasComponentInChildren<Leafblower>(PlayerTransform))
                 {
-                    
+                    GameObject currentSelectedGun;
+                    currentSelectedGun = gunHolderScript.weapons[gunHolderScript.selectedWeaponIndex];
+                    currentSelectedGun.SetActive(false);
+
                     Debug.Log("doesn't have leaf blower");
                     Instantiate(Weapons[GunIndex], gunHolderTransform);
                     gunHolderScript.weapons.Add(Weapons[GunIndex]);
@@ -97,7 +105,10 @@ public class WeaponsSpawner : MonoBehaviour
             {
                 if (!HasComponentInChildren<SniperRifle>(PlayerTransform))
                 {
-                    
+                    GameObject currentSelectedGun;
+                    currentSelectedGun = gunHolderScript.weapons[gunHolderScript.selectedWeaponIndex];
+                    currentSelectedGun.SetActive(false);
+
                     Debug.Log("doesn't have sniper rifle");
                     Instantiate(Weapons[GunIndex], gunHolderTransform);
                     gunHolderScript.weapons.Add(Weapons[GunIndex]);

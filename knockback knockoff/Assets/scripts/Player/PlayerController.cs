@@ -172,12 +172,13 @@ public class PlayerController : MonoBehaviour
 
             }
         }
+        /*
         if (isGrounded())
         {
             //PVelocity.x = Mathf.Clamp(PVelocity.x, -maxSpeed, maxSpeed);
 
         }
-        
+        */
     }
 
     private void CheckMaxVelocity()

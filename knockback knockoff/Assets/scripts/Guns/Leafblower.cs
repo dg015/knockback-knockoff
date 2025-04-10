@@ -38,6 +38,20 @@ public class Leafblower : Gun
 
     }
 
+
+    protected virtual void shooting()
+    {
+
+        //playerRb.AddForce(-1 * angle * force, ForceMode2D.Force);
+        Vector2 direction = new Vector2();
+        direction = -angle.normalized;
+        Debug.Log(direction);
+        controller.PVelocity = direction * force;
+
+
+        Instantiate(bullet, barrel.position, barrel.rotation);
+    }
+
     // idea, add delay for firing
     private void heating()
     {

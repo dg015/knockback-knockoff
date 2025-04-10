@@ -50,7 +50,8 @@ MonoBehaviour:
   bullet: {fileID: 2207976954983804641, guid: 58e3ce25b856ce6438b65b09e4faf88e, type: 3}
   barrel: {fileID: 0}
   playerRb: {fileID: 0}
-  force: 42
+  force: 30
+  controller: {fileID: 0}
   timeBetweenShots: 0.75
   RunningTime: 0
 --- !u!1 &3200326656611609605
