@@ -61,11 +61,16 @@ public class Gun : MonoBehaviour
     protected virtual void shoot()
     {
 
-        //playerRb.AddForce(-1 * angle * force, ForceMode2D.Force);
-        Vector2 direction = new Vector2();
-        direction = -angle.normalized;
-        //Debug.Log(direction);
-        controller.PVelocity = direction * force;
+        //get players current speed
+        Vector2 currentVelocity = playerRb.velocity;
+        
+        //apply the direction of the mouse inversed as new position
+        Vector2 KnockbackDirection = new Vector2();
+        KnockbackDirection = -angle.normalized;
+
+        //Apply force
+        float initialVelocityInfluence = 0.3f;
+        controller.PVelocity = KnockbackDirection * force + currentVelocity * initialVelocityInfluence;
 
 
         Instantiate(bullet, barrel.position, barrel.rotation);
