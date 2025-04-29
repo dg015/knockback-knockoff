@@ -86,7 +86,7 @@ public class PlayerController : MonoBehaviour
 
     private bool isGrounded()
     {
-
+        
         if (Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, castDistance,ground))
         {
             Debug.Log("grounded");
