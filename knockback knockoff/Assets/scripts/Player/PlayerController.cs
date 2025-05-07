@@ -86,7 +86,6 @@ public class PlayerController : MonoBehaviour
 
     private bool isGrounded()
     {
-        
         if (Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, castDistance,ground))
         {
             Debug.Log("grounded");
@@ -150,7 +149,7 @@ public class PlayerController : MonoBehaviour
         //gets aceleration
         if(Input.GetAxisRaw("Horizontal") != 0)
         {
-            Debug.Log("here");
+            
             //apply velocity
             if (!MaxVelocityReached)
             {

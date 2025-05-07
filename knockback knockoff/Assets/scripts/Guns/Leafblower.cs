@@ -8,6 +8,8 @@ public class Leafblower : Gun
     [SerializeField] private float heat;
     [SerializeField] private bool readyToFire = true;
     [SerializeField] private float minimumHeat;
+
+    [SerializeField] private float StartUpHeat;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,29 +21,34 @@ public class Leafblower : Gun
     // Update is called once per frame
     void Update()
     {
+        
         aim();
+        heating();
         firing();
         cooldown();
-        heating();
+        heat = Mathf.Clamp(heat, 0, overheatMaximum);
+        RunningTime += Time.deltaTime;
     }
 
     private void firing()
     {
         if (readyToFire)
         {
+
             if (Input.GetMouseButton(0))
             {
+                RunningTime = 0;
                 heat += Time.deltaTime;
                 shoot();
             }
+
         }
 
     }
 
-
     protected virtual void shooting()
     {
-
+        
         //playerRb.AddForce(-1 * angle * force, ForceMode2D.Force);
         Vector2 direction = new Vector2();
         direction = -angle.normalized;
@@ -55,8 +62,10 @@ public class Leafblower : Gun
     // idea, add delay for firing
     private void heating()
     {
+        
         if (heat >= overheatMaximum)
         {
+            
             readyToFire = false;
 
         }
@@ -64,21 +73,15 @@ public class Leafblower : Gun
         {
             readyToFire = true;
         }
-        if (heat <0)
-        {
-            heat = 0;
-        }
-        if (heat > overheatMaximum)
-        {
-            heat = overheatMaximum;
-        }
+        
 
     }
 
     private void cooldown()
     {
-        if (!Input.GetMouseButton(0))
+        if (!Input.GetMouseButton(0) && RunningTime >timeBetweenShots)
         {
+            
             heat -= Time.deltaTime;
         }
         
