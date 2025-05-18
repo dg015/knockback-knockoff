@@ -721,7 +721,7 @@ MonoBehaviour:
   accelerationTime: 0.25
   decelerationTime: 0.25
   maxSpeed: 8
-  apexHeight: 3
+  apexHeight: 2.75
   apexTime: 0.5
   GravityStrenght: 0.25
   alive: 1
@@ -21412,6 +21412,22 @@ PrefabInstance:
       propertyPath: force
       value: 6.41
       objectReference: {fileID: 0}
+    - target: {fileID: 5481408109817152560, guid: b29279261163ddf4e9488158d3800f97, type: 3}
+      propertyPath: StartUpHeat
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5481408109817152560, guid: b29279261163ddf4e9488158d3800f97, type: 3}
+      propertyPath: heatMuliplyer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5481408109817152560, guid: b29279261163ddf4e9488158d3800f97, type: 3}
+      propertyPath: overheatMaximum
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5481408109817152560, guid: b29279261163ddf4e9488158d3800f97, type: 3}
+      propertyPath: timeBetweenShots
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6794339134491003281, guid: b29279261163ddf4e9488158d3800f97, type: 3}
       propertyPath: m_Name
       value: Leafblower
@@ -21479,7 +21495,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4570528385328545413, guid: e1b5ddfe7928cbe40b8da5f123bff524, type: 3}
       propertyPath: force
-      value: 25
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4570528385328545413, guid: e1b5ddfe7928cbe40b8da5f123bff524, type: 3}
       propertyPath: playerRb
