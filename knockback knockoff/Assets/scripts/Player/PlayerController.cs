@@ -88,18 +88,20 @@ public class PlayerController : MonoBehaviour
     {
         if (Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, castDistance,ground))
         {
-            Debug.Log("grounded");
+           
             return true;
         }
         else 
         {
-            Debug.Log("not grounded");
+            
             return false;
         }
     }
 
+
     private void OnDrawGizmos()
     {
+        //Gizmos.DrawWireCube(new Vector2(transform.position.x, transform.position.y + 5)
         Gizmos.DrawWireCube(transform.position - transform.up * castDistance, boxSize);
     }
 
