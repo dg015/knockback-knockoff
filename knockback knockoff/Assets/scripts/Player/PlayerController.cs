@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -68,6 +69,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+
         CheckMaxVelocity();
         isGrounded();
         location = gameObject.transform.position;
@@ -80,6 +83,7 @@ public class PlayerController : MonoBehaviour
         Movement(PlayerInput);
         VerticalForces();
         jump();
+        CheckIfPlayerTurned(PlayerInput);
         rb.velocity = PVelocity;
         
     }
@@ -98,6 +102,23 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void CheckIfPlayerTurned(Vector2 playerInput)
+    {
+        float moveDirection = playerInput.x;
+        if(moveDirection > 0)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+            Debug.Log("goin right");
+            
+        }
+        else if( moveDirection < 0)
+        {
+            transform.rotation = Quaternion.Euler(0, 180, 0);
+            Debug.Log("going left");
+        }
+    }
+
+    
 
     private void OnDrawGizmos()
     {
