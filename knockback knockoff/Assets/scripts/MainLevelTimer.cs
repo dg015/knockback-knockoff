@@ -12,8 +12,10 @@ public class MainLevelTimer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!stopTimer)
+        if (!stopTimer)
             increaseTime();
+        else
+            TimerText.color = Color.green;
         setText();
         int minutes = Mathf.FloorToInt(elaspedTime / 60);
         int seconds = Mathf.FloorToInt(elaspedTime % 60);
