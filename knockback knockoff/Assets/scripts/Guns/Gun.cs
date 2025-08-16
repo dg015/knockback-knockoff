@@ -77,7 +77,7 @@ public class Gun : MonoBehaviour
     }
 
 
-    protected void aim()
+    public void aim()
     {
         Vector3 mousePos = Input.mousePosition;
         mousePos = Camera.main.ScreenToWorldPoint(mousePos);

@@ -123,6 +123,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    
     private void CheckIfPlayerTurned(Vector2 playerInput)
     {
         float moveDirection = playerInput.x;
@@ -138,8 +139,10 @@ public class PlayerController : MonoBehaviour
             Debug.Log("going left");
         }
     }
-
     
+    
+
+
 
     private void OnDrawGizmos()
     {
