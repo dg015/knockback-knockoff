@@ -32,7 +32,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float GravityStrenght;
     private float gravity;
     private float intialJumpSpeed;
-    
+
+    //to rotate the player in the correct direction
+    [SerializeField] private Gun gunScript;
 
     //health system
     public bool alive = true;
@@ -64,11 +66,13 @@ public class PlayerController : MonoBehaviour
         gravity = -GravityStrenght * apexHeight / (apexTime * apexHeight);
         intialJumpSpeed = 2 * apexHeight / apexTime;
 
+        gunScript = transform.GetComponentInChildren<Gun>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        gunScript.aim();
         CheckMaxVelocity();
         isGrounded();
         location = gameObject.transform.position;
@@ -131,11 +135,13 @@ public class PlayerController : MonoBehaviour
         {
             transform.rotation = Quaternion.Euler(0, 0, 0);
             Debug.Log("goin right");
+            transform.localScale = new Vector3(1, 1, 1);
             
         }
         else if( moveDirection < 0)
         {
             transform.rotation = Quaternion.Euler(0, 180, 0);
+            transform.localScale = new Vector3(1, 1, 1);
             Debug.Log("going left");
         }
     }

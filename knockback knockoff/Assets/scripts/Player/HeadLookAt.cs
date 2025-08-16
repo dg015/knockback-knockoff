@@ -4,17 +4,15 @@ using UnityEngine;
 
 public class HeadLookAt : MonoBehaviour
 {
-    [SerializeField] private Gun gunScript;
-    // Start is called before the first frame update
-    void Start()
-    {
-        gunScript = GetComponent<Gun>();
-    }
+    private Vector2 angle;
+    private float direction;
+
+    [SerializeField] protected Transform pivot;
 
     // Update is called once per frame
     void Update()
     {
-        gunScript.aim();
+        lookAt();
         mirrorHead();
     }
     private void mirrorHead()
@@ -32,4 +30,15 @@ public class HeadLookAt : MonoBehaviour
             transform.localScale = new Vector3(1, 1, 1);
         }
     }
+
+    private void lookAt()
+    {
+        Vector3 mousePos = Input.mousePosition;
+        mousePos = Camera.main.ScreenToWorldPoint(mousePos);
+        angle = new Vector2((mousePos.x - pivot.position.x), (mousePos.y - pivot.position.y));
+        direction = Mathf.Atan2(angle.y, angle.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0, 0, direction);
+
+    }
+
 }
