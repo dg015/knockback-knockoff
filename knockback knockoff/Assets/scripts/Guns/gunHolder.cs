@@ -36,7 +36,7 @@ public class gunHolder : MonoBehaviour
             {
                 selectedWeaponIndex++;
             }
-            Debug.Log(selectedWeaponIndex);
+           // Debug.Log(selectedWeaponIndex);
             swapWeapons();
         }
         if (Input.GetAxis("Mouse ScrollWheel") < -0.1)
@@ -50,7 +50,8 @@ public class gunHolder : MonoBehaviour
                 selectedWeaponIndex--;
             }
             
-            Debug.Log(selectedWeaponIndex);
+            
+            //Debug.Log(selectedWeaponIndex);
             swapWeapons();
         }
    

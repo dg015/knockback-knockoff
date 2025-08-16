@@ -76,7 +76,7 @@ public class SniperRifle : Gun
         shoot();
         readyToFire = false;
         yield return new WaitForSeconds(timeBetweenShots);
-        Debug.Log("I'me here");
+        
         readyToFire = true;
 
 

@@ -69,8 +69,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-
         CheckMaxVelocity();
         isGrounded();
         location = gameObject.transform.position;
@@ -85,7 +83,30 @@ public class PlayerController : MonoBehaviour
         jump();
         CheckIfPlayerTurned(PlayerInput);
         rb.velocity = PVelocity;
-        
+        hasHitWall();
+    }
+
+    private void hasHitWall()
+    {
+        //check with boxcast if the player has hit the ceiling, if yes then reset speed and let them fall down
+        if(Physics2D.BoxCast(transform.position, boxSize,0,transform.up,castDistance,ground))
+        {
+            Debug.Log("has hit ceiling");
+            PVelocity.y = 0;
+        }
+        // now check if the have hit a wall if so then reset their fall speed
+            //this one checks for the right side
+        else if (Physics2D.BoxCast(transform.position, boxSize, 0, transform.right, castDistance, ground) && !isGrounded())
+        {
+            Debug.Log("has hit right wall");
+            PVelocity.x = 0;
+        }
+        else if (Physics2D.BoxCast(transform.position, boxSize, 0, -transform.right, castDistance, ground) && !isGrounded())
+        {
+            Debug.Log("has hit left wall");
+            PVelocity.x = 0;
+        }
+
     }
 
     private bool isGrounded()
