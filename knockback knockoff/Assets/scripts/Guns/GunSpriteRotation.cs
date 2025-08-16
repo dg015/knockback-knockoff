@@ -12,9 +12,6 @@ public class GunSpriteRotation : MonoBehaviour
     {
         
         float rotationZ = transform.parent.localEulerAngles.z;
-
-
-        
             if (rotationZ > 90 && rotationZ < 270)
             {
                 // Facing left

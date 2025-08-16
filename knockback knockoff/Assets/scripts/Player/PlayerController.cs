@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
     private float intialJumpSpeed;
 
     //to rotate the player in the correct direction
-    [SerializeField] private Gun gunScript;
+    [SerializeField] private Transform head;
 
     //health system
     public bool alive = true;
@@ -66,13 +66,13 @@ public class PlayerController : MonoBehaviour
         gravity = -GravityStrenght * apexHeight / (apexTime * apexHeight);
         intialJumpSpeed = 2 * apexHeight / apexTime;
 
-        gunScript = transform.GetComponentInChildren<Gun>();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        gunScript.aim();
+        
         CheckMaxVelocity();
         isGrounded();
         location = gameObject.transform.position;
@@ -80,12 +80,13 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        scaleBodyToHeadRotation(head, transform);
         Vector2 PlayerInput = new Vector2();
         PlayerInput.x = Input.GetAxisRaw("Horizontal");
         Movement(PlayerInput);
         VerticalForces();
         jump();
-        CheckIfPlayerTurned(PlayerInput);
+        //CheckIfPlayerTurned(PlayerInput);
         rb.velocity = PVelocity;
         hasHitWall();
     }
@@ -146,7 +147,27 @@ public class PlayerController : MonoBehaviour
         }
     }
     
-    
+    private void scaleBodyToHeadRotation(Transform head, Transform body )
+    {
+        Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 dir = mouseWorld - head.position;
+
+
+
+        if (dir.x <0)
+        {
+            transform.rotation = Quaternion.Euler(0, 180, 0);
+            transform.localScale = new Vector3(1, 1, 1);
+        }
+        else
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+            transform.localScale = new Vector3(1, 1, 1);
+
+        }
+
+
+    }
 
 
 

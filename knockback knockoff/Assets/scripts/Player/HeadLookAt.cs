@@ -15,7 +15,7 @@ public class HeadLookAt : MonoBehaviour
         lookAt();
         mirrorHead();
     }
-    private void mirrorHead()
+    public void mirrorHead()
     {
         float rotationZ = transform.localEulerAngles.z;
 
@@ -31,7 +31,7 @@ public class HeadLookAt : MonoBehaviour
         }
     }
 
-    private void lookAt()
+    public void lookAt()
     {
         Vector3 mousePos = Input.mousePosition;
         mousePos = Camera.main.ScreenToWorldPoint(mousePos);
