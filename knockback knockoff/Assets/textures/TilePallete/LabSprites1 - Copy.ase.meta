@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: fada8234af6472b40ac450762ab46c59
+guid: 7d5189cc33b218844b06aa989da3a799
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -121,18 +121,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: LabSprites1
+  - name: LabSprites1 - Copy
     originalName: 
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: 0.6066351, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 256
+      width: 211
       height: 256
-    spriteID: 3bc47b71a2f7af74ea8a7cb145f773b2
+    spriteID: ae5d89aea74693b4d8f59b019f6fac57
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -144,21 +144,21 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -923377904
-    name: LabSprites1
+    guid: 420850252
+    name: LabSprites1 - Copy
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: LabSprites1
+    - name: LabSprites1 - Copy
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
-        width: 256
+        width: 211
         height: 256
-      spriteId: 3bc47b71a2f7af74ea8a7cb145f773b2
+      spriteId: ae5d89aea74693b4d8f59b019f6fac57
     linkedCells: []
     parentIndex: -1
   platformSettings: []
