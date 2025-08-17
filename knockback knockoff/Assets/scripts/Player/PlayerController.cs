@@ -51,6 +51,8 @@ public class PlayerController : MonoBehaviour
     //multiplayer
     public static int PlayerCount;
 
+    [Header("Animation")]
+    [SerializeField] private Animator animator;
 
     protected void Awake()
     {
@@ -66,7 +68,8 @@ public class PlayerController : MonoBehaviour
         gravity = -GravityStrenght * apexHeight / (apexTime * apexHeight);
         intialJumpSpeed = 2 * apexHeight / apexTime;
 
-        
+        //getanimator
+        animator = transform.GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
@@ -118,17 +121,17 @@ public class PlayerController : MonoBehaviour
     {
         if (Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, castDistance,ground))
         {
-           
+            animator.SetBool("InAir", false);
             return true;
         }
         else 
         {
-            
+            animator.SetBool("InAir", true);
             return false;
         }
     }
 
-    
+    /*
     private void CheckIfPlayerTurned(Vector2 playerInput)
     {
         float moveDirection = playerInput.x;
@@ -146,13 +149,12 @@ public class PlayerController : MonoBehaviour
             Debug.Log("going left");
         }
     }
-    
+    */
+
     private void scaleBodyToHeadRotation(Transform head, Transform body )
     {
         Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3 dir = mouseWorld - head.position;
-
-
 
         if (dir.x <0)
         {
@@ -224,14 +226,21 @@ public class PlayerController : MonoBehaviour
         if(Input.GetAxisRaw("Horizontal") != 0)
         {
             
+            
+
             //apply velocity
             if (!MaxVelocityReached)
             {
                 PVelocity.x += accelerationRate * playerInput.x * Time.deltaTime;
             }
+            if(isGrounded())
+            {
+                animator.SetBool("IsWalking", true);
+            }
         }
         else
         {
+            animator.SetBool("IsWalking", false);
             //deceleration
             //decelrationRate is applied every second eats away the remaining velocity
             if (PVelocity.x>0)
@@ -285,6 +294,7 @@ public class PlayerController : MonoBehaviour
     {
         if(isGrounded() == true && (Input.GetButton("Jump")))
         {
+            animator.SetTrigger("Jumping");
             PVelocity.y = intialJumpSpeed;
         }
     }
