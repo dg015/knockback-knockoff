@@ -22,9 +22,13 @@ public class Flag : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        timer.stopTimer = true;
-        EndLevel = true;
-        
+        if(collision.CompareTag("Player"))
+        {
+            timer.stopTimer = true;
+            EndLevel = true;
+
+        }
+
     }
 
 
