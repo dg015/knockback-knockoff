@@ -235,6 +235,7 @@ public class PlayerController : MonoBehaviour
             }
             if(isGrounded())
             {
+               
                 animator.SetBool("IsWalking", true);
             }
         }
