@@ -10,7 +10,9 @@ public class Gun : MonoBehaviour
     //spawn
     [SerializeField] protected Transform pivot;
     [SerializeField] protected GameObject bullet;
+    [SerializeField] protected bool noBarrel;
     [SerializeField] protected Transform barrel;
+
 
     // knockback
     [SerializeField] protected Rigidbody2D playerRb;
@@ -32,9 +34,11 @@ public class Gun : MonoBehaviour
     {
         
         pivot = gameObject.transform.GetComponentInParent<Transform>();
+       
         playerRb = gameObject.transform.GetComponentInParent<Rigidbody2D>();
         controller = gameObject.transform.GetComponentInParent<PlayerController>();
-        barrel = GameObject.Find("barrel").GetComponent<Transform>();
+        if (!noBarrel)
+            barrel = GameObject.Find("barrel").GetComponent<Transform>();
         //barrel = gameObject.transform.GetComponentInChildren<Transform>();
     }
 
@@ -72,8 +76,8 @@ public class Gun : MonoBehaviour
         float initialVelocityInfluence = 0.3f;
         controller.PVelocity = KnockbackDirection * force + currentVelocity * initialVelocityInfluence;
 
-
-        Instantiate(bullet, barrel.position, barrel.rotation);
+        if(!noBarrel)
+            Instantiate(bullet, barrel.position, barrel.rotation);
     }
 
 

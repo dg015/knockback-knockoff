@@ -146,6 +146,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pivot: {fileID: 0}
   bullet: {fileID: 0}
+  noBarrel: 1
   barrel: {fileID: 0}
   playerRb: {fileID: 0}
   force: 2.5

@@ -43,7 +43,7 @@ public class BulletTravel : MonoBehaviour
         {
             if  (destructable == true)
             {
-                Debug.Log("destroyed by bullet");
+               // Debug.Log("destroyed by bullet");
                 Destroy(this.gameObject);
                 
             }
@@ -54,8 +54,8 @@ public class BulletTravel : MonoBehaviour
         }
         else
         {
-            Debug.Log(collision);
-            Debug.Log("destroyed");
+           // Debug.Log(collision);
+           // Debug.Log("destroyed");
             Destroy(this.gameObject);
             
         }
