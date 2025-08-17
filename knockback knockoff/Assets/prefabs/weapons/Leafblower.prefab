@@ -97,6 +97,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87a96bd896217c24893c1178c34d4d71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  head: 0
+  gun: {fileID: 0}
 --- !u!1 &6794339134491003281
 GameObject:
   m_ObjectHideFlags: 0
@@ -154,3 +156,4 @@ MonoBehaviour:
   heat: 0
   readyToFire: 0
   minimumHeat: 0.5
+  StartUpHeat: 0
