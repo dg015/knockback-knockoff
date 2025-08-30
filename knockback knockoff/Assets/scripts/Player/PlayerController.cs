@@ -45,6 +45,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Vector2 boxSize;
     [SerializeField] private float castDistance;
     [SerializeField] private LayerMask ground;
+    [SerializeField] private LayerMask slope;
 
 
     [Header("Multiplayer")]
@@ -53,6 +54,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Animation")]
     [SerializeField] private Animator animator;
+
 
     protected void Awake()
     {
@@ -92,6 +94,7 @@ public class PlayerController : MonoBehaviour
         //CheckIfPlayerTurned(PlayerInput);
         rb.velocity = PVelocity;
         hasHitWall();
+
     }
 
     private void hasHitWall()
@@ -165,17 +168,17 @@ public class PlayerController : MonoBehaviour
         {
             transform.rotation = Quaternion.Euler(0, 0, 0);
             transform.localScale = new Vector3(1, 1, 1);
-
         }
-
-
     }
 
 
 
     private void OnDrawGizmos()
     {
-        //Gizmos.DrawWireCube(new Vector2(transform.position.x, transform.position.y + 5)
+        //Gizmos.DrawWireCube(transform.position - transform.up * castDistance, boxSize);
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireCube(transform.position, boxSize);
+        Gizmos.color = Color.red;
         Gizmos.DrawWireCube(transform.position - transform.up * castDistance, boxSize);
     }
 
@@ -225,9 +228,6 @@ public class PlayerController : MonoBehaviour
         //gets aceleration
         if(Input.GetAxisRaw("Horizontal") != 0)
         {
-            
-            
-
             //apply velocity
             if (!MaxVelocityReached)
             {
@@ -235,7 +235,6 @@ public class PlayerController : MonoBehaviour
             }
             if(isGrounded())
             {
-               
                 animator.SetBool("IsWalking", true);
             }
         }
