@@ -66,7 +66,7 @@ public class Gun : MonoBehaviour
     {
 
         //get players current speed
-        Vector2 currentVelocity = playerRb.velocity;
+        Vector2 currentVelocity = playerRb.linearVelocity;
         
         //apply the direction of the mouse inversed as new position
         Vector2 KnockbackDirection = new Vector2();

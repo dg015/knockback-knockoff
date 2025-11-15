@@ -92,7 +92,7 @@ public class PlayerController : MonoBehaviour
         VerticalForces();
         jump();
         //CheckIfPlayerTurned(PlayerInput);
-        rb.velocity = PVelocity;
+        rb.linearVelocity = PVelocity;
         hasHitWall();
 
     }

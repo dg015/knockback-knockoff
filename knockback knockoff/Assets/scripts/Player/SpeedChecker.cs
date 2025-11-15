@@ -28,7 +28,7 @@ public class SpeedChecker : MonoBehaviour
 
     private void killSpeed()
     {
-        if(rb.velocity.magnitude / maxspeed > 1)
+        if(rb.linearVelocity.magnitude / maxspeed > 1)
         {
             maxSpeedReached = true;
 
@@ -57,7 +57,7 @@ public class SpeedChecker : MonoBehaviour
 
     private void fill()
     {
-        speedBar.fillAmount = rb.velocity.magnitude / maxspeed;
+        speedBar.fillAmount = rb.linearVelocity.magnitude / maxspeed;
     }
 
 }

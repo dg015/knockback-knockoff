@@ -30,7 +30,7 @@ public class AimAssist : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            if (playerRb.velocity.magnitude > RequiredSpeed)
+            if (playerRb.linearVelocity.magnitude > RequiredSpeed)
             {
                 target = collision.transform;
                 inRange = true;
