@@ -6,6 +6,7 @@ using System.Security.Cryptography;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using static UnityEditor.FilePathAttribute;
 
 public class PlayerController : MonoBehaviour
@@ -24,6 +25,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float decelerationTime;
     private float decelerationRate;
     [SerializeField] private float maxSpeed;
+
+    [SerializeField] private InputActionReference move;
 
 
     [Header("Veritcal")]
@@ -85,14 +88,21 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        //set head rotaion
         scaleBodyToHeadRotation(head, transform);
+
+        //read inputs
         Vector2 PlayerInput = new Vector2();
-        PlayerInput.x = Input.GetAxisRaw("Horizontal");
+        PlayerInput = move.action.ReadValue<Vector2>();
+
+        //apply forces
         Movement(PlayerInput);
         VerticalForces();
         jump();
-        //CheckIfPlayerTurned(PlayerInput);
+        
         rb.linearVelocity = PVelocity;
+
+        //if 
         hasHitWall();
 
     }
@@ -134,26 +144,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    /*
-    private void CheckIfPlayerTurned(Vector2 playerInput)
-    {
-        float moveDirection = playerInput.x;
-        if(moveDirection > 0)
-        {
-            transform.rotation = Quaternion.Euler(0, 0, 0);
-            Debug.Log("goin right");
-            transform.localScale = new Vector3(1, 1, 1);
-            
-        }
-        else if( moveDirection < 0)
-        {
-            transform.rotation = Quaternion.Euler(0, 180, 0);
-            transform.localScale = new Vector3(1, 1, 1);
-            Debug.Log("going left");
-        }
-    }
-    */
-
     private void scaleBodyToHeadRotation(Transform head, Transform body )
     {
         Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -182,51 +172,12 @@ public class PlayerController : MonoBehaviour
         Gizmos.DrawWireCube(transform.position - transform.up * castDistance, boxSize);
     }
 
-    /*
-    private void movement()
-    {
-
-        float Hspeed = Input.GetAxis("Horizontal") * speed;
-
-        if (isGrounded())
-        {
-            if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
-            {
-                if (rb.velocity.x > -15 && rb.velocity.x < 15f)
-                {
-                    rb.AddForce(new Vector3(Hspeed * speed, 0f));
-                    //Debug.Log("ground running");
-                }
-            }
-
-            if (Input.GetKey(KeyCode.Space))
-            {
-                
-
-                rb.AddForce(new Vector2(0, jumpForce) * speed * Time.deltaTime, ForceMode2D.Impulse);
-                
-            }
-        }
-        else if (isGrounded() == false)
-        {
-            
-            if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
-            {
-                if (rb.velocity.x > -15 && rb.velocity.x < 15f)
-                {
-                    rb.AddForce(new Vector3(Hspeed * airSpeed, 0f));
-                    
-                }
-            }
-        }
-    }
-    */
 
     private void Movement(Vector2 playerInput)
     {
         //uses != so that it checks both for -1 and 1
         //gets aceleration
-        if(Input.GetAxisRaw("Horizontal") != 0)
+        if(playerInput.x != 0)
         {
             //apply velocity
             if (!MaxVelocityReached)
@@ -257,13 +208,6 @@ public class PlayerController : MonoBehaviour
 
             }
         }
-        /*
-        if (isGrounded())
-        {
-            //PVelocity.x = Mathf.Clamp(PVelocity.x, -maxSpeed, maxSpeed);
-
-        }
-        */
     }
 
     private void CheckMaxVelocity()
