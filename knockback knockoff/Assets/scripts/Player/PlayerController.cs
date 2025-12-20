@@ -1,9 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Security.Cryptography;
-using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -34,7 +28,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float apexTime;
     [SerializeField] private float GravityStrenght;
     private float gravity;
-    private float intialJumpSpeed;
+    public float intialJumpSpeed;
 
     //to rotate the player in the correct direction
     [SerializeField] private Transform head;
@@ -58,6 +52,7 @@ public class PlayerController : MonoBehaviour
     [Header("Animation")]
     [SerializeField] private Animator animator;
 
+    [SerializeField] private PlayerInput playerInputComponent;
 
     protected void Awake()
     {
@@ -93,12 +88,14 @@ public class PlayerController : MonoBehaviour
 
         //read inputs
         Vector2 PlayerInput = new Vector2();
-        PlayerInput = move.action.ReadValue<Vector2>();
+       
 
         //apply forces
         Movement(PlayerInput);
         VerticalForces();
-        jump();
+
+        PlayerInputManager
+        //jump();
         
         rb.linearVelocity = PVelocity;
 
@@ -173,7 +170,7 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    private void Movement(Vector2 playerInput)
+    public void Movement(Vector2 playerInput)
     {
         //uses != so that it checks both for -1 and 1
         //gets aceleration
@@ -234,12 +231,16 @@ public class PlayerController : MonoBehaviour
         }
 
     }
-    private void jump()
+    public void jump()
     {
+        
         if(isGrounded() == true && (Input.GetButton("Jump")))
         {
+            Debug.Log("jumping");
             animator.SetTrigger("Jumping");
             PVelocity.y = intialJumpSpeed;
         }
+        
+
     }
 }
