@@ -3,6 +3,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static UnityEditor.FilePathAttribute;
+using static UnityEditor.Timeline.TimelinePlaybackControls;
 
 public class PlayerController : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool MaxVelocityReached;
 
     [Header("Horizontal")]
+    
     [SerializeField] private float accelerationTime;
     private float accelerationRate;
     [SerializeField] private float decelerationTime;
@@ -22,7 +24,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float maxSpeed;
 
     [SerializeField] private InputActionReference move;
-
+    [SerializeField] private Vector2 playerInput;
 
     [Header("Veritcal")]
     [SerializeField] private float apexHeight;
@@ -60,6 +62,9 @@ public class PlayerController : MonoBehaviour
     protected void Awake()
     {
         PlayerCount++;
+        PlayerInputActions inputActions = new PlayerInputActions();
+        inputActions.Player.Enable();
+        inputActions.Player.Jump.performed += checkHorizontalInput;
     }
     private void Start()
     {
@@ -89,28 +94,22 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        /*
-        PlayerInputActions inputActions = new PlayerInputActions();
-        inputActions.Player.Enable();
-        inputActions.Player.Jump.performed += Playerinput_onActionTriggeredJump;
-        */
+        
+
+        
         //set head rotaion
         scaleBodyToHeadRotation(head, transform);
 
         //read inputs
-        Vector2 PlayerInput = new Vector2();
+        
 
 
         //apply forces
-        
+        Movement(playerInput);
 
-        Movement(PlayerInput);
         VerticalForces();
 
 
-
-        //jump();
-        
 
         rb.linearVelocity = PVelocity;
 
@@ -118,21 +117,6 @@ public class PlayerController : MonoBehaviour
         hasHitWall();
 
     }
-
-    /*
-    public void Playerinput_onActionTriggeredJump(InputAction.CallbackContext context)
-    {
-       
-        if (isGrounded() == true)
-        {
-            
-            animator.SetTrigger("Jumping");
-            PVelocity.y = intialJumpSpeed;
-            Debug.Log(PVelocity.y);
-        }
-
-    }
-    */
 
     private void hasHitWall()
     {
@@ -198,6 +182,13 @@ public class PlayerController : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(transform.position - transform.up * castDistance, boxSize);
     }
+
+
+    public void checkHorizontalInput(InputAction.CallbackContext context)
+    {
+        playerInput = context.ReadValue<Vector2>();
+    }
+
 
 
     public void Movement(Vector2 playerInput)
