@@ -557,6 +557,7 @@ MonoBehaviour:
   decelerationTime: 0.25
   maxSpeed: 8
   move: {fileID: 0}
+  playerInput: {x: 0, y: 0}
   apexHeight: 2.75
   apexTime: 0.5
   GravityStrenght: 0.25
@@ -688,18 +689,14 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents:
   - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: d0bae8a0-04d3-43b6-b919-fb5f058891ef
-    m_ActionName: 'Player/Fire[/Keyboard/f]'
-  - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 461001140}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 461001142}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: checkHorizontalInput
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -712,7 +709,7 @@ MonoBehaviour:
       - m_Target: {fileID: 461001142}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: jump
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -723,6 +720,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 304e0277-7dec-43c8-83fe-3c5adff04160
     m_ActionName: 'Player/Jump[/Keyboard/space]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 09029f2d-9ea3-4b8c-a04b-ef58bed8ef4e
+    m_ActionName: 'Gun/Shoot[/Mouse/rightButton]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Player keyboard
   m_DefaultActionMap: Player
@@ -1571,6 +1572,80 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &1051369391 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 495355627803746142, guid: e1b5ddfe7928cbe40b8da5f123bff524, type: 3}
+  m_PrefabInstance: {fileID: 925556401210681142}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1051369392 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4570528385328545413, guid: e1b5ddfe7928cbe40b8da5f123bff524, type: 3}
+  m_PrefabInstance: {fileID: 925556401210681142}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1051369391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7ba8b3aa6c18a14d87d34765cca5c02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1051369393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1051369391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 9ec767952a87c8c4980883f1ef022556, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2f407730-c7bc-4020-b22f-74fce2f40ed8
+    m_ActionName: 'Player/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 304e0277-7dec-43c8-83fe-3c5adff04160
+    m_ActionName: 'Player/Jump[/Keyboard/space]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 680bdfab-0513-4ca1-b9da-baeacd1450e1
+    m_ActionName: 'Player/Shoot[/Mouse/rightButton]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1051369392}
+        m_TargetAssemblyTypeName: Gun, Assembly-CSharp
+        m_MethodName: shootingDelay
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: e3779cc7-dcc1-4433-ad6e-891eb04faf1b
+    m_ActionName: 'Gun/Shoot[/Mouse/rightButton]'
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &1111702635
 GameObject:
   m_ObjectHideFlags: 0
@@ -25132,9 +25207,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 461001143}
     - target: {fileID: 4570528385328545413, guid: e1b5ddfe7928cbe40b8da5f123bff524, type: 3}
+      propertyPath: Cinemachine
+      value: 
+      objectReference: {fileID: 1985583191}
+    - target: {fileID: 4570528385328545413, guid: e1b5ddfe7928cbe40b8da5f123bff524, type: 3}
       propertyPath: timeBetweenShots
       value: 0.95
       objectReference: {fileID: 0}
+    - target: {fileID: 4570528385328545413, guid: e1b5ddfe7928cbe40b8da5f123bff524, type: 3}
+      propertyPath: playerInputComponent
+      value: 
+      objectReference: {fileID: 1051369393}
     - target: {fileID: 7335145470879111593, guid: e1b5ddfe7928cbe40b8da5f123bff524, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.317
@@ -25180,6 +25263,9 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 495355627803746142, guid: e1b5ddfe7928cbe40b8da5f123bff524, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1051369393}
     - targetCorrespondingSourceObject: {fileID: 8319362633256587818, guid: e1b5ddfe7928cbe40b8da5f123bff524, type: 3}
       insertIndex: -1
       addedObject: {fileID: 247372554}

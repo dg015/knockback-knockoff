@@ -41,6 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 251059786367037433}
   - component: {fileID: 4353885321970775799}
+  - component: {fileID: 1738064869446585106}
   m_Layer: 0
   m_Name: Sniper
   m_TagString: Untagged
@@ -72,25 +73,57 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3086722200965746771}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b1ba7aff1ff3dc04fbd2e5ad5789c5bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pivot: {fileID: 0}
   bullet: {fileID: 2207976954983804641, guid: 58e3ce25b856ce6438b65b09e4faf88e, type: 3}
+  noBarrel: 0
   barrel: {fileID: 0}
   playerRb: {fileID: 0}
   force: 60
   controller: {fileID: 0}
   timeBetweenShots: 4
   RunningTime: 0
+  readyToFire: 1
   Cinemachine: {fileID: 0}
   shake: {fileID: 0}
   shakeIntensity: 5
   Shaketime: 0.25
   shaketimeMax: 0.25
+  playerInputComponent: {fileID: 0}
   readyToFire: 1
+  playerInputComponent: {fileID: 0}
+--- !u!114 &1738064869446585106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3086722200965746771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7ba8b3aa6c18a14d87d34765cca5c02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pivot: {fileID: 0}
+  bullet: {fileID: 2207976954983804641, guid: 58e3ce25b856ce6438b65b09e4faf88e, type: 3}
+  noBarrel: 0
+  barrel: {fileID: 0}
+  playerRb: {fileID: 0}
+  force: 60
+  controller: {fileID: 0}
+  timeBetweenShots: 4
+  RunningTime: 0
+  readyToFire: 1
+  Cinemachine: {fileID: 0}
+  shake: {fileID: 0}
+  shakeIntensity: 5
+  Shaketime: 0.25
+  shaketimeMax: 0.25
+  playerInputComponent: {fileID: 0}
 --- !u!1 &3779001459852718494
 GameObject:
   m_ObjectHideFlags: 0
@@ -141,6 +174,9 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -188,3 +224,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87a96bd896217c24893c1178c34d4d71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  head: 0
+  gun: {fileID: 0}

@@ -62,9 +62,7 @@ public class PlayerController : MonoBehaviour
     protected void Awake()
     {
         PlayerCount++;
-        PlayerInputActions inputActions = new PlayerInputActions();
-        inputActions.Player.Enable();
-        inputActions.Player.Jump.performed += checkHorizontalInput;
+
     }
     private void Start()
     {
@@ -81,6 +79,19 @@ public class PlayerController : MonoBehaviour
 
         playerInputComponent = GetComponent<PlayerInput>();
 
+    }
+
+    private void OnEnable()
+    {
+        PlayerInputActions inputActions = new PlayerInputActions();
+        inputActions.Player.Enable();
+        inputActions.Player.Jump.performed += checkHorizontalInput;
+    }
+
+    private void OnDisable()
+    {
+        inputActions.Player.Disable();
+        inputActions.Player.Jump.performed -= checkHorizontalInput;
     }
 
     // Update is called once per frame
@@ -245,21 +256,20 @@ public class PlayerController : MonoBehaviour
         if(isGrounded() && PVelocity.y <0 )
         {
             PVelocity.y = 0;
-            Debug.Log("grounded");
+            
         }
         else
         {
-            Debug.Log("in air");
+            
             PVelocity.y += gravity;
         }
 
     }
-    public void jump()
+    public void jump(InputAction.CallbackContext context)
     {
-        
         if(isGrounded() == true && (Input.GetButton("Jump")))
         {
-            Debug.Log("jumping");
+      
             animator.SetTrigger("Jumping");
             PVelocity.y = intialJumpSpeed;
         }

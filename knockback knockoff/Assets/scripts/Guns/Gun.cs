@@ -1,20 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
 public class Gun : MonoBehaviour
 {
     //spawn
+    [Header("Spawning bullets")]
     [SerializeField] protected Transform pivot;
     [SerializeField] protected GameObject bullet;
     [SerializeField] protected bool noBarrel;
     [SerializeField] protected Transform barrel;
 
 
-    // knockback
+    [Header("Knockback")]
     [SerializeField] protected Rigidbody2D playerRb;
     [SerializeField] public float force;
 
@@ -23,16 +26,49 @@ public class Gun : MonoBehaviour
 
     [SerializeField] protected PlayerController controller;
 
-    //shooting
+    [Header("Shooting")]
     [SerializeField] protected float timeBetweenShots;
     [SerializeField] protected float RunningTime;
-    
+    [SerializeField] protected bool readyToFire;
 
+    [Header("Shake")]
+    [SerializeField] protected CinemachineVirtualCamera Cinemachine;
+    [SerializeField] protected CinemachineBasicMultiChannelPerlin shake;
+    [SerializeField] protected float shakeIntensity;
+    [SerializeField] protected float Shaketime;
+    [SerializeField] protected float shaketimeMax;
+
+    [Header("new Input system")]
+    [SerializeField] private PlayerInput playerInputComponent;
+    [SerializeField] private PlayerInputActions inputActions;
 
     // Start is called before the first frame update
+
+
+
+    private void OnEnable()
+    {
+        PlayerInputActions inputActions = new PlayerInputActions();
+        inputActions.Player.Enable();
+        inputActions.Player.Shoot.performed += callShootMethod;
+
+        //inputActions.Player.Jump.performed += ;
+    }
+
+    private void OnDisable()
+    {
+        inputActions.Player.Shoot.performed -= callShootMethod;
+        inputActions.Player.Disable();
+        //inputActions.Player.Jump.performed -= ;
+    }
+
     void Start()
     {
-        
+        playerInputComponent = GetComponentInParent<PlayerInput>();
+
+        Cinemachine = GameObject.Find("Virtual Camera").GetComponent<CinemachineVirtualCamera>();
+        shake = Cinemachine.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+
         pivot = gameObject.transform.GetComponentInParent<Transform>();
        
         playerRb = gameObject.transform.GetComponentInParent<Rigidbody2D>();
@@ -47,22 +83,67 @@ public class Gun : MonoBehaviour
     {
         RunningTime += Time.deltaTime;
         aim();
-        shootingDelay();
+        CameraShakeTimer();
+        //shootingDelay();
     }
 
-    protected void shootingDelay()
+    protected void CameraShakeTimer()
     {
-        if (Input.GetKey(KeyCode.Mouse0))
+        // check if theres any shake on the camerea
+        if (shake.m_AmplitudeGain > 0)
         {
+            //increase shake time
+            Shaketime += Time.deltaTime;
+            if (Shaketime > shaketimeMax)
+            {
+                //set camera shake to 0 
+                shake.m_AmplitudeGain = 0;
+                Shaketime = 0;
+            }
+
+        }
+    }
+    
+    /*
+    public void shootingDelay(InputAction.CallbackContext context)
+    {
+        Debug.Log("trying to shoot");
             if (RunningTime >= timeBetweenShots)
             {
                 RunningTime = 0;
                 shoot();
+                CameraShake();
             }
-        }
+        
+    }
+    */
+
+    public void callShootMethod(InputAction.CallbackContext context)
+    {
+        if (readyToFire)
+        StartCoroutine(shootingCycle());
     }
 
-    protected virtual void shoot()
+    protected IEnumerator shootingCycle()
+    {
+
+        shoot();
+        CameraShake();
+        readyToFire = false;
+        yield return new WaitForSeconds(timeBetweenShots);
+
+        readyToFire = true;
+
+
+    }
+
+    protected void CameraShake()
+    {
+        //add camera shake 
+        shake.m_AmplitudeGain = shakeIntensity;
+    }
+
+    public virtual void shoot()
     {
 
         //get players current speed
@@ -78,6 +159,9 @@ public class Gun : MonoBehaviour
 
         if(!noBarrel)
             Instantiate(bullet, barrel.position, barrel.rotation);
+
+        CameraShakeTimer();
+        CameraShake();
     }
 
 
