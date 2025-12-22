@@ -1,3 +1,4 @@
+using System;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -52,7 +53,9 @@ public class PlayerController : MonoBehaviour
     [Header("Animation")]
     [SerializeField] private Animator animator;
 
+    [Header("new Input system")]
     [SerializeField] private PlayerInput playerInputComponent;
+    [SerializeField] private PlayerInputActions inputActions;
 
     protected void Awake()
     {
@@ -70,6 +73,9 @@ public class PlayerController : MonoBehaviour
 
         //getanimator
         animator = transform.GetComponentInChildren<Animator>();
+
+        playerInputComponent = GetComponent<PlayerInput>();
+
     }
 
     // Update is called once per frame
@@ -83,26 +89,50 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        /*
+        PlayerInputActions inputActions = new PlayerInputActions();
+        inputActions.Player.Enable();
+        inputActions.Player.Jump.performed += Playerinput_onActionTriggeredJump;
+        */
         //set head rotaion
         scaleBodyToHeadRotation(head, transform);
 
         //read inputs
         Vector2 PlayerInput = new Vector2();
-       
+
 
         //apply forces
+        
+
         Movement(PlayerInput);
         VerticalForces();
 
-        PlayerInputManager
+
+
         //jump();
         
+
         rb.linearVelocity = PVelocity;
 
         //if 
         hasHitWall();
 
     }
+
+    /*
+    public void Playerinput_onActionTriggeredJump(InputAction.CallbackContext context)
+    {
+       
+        if (isGrounded() == true)
+        {
+            
+            animator.SetTrigger("Jumping");
+            PVelocity.y = intialJumpSpeed;
+            Debug.Log(PVelocity.y);
+        }
+
+    }
+    */
 
     private void hasHitWall()
     {
@@ -221,12 +251,14 @@ public class PlayerController : MonoBehaviour
 
     private void VerticalForces()
     {
-        if(isGrounded())
+        if(isGrounded() && PVelocity.y <0 )
         {
             PVelocity.y = 0;
+            Debug.Log("grounded");
         }
         else
         {
+            Debug.Log("in air");
             PVelocity.y += gravity;
         }
 
