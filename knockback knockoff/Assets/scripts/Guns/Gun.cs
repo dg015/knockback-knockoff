@@ -11,6 +11,7 @@ using UnityEngine.UIElements;
 
 public class Gun : MonoBehaviour
 {
+    public string gunName;
     //spawn
     [Header("Spawning bullets")]
     [SerializeField] protected Transform pivot;
@@ -30,9 +31,9 @@ public class Gun : MonoBehaviour
 
     [Header("isShooting")]
     [SerializeField] protected float timeBetweenShots;
-    [SerializeField] protected float RunningTime;
-    [SerializeField] protected bool readyToFire;
-    [SerializeField] protected bool isShooting;
+    protected float RunningTime;
+     protected bool readyToFire;
+     protected bool isShooting;
 
     [Header("Shake")]
     [SerializeField] protected CinemachineVirtualCamera Cinemachine;
@@ -42,9 +43,10 @@ public class Gun : MonoBehaviour
     [SerializeField] protected float shaketimeMax;
 
     [Header("new Input system")]
-    [SerializeField] private PlayerInput playerInputComponent;
-    [SerializeField] private PlayerInputActions inputActions;
+    [SerializeField] protected PlayerInput playerInputComponent;
+    [SerializeField] protected PlayerInputActions inputActions;
     
+
 
     // Start is called before the first frame update
 
@@ -52,31 +54,32 @@ public class Gun : MonoBehaviour
 
     private void OnEnable()
     {
-        PlayerInputActions inputActions = new PlayerInputActions();
+        inputActions = new PlayerInputActions();
         inputActions.Player.Enable();
         
         
         inputActions.Player.Shoot.started += callShootMethod;
         inputActions.Player.Shoot.performed += callShootMethod;
         inputActions.Player.Shoot.canceled += callShootMethod;
-        //inputActions.Player.Jump.performed += ;
+        
     }
 
 
-    protected void OnDisable()
+    private void OnDisable()
     {
         
         inputActions.Player.Shoot.started -= callShootMethod;
         inputActions.Player.Shoot.performed -= callShootMethod;
         inputActions.Player.Shoot.canceled -= callShootMethod;
         inputActions.Player.Disable();
-        //inputActions.Player.Jump.performed -= ;
+        
         
     }
     
 
     void Start()
     {
+        readyToFire = true;
         playerInputComponent = GetComponentInParent<PlayerInput>();
 
         Cinemachine = GameObject.Find("Virtual Camera").GetComponent<CinemachineVirtualCamera>();
@@ -127,7 +130,7 @@ public class Gun : MonoBehaviour
 
     public void callShootMethod(InputAction.CallbackContext context)
     {
-        Debug.Log("isShooting");
+        //Debug.Log("isShooting");
         
         string buttonControlPath = "/Mouse/leftButton";
 
@@ -136,7 +139,7 @@ public class Gun : MonoBehaviour
         {
             if( context.control.path == buttonControlPath && readyToFire)
             {
-                Debug.Log("started action");
+                //Debug.Log("started action");
                 isShooting = true;
             }
         }
@@ -144,7 +147,7 @@ public class Gun : MonoBehaviour
         {
             if(context.control.path == buttonControlPath && readyToFire)
             {
-                Debug.Log("continuing action");
+               // Debug.Log("continuing action");
                 isShooting = true;
             }
         }
@@ -152,7 +155,7 @@ public class Gun : MonoBehaviour
         {
             if(context.control.path == buttonControlPath)
             {
-                Debug.Log("Button released");
+                //Debug.Log("Button released");
                 isShooting = false;
             }
         }

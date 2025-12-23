@@ -25152,9 +25152,17 @@ PrefabInstance:
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4570528385328545413, guid: e1b5ddfe7928cbe40b8da5f123bff524, type: 3}
+      propertyPath: gunName
+      value: Pistol
+      objectReference: {fileID: 0}
+    - target: {fileID: 4570528385328545413, guid: e1b5ddfe7928cbe40b8da5f123bff524, type: 3}
       propertyPath: playerRb
       value: 
       objectReference: {fileID: 461001143}
+    - target: {fileID: 4570528385328545413, guid: e1b5ddfe7928cbe40b8da5f123bff524, type: 3}
+      propertyPath: isShooting
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4570528385328545413, guid: e1b5ddfe7928cbe40b8da5f123bff524, type: 3}
       propertyPath: Cinemachine
       value: 

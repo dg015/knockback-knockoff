@@ -37,7 +37,7 @@ public class PlayerPointer : MonoBehaviour
     {
 
 
-        pLocation = GameObject.FindObjectsOfType<PlayerController>();
+        //pLocation = GameObject.FindObjectsOfType<PlayerController>();
         closestDistanceSqr = Mathf.Infinity;
         Transform thisPlayerTransform = transform;
         foreach (PlayerController player in pLocation)

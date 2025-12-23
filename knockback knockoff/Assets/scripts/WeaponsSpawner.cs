@@ -69,10 +69,15 @@ public class WeaponsSpawner : MonoBehaviour
             Transform PlayerTransform = collision.transform; // Assuming all weapon objects are children of the player
             Transform gunHolderTransform = collision.transform.Find("Gun holder");
             gunHolder gunHolderScript = collision.GetComponentInChildren<gunHolder>();
+            Gun gun;
+            gun = collision.GetComponentInChildren<Gun>();
+            Debug.Log(gun);
             //I have to create a new script to add the singular weapon
             if (GunIndex == 0)
             {
-                if (!HasComponentInChildren<Gun>(PlayerTransform))
+                Debug.Log("pistol location");
+                //if (!HasComponentInChildren<Gun>(PlayerTransform))
+                if(gun.gunName == "pistol")
                 {
                     GameObject currentSelectedGun;
                     currentSelectedGun = gunHolderScript.weapons[gunHolderScript.selectedWeaponIndex];
@@ -88,6 +93,7 @@ public class WeaponsSpawner : MonoBehaviour
             }
             else if (GunIndex == 1)
             {
+                Debug.Log("leaf blower location");
                 if (!HasComponentInChildren<Leafblower>(PlayerTransform))
                 {
                     GameObject currentSelectedGun;
@@ -103,7 +109,8 @@ public class WeaponsSpawner : MonoBehaviour
             }
             else if (GunIndex == 2)
             {
-                if (!HasComponentInChildren<SniperRifle>(PlayerTransform))
+                Debug.Log("sniper location");
+                if (gun.gunName == "Sniper")
                 {
                     GameObject currentSelectedGun;
                     currentSelectedGun = gunHolderScript.weapons[gunHolderScript.selectedWeaponIndex];

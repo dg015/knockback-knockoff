@@ -1,18 +1,50 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Leafblower : Gun
 {
     [SerializeField] private float overheatMaximum;
     [SerializeField] private float heat;
-    [SerializeField] private bool readyToFire = true;
     [SerializeField] private float minimumHeat;
 
     [SerializeField] private float StartUpHeat;
+
+
+
+    private void OnEnable()
+    {
+        inputActions = new PlayerInputActions();
+        inputActions.Player.Enable();
+
+
+        inputActions.Player.Shoot.started += callShootMethod;
+        inputActions.Player.Shoot.performed += callShootMethod;
+        inputActions.Player.Shoot.canceled += callShootMethod;
+
+    }
+
+
+    private void OnDisable()
+    {
+
+        inputActions.Player.Shoot.started -= callShootMethod;
+        inputActions.Player.Shoot.performed -= callShootMethod;
+        inputActions.Player.Shoot.canceled -= callShootMethod;
+        inputActions.Player.Disable();
+
+
+    }
+
     // Start is called before the first frame update
     void Start()
     {
+        //cinemachine
+        Cinemachine = GameObject.Find("Virtual Camera").GetComponent<CinemachineVirtualCamera>();
+        shake = Cinemachine.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        //player
         pivot = gameObject.transform.GetComponentInParent<Transform>();
         playerRb = gameObject.transform.GetComponentInParent<Rigidbody2D>();
         controller = gameObject.transform.GetComponentInParent<PlayerController>();
@@ -35,7 +67,7 @@ public class Leafblower : Gun
         if (readyToFire)
         {
 
-            if (Input.GetMouseButton(0))
+            if (isShooting)
             {
                 RunningTime = 0;
                 heat += Time.deltaTime;
@@ -46,18 +78,6 @@ public class Leafblower : Gun
 
     }
 
-    protected virtual void shooting()
-    {
-        
-        //playerRb.AddForce(-1 * angle * force, ForceMode2D.Force);
-        Vector2 direction = new Vector2();
-        direction = -angle.normalized;
-        Debug.Log(direction);
-        controller.PVelocity = direction * force;
-
-
-        Instantiate(bullet, barrel.position, barrel.rotation);
-    }
 
     // idea, add delay for firing
     private void heating()
