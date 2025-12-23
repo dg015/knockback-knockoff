@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
@@ -5,6 +6,7 @@ using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 using UnityEngine.UIElements;
 
 public class Gun : MonoBehaviour
@@ -26,10 +28,11 @@ public class Gun : MonoBehaviour
 
     [SerializeField] protected PlayerController controller;
 
-    [Header("Shooting")]
+    [Header("isShooting")]
     [SerializeField] protected float timeBetweenShots;
     [SerializeField] protected float RunningTime;
     [SerializeField] protected bool readyToFire;
+    [SerializeField] protected bool isShooting;
 
     [Header("Shake")]
     [SerializeField] protected CinemachineVirtualCamera Cinemachine;
@@ -41,26 +44,36 @@ public class Gun : MonoBehaviour
     [Header("new Input system")]
     [SerializeField] private PlayerInput playerInputComponent;
     [SerializeField] private PlayerInputActions inputActions;
+    
 
     // Start is called before the first frame update
 
-
+    
 
     private void OnEnable()
     {
         PlayerInputActions inputActions = new PlayerInputActions();
         inputActions.Player.Enable();
+        
+        
+        inputActions.Player.Shoot.started += callShootMethod;
         inputActions.Player.Shoot.performed += callShootMethod;
-
+        inputActions.Player.Shoot.canceled += callShootMethod;
         //inputActions.Player.Jump.performed += ;
     }
 
-    private void OnDisable()
+
+    protected void OnDisable()
     {
+        
+        inputActions.Player.Shoot.started -= callShootMethod;
         inputActions.Player.Shoot.performed -= callShootMethod;
+        inputActions.Player.Shoot.canceled -= callShootMethod;
         inputActions.Player.Disable();
         //inputActions.Player.Jump.performed -= ;
+        
     }
+    
 
     void Start()
     {
@@ -84,7 +97,12 @@ public class Gun : MonoBehaviour
         RunningTime += Time.deltaTime;
         aim();
         CameraShakeTimer();
-        //shootingDelay();
+        
+        if(readyToFire && isShooting)
+        {
+            StartCoroutine(isShootingCycle());
+        }
+        
     }
 
     protected void CameraShakeTimer()
@@ -104,27 +122,43 @@ public class Gun : MonoBehaviour
         }
     }
     
-    /*
-    public void shootingDelay(InputAction.CallbackContext context)
-    {
-        Debug.Log("trying to shoot");
-            if (RunningTime >= timeBetweenShots)
-            {
-                RunningTime = 0;
-                shoot();
-                CameraShake();
-            }
-        
-    }
-    */
+
+
 
     public void callShootMethod(InputAction.CallbackContext context)
     {
-        if (readyToFire)
-        StartCoroutine(shootingCycle());
+        Debug.Log("isShooting");
+        
+        string buttonControlPath = "/Mouse/leftButton";
+
+        
+        if (context.started)
+        {
+            if( context.control.path == buttonControlPath && readyToFire)
+            {
+                Debug.Log("started action");
+                isShooting = true;
+            }
+        }
+       else if (context.performed )
+        {
+            if(context.control.path == buttonControlPath && readyToFire)
+            {
+                Debug.Log("continuing action");
+                isShooting = true;
+            }
+        }
+        else if(context.canceled)
+        {
+            if(context.control.path == buttonControlPath)
+            {
+                Debug.Log("Button released");
+                isShooting = false;
+            }
+        }
     }
 
-    protected IEnumerator shootingCycle()
+    protected IEnumerator isShootingCycle()
     {
 
         shoot();

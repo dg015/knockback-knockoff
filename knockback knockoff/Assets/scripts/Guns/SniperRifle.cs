@@ -34,10 +34,11 @@ public class SniperRifle : Gun
         RunningTime += Time.deltaTime;
         //shootingDelay();
         
+        /*
         if (Input.GetMouseButton(0) && readyToFire)
         {
             StartCoroutine(shootingCycle());
         }
-
+        */
     }
 }
