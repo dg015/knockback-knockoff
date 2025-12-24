@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     public Rigidbody2D rb;
 
     //New movement system
-    public Vector2 PVelocity;
+    [SerializeField] public Vector2 PVelocity;
     [SerializeField] private bool MaxVelocityReached;
 
     [Header("Horizontal")]
@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
     private float decelerationRate;
     [SerializeField] private float maxSpeed;
 
-    [SerializeField] private InputActionReference move;
+     private InputActionReference move;
     [SerializeField] private Vector2 playerInput;
 
     [Header("Veritcal")]
@@ -87,13 +87,16 @@ public class PlayerController : MonoBehaviour
         inputActions.Player.Enable();
         inputActions.Player.Move.performed += checkHorizontalInput;
         inputActions.Player.Jump.performed += jump;
+        inputActions.Player.Move.canceled += resetInput;
     }
 
     private void OnDisable()
     {
-        inputActions.Player.Disable();
+       
         inputActions.Player.Move.performed -= checkHorizontalInput;
         inputActions.Player.Jump.performed -= jump;
+        inputActions.Player.Move.canceled -= resetInput;
+        inputActions.Player.Disable();
     }
 
     // Update is called once per frame
@@ -197,22 +200,52 @@ public class PlayerController : MonoBehaviour
     }
 
 
+    private void resetInput(InputAction.CallbackContext context)
+    {
+        playerInput = new Vector2(0, PVelocity.y);
+    }
     public void checkHorizontalInput(InputAction.CallbackContext context)
     {
         //Debug.Log("reading");
         playerInput = context.ReadValue<Vector2>();
+        Debug.Log(playerInput.ToString());
     }
 
+    private void checkWalkingDirection(Vector2 playerInput)
+    {
+        if(playerInput.x > 1)
+        {
+            Debug.Log("rigt");
+        }
+    }
 
-
+    /// <summary>
+    /// BUG
+    /// walking towards the opposite direction of shooting will cause the player to sometimes infinitelly walk towards the initial direction
+    /// EXAMPLE: shoot a gun and walk in the opposite direction
+    /// 
+    /// </summary>
+    /// <param name="playerInput"></param>
     public void Movement(Vector2 playerInput)
     {
         //uses != so that it checks both for -1 and 1
         //gets aceleration
+        //error lies here, it swaps way too fast for the input to recgonize and sets the input the wrong direction
+
         if(playerInput.x != 0)
         {
+
             //apply velocity
-            if (!MaxVelocityReached)
+            if (!MaxVelocityReached) // BUG HERE, the moment you reach top velocity it stops carying about your input, so the bug occours
+            {
+                PVelocity.x += accelerationRate * playerInput.x * Time.deltaTime;
+
+            }
+            else if (MaxVelocityReached && PVelocity.x > 0 && playerInput.x < 0) //changing to right
+            {
+                PVelocity.x += accelerationRate * playerInput.x * Time.deltaTime;
+            }
+            else if (MaxVelocityReached && PVelocity.x < 0 && playerInput.x > 0) //changing to left
             {
                 PVelocity.x += accelerationRate * playerInput.x * Time.deltaTime;
             }
@@ -221,20 +254,22 @@ public class PlayerController : MonoBehaviour
                 animator.SetBool("IsWalking", true);
             }
         }
-        else
-        {
+        else // here for decealartion 
+        { 
             animator.SetBool("IsWalking", false);
             //deceleration
             //decelrationRate is applied every second eats away the remaining velocity
-            if (PVelocity.x>0)
+            if (PVelocity.x > 0)
             {
+                Debug.Log("decelrationg right");
                 PVelocity.x -= decelerationRate * Time.deltaTime;
                 //Setting max will help by not allowing the speed to go over/lower the asked amount will make it be moving slightly forever
                 PVelocity.x = Mathf.Max(PVelocity.x, 0);
 
             }
-            else if (PVelocity.x<0)
+            else if (PVelocity.x < 0)
             {
+                Debug.Log("decelrationg left");
                 PVelocity.x += decelerationRate * Time.deltaTime;
                 PVelocity.x = Mathf.Min(PVelocity.x, 0);
 

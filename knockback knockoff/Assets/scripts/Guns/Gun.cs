@@ -205,6 +205,7 @@ public class Gun : MonoBehaviour
 
         CameraShakeTimer();
         CameraShake();
+        
     }
 
 
@@ -216,16 +217,5 @@ public class Gun : MonoBehaviour
         direction = Mathf.Atan2(angle.y, angle.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0,0,direction);
 
-
-        /*
-        if(transform.rotation.eulerAngles.x >= -90 || transform.rotation.eulerAngles.x <= 90)
-        {
-            transform.FindChild("Gun sprite").transform.localScale =  new Vector3(-1, 1, 1);
-        }
-        else
-        {
-            transform.FindChild("Gun sprite").transform.localScale =  = new Vector3(1, 1, 1);
-        }
-        */
     }
 }

@@ -124,8 +124,8 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""2D Vector"",
                     ""id"": ""1170811a-2358-4d04-ba3b-62d290808271"",
-                    ""path"": ""2DVector"",
-                    ""interactions"": ""Press"",
+                    ""path"": ""2DVector(mode=2)"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Move"",
