@@ -31,9 +31,9 @@ public class Gun : MonoBehaviour
 
     [Header("isShooting")]
     [SerializeField] protected float timeBetweenShots;
-    protected float RunningTime;
-     protected bool readyToFire;
-     protected bool isShooting;
+    [SerializeField] protected float delayTime;
+    [SerializeField] protected bool readyToFire;
+    protected bool isShooting;
 
     [Header("Shake")]
     [SerializeField] protected CinemachineVirtualCamera Cinemachine;
@@ -97,13 +97,19 @@ public class Gun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RunningTime += Time.deltaTime;
+        delayTime += Time.deltaTime;
         aim();
         CameraShakeTimer();
         
         if(readyToFire && isShooting)
         {
+            delayTime = 0;
+            delayTime += Time.deltaTime;
             StartCoroutine(isShootingCycle());
+        }
+        if (delayTime >= timeBetweenShots) // double check since coroutines stop working the moment they game object is disabled
+        {
+            readyToFire = true ;
         }
         
     }

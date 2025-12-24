@@ -59,7 +59,7 @@ public class Leafblower : Gun
         firing();
         cooldown();
         heat = Mathf.Clamp(heat, 0, overheatMaximum);
-        RunningTime += Time.deltaTime;
+        delayTime += Time.deltaTime;
     }
 
     private void firing()
@@ -69,7 +69,7 @@ public class Leafblower : Gun
 
             if (isShooting)
             {
-                RunningTime = 0;
+                delayTime = 0;
                 heat += Time.deltaTime;
                 shoot();
             }
@@ -99,7 +99,7 @@ public class Leafblower : Gun
 
     private void cooldown()
     {
-        if (!Input.GetMouseButton(0) && RunningTime >timeBetweenShots)
+        if (!Input.GetMouseButton(0) && delayTime >timeBetweenShots)
         {
             
             heat -= Time.deltaTime;

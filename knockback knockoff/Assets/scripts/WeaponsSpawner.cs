@@ -109,6 +109,7 @@ public class WeaponsSpawner : MonoBehaviour
 
     }
 
+    //??????????????????? I dont really remember this
     private bool HasComponentInChildren<T>(Transform parent) where T : Component
     {
         foreach (Transform child in parent)
