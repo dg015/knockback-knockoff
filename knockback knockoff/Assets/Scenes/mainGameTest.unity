@@ -248,6 +248,7 @@ MonoBehaviour:
   - {fileID: 495355627803746142, guid: e1b5ddfe7928cbe40b8da5f123bff524, type: 3}
   - {fileID: 6794339134491003281, guid: b29279261163ddf4e9488158d3800f97, type: 3}
   - {fileID: 3086722200965746771, guid: 0adbeb29766febb4093b88db801c6d18, type: 3}
+  alreadyHasWeapon: 0
 --- !u!212 &97288953
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -527,7 +528,7 @@ Transform:
   m_GameObject: {fileID: 461001140}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -27.8, y: -0.8770536, z: 0}
+  m_LocalPosition: {x: 56.4, y: -0.8770536, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -724,6 +725,18 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1051369392}
         m_TargetAssemblyTypeName: Gun, Assembly-CSharp
+        m_MethodName: callShootMethod
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 985613211}
+        m_TargetAssemblyTypeName: Leafblower, Assembly-CSharp
         m_MethodName: callShootMethod
         m_Mode: 0
         m_Arguments:
@@ -1457,6 +1470,17 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &985613211 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5481408109817152560, guid: b29279261163ddf4e9488158d3800f97, type: 3}
+  m_PrefabInstance: {fileID: 54501585561192638}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62c0707e7da05604db4dd95b7a089987, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1004438822
 GameObject:
   m_ObjectHideFlags: 0
@@ -1544,7 +1568,7 @@ Transform:
   m_GameObject: {fileID: 1004438822}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -18.562607, y: -0.91018, z: -10}
+  m_LocalPosition: {x: 56.4, y: -0.8770536, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -24894,7 +24918,7 @@ Transform:
   m_GameObject: {fileID: 1985583190}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -27.8, y: -0.8770536, z: -10}
+  m_LocalPosition: {x: 56.4, y: -0.8770536, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -25055,6 +25079,10 @@ PrefabInstance:
       value: 6.41
       objectReference: {fileID: 0}
     - target: {fileID: 5481408109817152560, guid: b29279261163ddf4e9488158d3800f97, type: 3}
+      propertyPath: gunName
+      value: LeafBlower
+      objectReference: {fileID: 0}
+    - target: {fileID: 5481408109817152560, guid: b29279261163ddf4e9488158d3800f97, type: 3}
       propertyPath: StartUpHeat
       value: 0.5
       objectReference: {fileID: 0}
@@ -25133,7 +25161,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 495355627803746142, guid: e1b5ddfe7928cbe40b8da5f123bff524, type: 3}
       propertyPath: m_Name
-      value: Gun
+      value: Pistol
       objectReference: {fileID: 0}
     - target: {fileID: 495355627803746142, guid: e1b5ddfe7928cbe40b8da5f123bff524, type: 3}
       propertyPath: m_IsActive

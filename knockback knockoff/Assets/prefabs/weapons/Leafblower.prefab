@@ -50,6 +50,9 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -144,6 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62c0707e7da05604db4dd95b7a089987, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gunID: 2
   pivot: {fileID: 0}
   bullet: {fileID: 0}
   noBarrel: 1
@@ -152,9 +156,13 @@ MonoBehaviour:
   force: 2.5
   controller: {fileID: 0}
   timeBetweenShots: 0
-  RunningTime: 0
+  Cinemachine: {fileID: 0}
+  shake: {fileID: 0}
+  shakeIntensity: 0
+  Shaketime: 0
+  shaketimeMax: 0
+  playerInputComponent: {fileID: 0}
   overheatMaximum: 2.5
   heat: 0
-  readyToFire: 0
   minimumHeat: 0.5
   StartUpHeat: 0

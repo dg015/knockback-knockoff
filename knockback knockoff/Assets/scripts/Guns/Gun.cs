@@ -11,7 +11,7 @@ using UnityEngine.UIElements;
 
 public class Gun : MonoBehaviour
 {
-    public string gunName;
+    public int gunID;
     //spawn
     [Header("Spawning bullets")]
     [SerializeField] protected Transform pivot;

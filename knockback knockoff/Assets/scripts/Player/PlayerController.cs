@@ -85,13 +85,15 @@ public class PlayerController : MonoBehaviour
     {
         inputActions = new PlayerInputActions();
         inputActions.Player.Enable();
-        inputActions.Player.Jump.performed += checkHorizontalInput;
+        inputActions.Player.Move.performed += checkHorizontalInput;
+        inputActions.Player.Jump.performed += jump;
     }
 
     private void OnDisable()
     {
         inputActions.Player.Disable();
-        inputActions.Player.Jump.performed -= checkHorizontalInput;
+        inputActions.Player.Move.performed -= checkHorizontalInput;
+        inputActions.Player.Jump.performed -= jump;
     }
 
     // Update is called once per frame
@@ -261,14 +263,13 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            
             PVelocity.y += gravity;
         }
 
     }
     public void jump(InputAction.CallbackContext context)
     {
-        if(isGrounded() == true && (Input.GetButton("Jump")))
+        if(isGrounded() == true)
         {
       
             animator.SetTrigger("Jumping");

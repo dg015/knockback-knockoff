@@ -14,6 +14,7 @@ public class WeaponsSpawner : MonoBehaviour
     [SerializeField] private float timer;
     [SerializeField] private List<GameObject> Weapons;
 
+    [SerializeField] private bool alreadyHasWeapon;
 
     //NEED TO MAKE IT INSTANTIATE ONLY ONCE, RN ITS GOING TO INSTANTIATE A LOT OF OBJECTS AT ONCE
     //Gun 1: pistol
@@ -64,70 +65,48 @@ public class WeaponsSpawner : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        bool alreadyHasWeapon = false;
         if (collision.CompareTag("Player"))
         {
             Transform PlayerTransform = collision.transform; // Assuming all weapon objects are children of the player
+
+            
             Transform gunHolderTransform = collision.transform.Find("Gun holder");
             gunHolder gunHolderScript = collision.GetComponentInChildren<gunHolder>();
-            Gun gun;
-            gun = collision.GetComponentInChildren<Gun>();
-            Debug.Log(gun);
-            //I have to create a new script to add the singular weapon
-            if (GunIndex == 0)
-            {
-                Debug.Log("pistol location");
-                //if (!HasComponentInChildren<Gun>(PlayerTransform))
-                if(gun.gunName == "pistol")
-                {
-                    GameObject currentSelectedGun;
-                    currentSelectedGun = gunHolderScript.weapons[gunHolderScript.selectedWeaponIndex];
-                    currentSelectedGun.SetActive(false);
 
-                    Debug.Log("doesn't have pistol");
-                    Instantiate(Weapons[GunIndex], gunHolderTransform);
-                    gunHolderScript.weapons.Add(Weapons[GunIndex]);
-                    gunHolderScript.getWeapons();
-                    
-                    //gunHolderScript.selectedWeaponIndex = gunHolderScript.weapons.Count-1;
-                }
-            }
-            else if (GunIndex == 1)
-            {
-                Debug.Log("leaf blower location");
-                if (!HasComponentInChildren<Leafblower>(PlayerTransform))
-                {
-                    GameObject currentSelectedGun;
-                    currentSelectedGun = gunHolderScript.weapons[gunHolderScript.selectedWeaponIndex];
-                    currentSelectedGun.SetActive(false);
+            //Gun gun;
+            //gun = collision.GetComponentInChildren<Gun>();
 
-                    Debug.Log("doesn't have leaf blower");
-                    Instantiate(Weapons[GunIndex], gunHolderTransform);
-                    gunHolderScript.weapons.Add(Weapons[GunIndex]);
-                    gunHolderScript.getWeapons();
-                    //gunHolderScript.selectedWeaponIndex = gunHolderScript.weapons.Count - 1;
-                }
-            }
-            else if (GunIndex == 2)
+            Gun selectedWeapon = Weapons[GunIndex].GetComponent<Gun>();
+            foreach (GameObject gunObj in gunHolderScript.weapons)
             {
-                Debug.Log("sniper location");
-                if (gun.gunName == "Sniper")
+                //Debug.Log(selectedWeapon.gunID);
+                Gun weapon = gunObj.GetComponent<Gun>();
+                Debug.Log(weapon.gunID);
+                if (weapon.gunID == selectedWeapon.gunID)
                 {
-                    GameObject currentSelectedGun;
-                    currentSelectedGun = gunHolderScript.weapons[gunHolderScript.selectedWeaponIndex];
-                    currentSelectedGun.SetActive(false);
-
-                    Debug.Log("doesn't have sniper rifle");
-                    Instantiate(Weapons[GunIndex], gunHolderTransform);
-                    gunHolderScript.weapons.Add(Weapons[GunIndex]);
-                    gunHolderScript.getWeapons();
-                    //gunHolderScript.selectedWeaponIndex = gunHolderScript.weapons.Count - 1;
+                    alreadyHasWeapon = true;
+                    break;
                 }
+
             }
-            else
+            if (!alreadyHasWeapon) // has to be called outside of foreach otherwise will change the list while its being read by foreach
             {
-                Debug.Log("has spawned weapon");
+
+                //get current weapon
+                GameObject currentSelectedGun;
+                currentSelectedGun = gunHolderScript.weapons[gunHolderScript.selectedWeaponIndex];
+                currentSelectedGun.SetActive(false);
+
+                //add selected weapons
+                GameObject newGun = Instantiate(Weapons[GunIndex], gunHolderTransform);
+                gunHolderScript.weapons.Add(newGun);
+                gunHolderScript.getWeapons();
+
             }
+
         }
+
     }
 
     private bool HasComponentInChildren<T>(Transform parent) where T : Component
