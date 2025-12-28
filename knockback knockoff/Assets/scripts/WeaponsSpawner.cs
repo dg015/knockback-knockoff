@@ -82,7 +82,7 @@ public class WeaponsSpawner : MonoBehaviour
             {
                 //Debug.Log(selectedWeapon.gunID);
                 Gun weapon = gunObj.GetComponent<Gun>();
-                Debug.Log(weapon.gunID);
+                
                 if (weapon.gunID == selectedWeapon.gunID)
                 {
                     alreadyHasWeapon = true;

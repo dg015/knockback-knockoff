@@ -8,7 +8,8 @@ public class SpeedChecker : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Image speedBar;
-    [SerializeField] private bool maxSpeedReached;
+    public bool KillSpeed;
+
     [SerializeField] private float maxspeed;
     // Start is called before the first frame update
     void Start()
@@ -30,27 +31,16 @@ public class SpeedChecker : MonoBehaviour
     {
         if(rb.linearVelocity.magnitude / maxspeed > 1)
         {
-            maxSpeedReached = true;
+            KillSpeed = true;
+            Debug.Log("kill speed");
 
         }
         else
         {
-            maxSpeedReached = false;
+            KillSpeed = false;
         }
 
 
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if ( collision.collider.CompareTag("Player"))
-        {
-            if (maxSpeedReached)
-            {
-                Destroy(collision.gameObject);
-                Debug.Log("kill");
-            }
-        }
     }
 
     
