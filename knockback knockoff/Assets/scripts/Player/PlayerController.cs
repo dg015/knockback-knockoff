@@ -52,6 +52,8 @@ public class PlayerController : MonoBehaviour
     //multiplayer
     public static int PlayerCount;
     [SerializeField] private SpeedChecker speedChecker;
+    [SerializeField] public int score;
+    [SerializeField] private MultiplayerScoreManager scoreManager;
 
     [Header("Animation")]
     [SerializeField] private Animator animator;
@@ -67,6 +69,7 @@ public class PlayerController : MonoBehaviour
     }
     private void Start()
     {
+        score = 0;
         speedChecker = gameObject.GetComponent<SpeedChecker>();
 
         //Aceleration formula
@@ -81,6 +84,8 @@ public class PlayerController : MonoBehaviour
         animator = transform.GetComponentInChildren<Animator>();
 
         playerInputComponent = GetComponent<PlayerInput>();
+
+        scoreManager.addPlayerToScoreBoard(this,score);
 
     }
 
@@ -109,6 +114,8 @@ public class PlayerController : MonoBehaviour
         CheckMaxVelocity();
         isGrounded();
         location = gameObject.transform.position;
+
+        updateScoreTest();
     }
 
     private void FixedUpdate()
@@ -161,6 +168,18 @@ public class PlayerController : MonoBehaviour
     }
 
 
+    private void updateScoreTest()
+    {
+        if (Input.GetKey(KeyCode.V))
+        {
+            scoreManager.updateScore(this, score);
+
+
+        }
+    }
+
+
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.GetComponent<PlayerController>() != null)
@@ -168,7 +187,10 @@ public class PlayerController : MonoBehaviour
 
             if(speedChecker.KillSpeed == true)
             {
+                scoreManager.updateScore(this,score);
+                scoreManager.endGame(score);
                 Destroy(collision.gameObject);
+                score++;
                 Debug.Log("killed player");
             }
             
