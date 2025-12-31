@@ -10,7 +10,7 @@ public class GunSpriteRotation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //invert the gun sprite depending on the rotation
         float rotationZ = transform.parent.localEulerAngles.z;
             if (rotationZ > 90 && rotationZ < 270)
             {
