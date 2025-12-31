@@ -185,8 +185,8 @@ public class Gun : MonoBehaviour
                 }
             }
             else if (device is Gamepad )
-            { 
-                 triggerInput = context.ReadValue<float>()
+            {
+                triggerInput = context.ReadValue<float>();
                
 
                 if (context.started)
@@ -296,6 +296,8 @@ public class Gun : MonoBehaviour
             {
                 Debug.Log("controller");
                 Vector3 aimPosition = new Vector3(aimInput.x, aimInput.y, 0f);
+                if (aimPosition.x == 0f)
+                    aimPosition.x = 1f;
 
                 //the direction for shooting is already the input of the controller
                 angle = aimPosition;
