@@ -24,6 +24,9 @@ public class Leafblower : Gun
         inputActions.Player.Shoot.performed += callShootMethod;
         inputActions.Player.Shoot.canceled += callShootMethod;
 
+        inputActions.Player.Aim.started += readMousePositionInput;
+        inputActions.Player.Aim.performed += readMousePositionInput;
+        inputActions.Player.Aim.canceled += readMousePositionInput;
     }
 
 
@@ -33,6 +36,11 @@ public class Leafblower : Gun
         inputActions.Player.Shoot.started -= callShootMethod;
         inputActions.Player.Shoot.performed -= callShootMethod;
         inputActions.Player.Shoot.canceled -= callShootMethod;
+
+        inputActions.Player.Aim.started -= readMousePositionInput;
+        inputActions.Player.Aim.performed -= readMousePositionInput;
+        inputActions.Player.Aim.canceled -= readMousePositionInput;
+
         inputActions.Player.Disable();
 
 

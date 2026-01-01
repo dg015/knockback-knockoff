@@ -26,7 +26,7 @@ public class Gun : MonoBehaviour
     [SerializeField] public float force;
 
     [Header("aiming")]
-    private Vector3 aimInput;
+    protected Vector3 aimInput;
     protected Vector2 angle;
     protected float direction;
 
@@ -291,6 +291,7 @@ public class Gun : MonoBehaviour
                 
                 //rotate so it matches the angle
                 transform.rotation = Quaternion.Euler(0, 0, direction);
+                
             }
             else if (device is Gamepad)
             {

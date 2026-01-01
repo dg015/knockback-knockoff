@@ -266,11 +266,11 @@ public class PlayerController : MonoBehaviour
                 PVelocity.x += accelerationRate * playerInput.x * Time.deltaTime;
 
             }
-            else if (MaxVelocityReached && PVelocity.x > 0 && playerInput.x < 0) //changing to right
+            else if (MaxVelocityReached && PVelocity.x > 0 && playerInput.x < 0) //changing to right while in max speed
             {
                 PVelocity.x += accelerationRate * playerInput.x * Time.deltaTime;
             }
-            else if (MaxVelocityReached && PVelocity.x < 0 && playerInput.x > 0) //changing to left
+            else if (MaxVelocityReached && PVelocity.x < 0 && playerInput.x > 0) //changing to left while in max speed
             {
                 PVelocity.x += accelerationRate * playerInput.x * Time.deltaTime;
             }
