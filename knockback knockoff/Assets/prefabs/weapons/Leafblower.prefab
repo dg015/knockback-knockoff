@@ -156,6 +156,9 @@ MonoBehaviour:
   force: 2.5
   controller: {fileID: 0}
   timeBetweenShots: 0
+  delayTime: 0
+  readyToFire: 0
+  triggerInput: 0
   Cinemachine: {fileID: 0}
   shake: {fileID: 0}
   shakeIntensity: 0
@@ -166,3 +169,8 @@ MonoBehaviour:
   heat: 0
   minimumHeat: 0.5
   StartUpHeat: 0
+  UIElments:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

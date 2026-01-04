@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class Leafblower : Gun
 {
-    [SerializeField] private float overheatMaximum;
-    [SerializeField] private float heat;
-    [SerializeField] private float minimumHeat;
-
-    [SerializeField] private float StartUpHeat;
+    [SerializeField] public float overheatMaximum;
+    [SerializeField] public float heat;
+    [SerializeField] public float minimumHeat;
 
 
+    
 
     private void OnEnable()
     {
@@ -27,6 +27,8 @@ public class Leafblower : Gun
         inputActions.Player.Aim.started += readMousePositionInput;
         inputActions.Player.Aim.performed += readMousePositionInput;
         inputActions.Player.Aim.canceled += readMousePositionInput;
+
+
     }
 
 
@@ -44,6 +46,7 @@ public class Leafblower : Gun
         inputActions.Player.Disable();
 
 
+
     }
 
     // Start is called before the first frame update
@@ -56,6 +59,8 @@ public class Leafblower : Gun
         pivot = gameObject.transform.GetComponentInParent<Transform>();
         playerRb = gameObject.transform.GetComponentInParent<Rigidbody2D>();
         controller = gameObject.transform.GetComponentInParent<PlayerController>();
+
+        
     }
 
     // Update is called once per frame
