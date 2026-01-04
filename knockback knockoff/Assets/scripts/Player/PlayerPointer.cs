@@ -5,8 +5,7 @@ using System.Runtime.CompilerServices;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditor.Experimental.GraphView.GraphView;
-using static UnityEditor.FilePathAttribute;
+
 
 
 public class PlayerPointer : MonoBehaviour
