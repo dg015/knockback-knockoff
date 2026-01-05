@@ -172,8 +172,6 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.V))
         {
             scoreManager.updateScore(this, score);
-
-
         }
     }
 

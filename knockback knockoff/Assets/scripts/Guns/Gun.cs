@@ -51,7 +51,7 @@ public class Gun : MonoBehaviour
     [Header("new Input system")]
     [SerializeField] protected PlayerInput playerInputComponent;
     [SerializeField] protected PlayerInputActions inputActions;
-
+    private Vector3 lastAimLocaiton;
 
 
     // Start is called before the first frame update
@@ -298,11 +298,18 @@ public class Gun : MonoBehaviour
             {
                 Debug.Log("controller");
                 Vector3 aimPosition = new Vector3(aimInput.x, aimInput.y, 0f);
-                if (aimPosition.x == 0f)
-                    aimPosition.x = 1f;
+
+                // lastAimLocaiton = aimPosition;
+
+                if (aimInput.magnitude > 0.01f)
+                {
+                    lastAimLocaiton = aimPosition.normalized;
+                }
+
+
 
                 //the direction for shooting is already the input of the controller
-                angle = aimPosition;
+                angle = lastAimLocaiton;
                 direction = Mathf.Atan2(angle.y, angle.x) * Mathf.Rad2Deg;
                 transform.rotation = Quaternion.Euler(0, 0, direction);
             }

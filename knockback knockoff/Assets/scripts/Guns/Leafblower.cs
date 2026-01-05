@@ -11,6 +11,7 @@ public class Leafblower : Gun
     [SerializeField] public float heat;
     [SerializeField] public float minimumHeat;
 
+    [SerializeField] private float heatTapTime;
 
     
 
