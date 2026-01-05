@@ -38,7 +38,7 @@ public class UIManager : MonoBehaviour
                 Debug.Log(i);
                 if (i == 0 || i == 1)
                 {
-                    Debug.Log(UIElments[i]);
+                  //  Debug.Log(UIElments[i]);
                     UIElments[i].SetActive(true);
                 }
             }
@@ -52,7 +52,7 @@ public class UIManager : MonoBehaviour
             //disable images
             foreach (GameObject image in images)
             {
-                Debug.Log("disabled images");
+                // Debug.Log("disabled images");
                 image.SetActive(false);
             }
 

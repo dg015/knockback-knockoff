@@ -39,6 +39,7 @@ public class Gun : MonoBehaviour
     protected bool isShooting;
     private string buttonControlPath;
     [SerializeField] protected float triggerInput;
+    [SerializeField] private bool coroutineRunning;
 
     [Header("Shake")]
     [SerializeField] protected CinemachineVirtualCamera Cinemachine;
@@ -120,12 +121,14 @@ public class Gun : MonoBehaviour
 
         if (readyToFire && isShooting)
         {
+            StartCoroutine(isShootingCycle());
             delayTime = 0;
             delayTime += Time.deltaTime;
-            StartCoroutine(isShootingCycle());
+            
         }
-        if (delayTime >= timeBetweenShots) // double check since coroutines stop working the moment they game object is disabled
+        else if (delayTime >= timeBetweenShots && readyToFire == false && !isShooting) // double check since coroutines stop working the moment they game object is disabled
         {
+            Debug.Log("here");
             readyToFire = true;
         }
 
@@ -148,9 +151,6 @@ public class Gun : MonoBehaviour
         }
     }
 
-
-
-
     public void callShootMethod(InputAction.CallbackContext context)
     {
        
@@ -163,7 +163,7 @@ public class Gun : MonoBehaviour
                 {
                     if (context.control.path == buttonControlPath && readyToFire)
                     {
-                        //Debug.Log("started action");
+                       //Debug.Log("started action");
                         isShooting = true;
                     }
                 }
@@ -171,7 +171,7 @@ public class Gun : MonoBehaviour
                 {
                     if (context.control.path == buttonControlPath && readyToFire)
                     {
-                        // Debug.Log("continuing action");
+                         //Debug.Log("continuing action");
                         isShooting = true;
                     }
                 }
@@ -222,9 +222,10 @@ public class Gun : MonoBehaviour
 
         shoot();
         CameraShake();
+
         readyToFire = false;
         yield return new WaitForSeconds(timeBetweenShots);
-
+        Debug.Log("also here"); 
         readyToFire = true;
 
 
