@@ -10,8 +10,8 @@ public class gunHolder : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
         getWeapons();
+        swapWeapons();
     }
 
     public void getWeapons()
@@ -63,11 +63,24 @@ public class gunHolder : MonoBehaviour
         {
             if (i != selectedWeaponIndex)
             {
-                weapons[i].gameObject.SetActive(false);
+                //weapons[i].gameObject.GetComponentInChildren<GameObject>().SetActive(false);
+                weapons[i].transform.GetChild(0).gameObject.SetActive(false);
+
+              
+                if (weapons[i].gameObject.GetComponent<Gun>())
+                    weapons[i].gameObject.GetComponent<Gun>().isSelected = false;
+                else
+                    weapons[i].gameObject.GetComponent<Leafblower>().isSelected = false;
             }
             if ( i == selectedWeaponIndex )
             {
-                weapons[selectedWeaponIndex].gameObject.SetActive(true);
+                weapons[i].transform.GetChild(0).gameObject.SetActive(true);
+                
+
+                if (weapons[i].gameObject.GetComponent<Gun>())
+                    weapons[i].gameObject.GetComponent<Gun>().isSelected = true;
+                else
+                    weapons[i].gameObject.GetComponent<Leafblower>().isSelected = true;
             }
         }
     }

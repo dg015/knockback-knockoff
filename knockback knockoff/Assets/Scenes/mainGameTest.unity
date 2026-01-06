@@ -26990,6 +26990,10 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5481408109817152560, guid: b29279261163ddf4e9488158d3800f97, type: 3}
+      propertyPath: isSelected
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5481408109817152560, guid: b29279261163ddf4e9488158d3800f97, type: 3}
       propertyPath: StartUpHeat
       value: 0.5
       objectReference: {fileID: 0}
@@ -27027,7 +27031,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6794339134491003281, guid: b29279261163ddf4e9488158d3800f97, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8004105679594649873, guid: b29279261163ddf4e9488158d3800f97, type: 3}
       propertyPath: m_LocalPosition.x
@@ -27110,6 +27114,10 @@ PrefabInstance:
       propertyPath: playerRb
       value: 
       objectReference: {fileID: 461001143}
+    - target: {fileID: 4570528385328545413, guid: e1b5ddfe7928cbe40b8da5f123bff524, type: 3}
+      propertyPath: isSelected
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4570528385328545413, guid: e1b5ddfe7928cbe40b8da5f123bff524, type: 3}
       propertyPath: isShooting
       value: 0

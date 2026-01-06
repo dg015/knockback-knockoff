@@ -42,6 +42,7 @@ public class Gun : MonoBehaviour
     private string buttonControlPath;
     [SerializeField] protected float triggerInput;
     [SerializeField] private bool coroutineRunning;
+    public bool isSelected;
 
     [Header("Shake")]
     [SerializeField] protected CinemachineVirtualCamera Cinemachine;
@@ -121,7 +122,7 @@ public class Gun : MonoBehaviour
         aim();
         CameraShakeTimer();
 
-        if (readyToFire && isShooting)
+        if (readyToFire && isShooting && isSelected)
         {
             StartCoroutine(isShootingCycle());
             delayTime = 0;
@@ -229,8 +230,6 @@ public class Gun : MonoBehaviour
         yield return new WaitForSeconds(timeBetweenShots);
         Debug.Log("also here"); 
         readyToFire = true;
-
-
     }
 
     protected void CameraShake()

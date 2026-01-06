@@ -78,7 +78,7 @@ public class Leafblower : Gun
 
     private void firing()
     {
-        if (readyToFire)
+        if (readyToFire && isSelected)
         {
 
             if (isShooting)
