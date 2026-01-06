@@ -24,6 +24,8 @@ public class Gun : MonoBehaviour
     [Header("Knockback")]
     [SerializeField] protected Rigidbody2D playerRb;
     [SerializeField] public float force;
+    [SerializeField] private Vector2 currentVelocity;
+    [SerializeField] private float initialVelocityInfluence = 0.6f;
 
     [Header("aiming")]
     protected Vector3 aimInput;
@@ -241,15 +243,19 @@ public class Gun : MonoBehaviour
     {
 
         //get players current speed
-        Vector2 currentVelocity = playerRb.linearVelocity;
+        currentVelocity = playerRb.linearVelocity;
 
         //apply the direction of the mouse inversed as new position
         Vector2 KnockbackDirection = new Vector2();
         KnockbackDirection = -angle.normalized;
 
         //Apply force
-        float initialVelocityInfluence = 0.3f;
-        controller.PVelocity = KnockbackDirection * force + currentVelocity * initialVelocityInfluence;
+       
+
+        Vector2 knocknackVelocity = KnockbackDirection * force;
+        Vector2 finalVelocity = knocknackVelocity + currentVelocity * initialVelocityInfluence;
+
+        controller.PVelocity =finalVelocity;
 
         if (!noBarrel)
             Instantiate(bullet, barrel.position, barrel.rotation);

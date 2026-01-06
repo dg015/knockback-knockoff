@@ -26986,6 +26986,10 @@ PrefabInstance:
       value: LeafBlower
       objectReference: {fileID: 0}
     - target: {fileID: 5481408109817152560, guid: b29279261163ddf4e9488158d3800f97, type: 3}
+      propertyPath: delayTime
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5481408109817152560, guid: b29279261163ddf4e9488158d3800f97, type: 3}
       propertyPath: StartUpHeat
       value: 0.5
       objectReference: {fileID: 0}
