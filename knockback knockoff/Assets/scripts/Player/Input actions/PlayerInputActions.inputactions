@@ -41,6 +41,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Join",
+                    "type": "Button",
+                    "id": "2337646d-36bd-487b-b771-b4e7c059ab4f",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -173,6 +182,28 @@
                     "processors": "StickDeadzone(min=0.35)",
                     "groups": ";Game pad",
                     "action": "Aim",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8580bdb4-5e1a-4602-8c7a-32660855a7a3",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Player keyboard",
+                    "action": "Join",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b7c28f20-6d16-4370-8b00-1e3e46b30a2c",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Game pad",
+                    "action": "Join",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

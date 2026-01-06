@@ -63,7 +63,7 @@ public class Gun : MonoBehaviour
 
     private void OnEnable()
     {
-        inputActions = new PlayerInputActions();
+        //inputActions = new PlayerInputActions();
         inputActions.Player.Enable();
 
 
@@ -129,11 +129,7 @@ public class Gun : MonoBehaviour
             delayTime += Time.deltaTime;
             
         }
-        else if (delayTime >= timeBetweenShots && readyToFire == false && !isShooting) // double check since coroutines stop working the moment they game object is disabled
-        {
-            Debug.Log("here");
-            readyToFire = true;
-        }
+
 
     }
 

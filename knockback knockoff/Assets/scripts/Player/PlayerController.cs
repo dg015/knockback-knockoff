@@ -90,20 +90,20 @@ public class PlayerController : MonoBehaviour
 
     private void OnEnable()
     {
-        inputActions = new PlayerInputActions();
-        inputActions.Player.Enable();
-        inputActions.Player.Move.performed += checkHorizontalInput;
-        inputActions.Player.Jump.performed += jump;
-        inputActions.Player.Move.canceled += resetInput;
+       //inputActions = new PlayerInputActions();
+       //inputActions.Player.Enable();
+       //inputActions.Player.Move.performed += checkHorizontalInput;
+       //inputActions.Player.Jump.performed += jump;
+       //inputActions.Player.Move.canceled += resetInput;
     }
 
     private void OnDisable()
     {
        
-        inputActions.Player.Move.performed -= checkHorizontalInput;
-        inputActions.Player.Jump.performed -= jump;
-        inputActions.Player.Move.canceled -= resetInput;
-        inputActions.Player.Disable();
+        //inputActions.Player.Move.performed -= checkHorizontalInput;
+        //inputActions.Player.Jump.performed -= jump;
+        //inputActions.Player.Move.canceled -= resetInput;
+        //inputActions.Player.Disable();
     }
 
     // Update is called once per frame
