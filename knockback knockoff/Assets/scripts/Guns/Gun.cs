@@ -38,8 +38,7 @@ public class Gun : MonoBehaviour
     [SerializeField] protected float timeBetweenShots;
     [SerializeField] protected float delayTime;
     [SerializeField] protected bool readyToFire;
-    protected bool isShooting;
-    private string buttonControlPath;
+    [SerializeField] protected bool isShooting;
     [SerializeField] protected float triggerInput;
     [SerializeField] private bool coroutineRunning;
     public bool isSelected;
@@ -64,31 +63,31 @@ public class Gun : MonoBehaviour
     private void OnEnable()
     {
         //inputActions = new PlayerInputActions();
-        inputActions.Player.Enable();
+        //inputActions.Player.Enable();
 
 
-        inputActions.Player.Shoot.started += callShootMethod;
-        inputActions.Player.Shoot.performed += callShootMethod;
-        inputActions.Player.Shoot.canceled += callShootMethod;
+        //inputActions.Player.Shoot.started += callShootMethod;
+        //inputActions.Player.Shoot.performed += callShootMethod;
+        //inputActions.Player.Shoot.canceled += callShootMethod;
 
-        inputActions.Player.Aim.started += readMousePositionInput;
-        inputActions.Player.Aim.performed += readMousePositionInput;
-        inputActions.Player.Aim.canceled += readMousePositionInput;
+        //inputActions.Player.Aim.started += readMousePositionInput;
+        //inputActions.Player.Aim.performed += readMousePositionInput;
+        //inputActions.Player.Aim.canceled += readMousePositionInput;
     }
 
 
     private void OnDisable()
     {
 
-        inputActions.Player.Shoot.started -= callShootMethod;
-        inputActions.Player.Shoot.performed -= callShootMethod;
-        inputActions.Player.Shoot.canceled -= callShootMethod;
+        //inputActions.Player.Shoot.started -= callShootMethod;
+        //inputActions.Player.Shoot.performed -= callShootMethod;
+        //inputActions.Player.Shoot.canceled -= callShootMethod;
 
-        inputActions.Player.Aim.started -= readMousePositionInput;
-        inputActions.Player.Aim.performed -= readMousePositionInput;
-        inputActions.Player.Aim.canceled -= readMousePositionInput;
+        //inputActions.Player.Aim.started -= readMousePositionInput;
+        //inputActions.Player.Aim.performed -= readMousePositionInput;
+        //inputActions.Player.Aim.canceled -= readMousePositionInput;
 
-        inputActions.Player.Disable();
+        //inputActions.Player.Disable();
 
 
     }
@@ -110,9 +109,11 @@ public class Gun : MonoBehaviour
     {
         readyToFire = true;
 
+        /*
         if (!noBarrel)
             barrel = GameObject.Find("barrel").GetComponent<Transform>();
         //barrel = gameObject.transform.GetComponentInChildren<Transform>();
+        */
     }
 
     // Update is called once per frame
@@ -152,68 +153,34 @@ public class Gun : MonoBehaviour
 
     public void callShootMethod(InputAction.CallbackContext context)
     {
-       
-        foreach (InputDevice device in playerInputComponent.devices)
-        {
-            if (device is Keyboard )
-            {
-                buttonControlPath = "/Mouse/leftButton";
-                if (context.started)
-                {
-                    if (context.control.path == buttonControlPath && readyToFire)
-                    {
-                       //Debug.Log("started action");
-                        isShooting = true;
-                    }
-                }
-                else if (context.performed)
-                {
-                    if (context.control.path == buttonControlPath && readyToFire)
-                    {
-                         //Debug.Log("continuing action");
-                        isShooting = true;
-                    }
-                }
-                else if (context.canceled)
-                {
-                    if (context.control.path == buttonControlPath)
-                    {
-                        //Debug.Log("Button released");
-                        isShooting = false;
-                    }
-                }
-            }
-            else if (device is Gamepad )
-            {
-                triggerInput = context.ReadValue<float>();
-               
+        triggerInput = context.ReadValue<float>();
 
-                if (context.started)
-                {
-                    if (triggerInput > 0.25f && readyToFire)
-                    {
-                        //Debug.Log("started action");
-                        isShooting = true;
-                    }
-                }
-                else if (context.performed)
-                {
-                    if (triggerInput > 0.25f && readyToFire)
-                    {
-                        // Debug.Log("continuing action");
-                        isShooting = true;
-                    }
-                }
-                else if (context.canceled)
-                {
-                    if (triggerInput < 0.25f)
-                    {
-                        //Debug.Log("Button released");
-                        isShooting = false;
-                    }
-                }
+
+        if (context.started)
+        {
+            if (triggerInput > 0.25f && readyToFire)
+            {
+                //Debug.Log("started action");
+                isShooting = true;
             }
         }
+        else if (context.performed)
+        {
+            if (triggerInput > 0.25f && readyToFire)
+            {
+                // Debug.Log("continuing action");
+                isShooting = true;
+            }
+        }
+        else if (context.canceled)
+        {
+            if (triggerInput < 0.25f)
+            {
+                //Debug.Log("Button released");
+                isShooting = false;
+            }
+        }
+    
     }
 
     protected IEnumerator isShootingCycle()
@@ -224,7 +191,7 @@ public class Gun : MonoBehaviour
 
         readyToFire = false;
         yield return new WaitForSeconds(timeBetweenShots);
-        Debug.Log("also here"); 
+        
         readyToFire = true;
     }
 
@@ -261,22 +228,20 @@ public class Gun : MonoBehaviour
     }
 
 
-    public void readMousePositionInput(InputAction.CallbackContext context)
+    public void onAim(InputAction.CallbackContext context)
     {
         
         aimInput = context.ReadValue<Vector2>();
-        //Debug.Log(aimInput);
+        Debug.Log(aimInput);
     }
 
     public void aim()
     {
-        
         //check for what type of input the player is using
-        foreach (InputDevice device in playerInputComponent.devices)
-        {
-            if(device is Keyboard)
+
+            if(playerInputComponent.currentControlScheme == "Player keyboard")
             {
-                Debug.Log("keyboard");
+                
 
                 //convert to vector 3
                 Vector3 aimPosition = new Vector3(aimInput.x, aimInput.y, 0f);
@@ -295,28 +260,25 @@ public class Gun : MonoBehaviour
                 transform.rotation = Quaternion.Euler(0, 0, direction);
                 
             }
-            else if (device is Gamepad)
+        else  if (playerInputComponent.currentControlScheme == "Gamepad")
+        {
+            
+            Vector3 aimPosition = new Vector3(aimInput.x, aimInput.y, 0f);
+
+            // lastAimLocaiton = aimPosition;
+
+            if (aimInput.magnitude > 0.01f)
             {
-                Debug.Log("controller");
-                Vector3 aimPosition = new Vector3(aimInput.x, aimInput.y, 0f);
-
-                // lastAimLocaiton = aimPosition;
-
-                if (aimInput.magnitude > 0.01f)
-                {
-                    lastAimLocaiton = aimPosition.normalized;
-                }
-
-
-
-                //the direction for shooting is already the input of the controller
-                angle = lastAimLocaiton;
-                direction = Mathf.Atan2(angle.y, angle.x) * Mathf.Rad2Deg;
-                transform.rotation = Quaternion.Euler(0, 0, direction);
+                lastAimLocaiton = aimPosition.normalized;
             }
+
+
+
+            //the direction for shooting is already the input of the controller
+            angle = lastAimLocaiton;
+            direction = Mathf.Atan2(angle.y, angle.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0, 0, direction);
         }
-
-
 
     }
 }

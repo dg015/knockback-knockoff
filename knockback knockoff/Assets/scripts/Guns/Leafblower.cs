@@ -17,17 +17,17 @@ public class Leafblower : Gun
 
     private void OnEnable()
     {
-        inputActions = new PlayerInputActions();
-        inputActions.Player.Enable();
+        //inputActions = new PlayerInputActions();
+        //inputActions.Player.Enable();
 
 
-        inputActions.Player.Shoot.started += callShootMethod;
-        inputActions.Player.Shoot.performed += callShootMethod;
-        inputActions.Player.Shoot.canceled += callShootMethod;
+        //inputActions.Player.Shoot.started += callShootMethod;
+        //inputActions.Player.Shoot.performed += callShootMethod;
+        //inputActions.Player.Shoot.canceled += callShootMethod;
 
-        inputActions.Player.Aim.started += readMousePositionInput;
-        inputActions.Player.Aim.performed += readMousePositionInput;
-        inputActions.Player.Aim.canceled += readMousePositionInput;
+        //inputActions.Player.Aim.started += readMousePositionInput;
+        //inputActions.Player.Aim.performed += readMousePositionInput;
+        //inputActions.Player.Aim.canceled += readMousePositionInput;
 
 
     }
@@ -36,15 +36,15 @@ public class Leafblower : Gun
     private void OnDisable()
     {
 
-        inputActions.Player.Shoot.started -= callShootMethod;
-        inputActions.Player.Shoot.performed -= callShootMethod;
-        inputActions.Player.Shoot.canceled -= callShootMethod;
+        //inputActions.Player.Shoot.started -= callShootMethod;
+        //inputActions.Player.Shoot.performed -= callShootMethod;
+        //inputActions.Player.Shoot.canceled -= callShootMethod;
 
-        inputActions.Player.Aim.started -= readMousePositionInput;
-        inputActions.Player.Aim.performed -= readMousePositionInput;
-        inputActions.Player.Aim.canceled -= readMousePositionInput;
+        //inputActions.Player.Aim.started -= readMousePositionInput;
+        //inputActions.Player.Aim.performed -= readMousePositionInput;
+        //inputActions.Player.Aim.canceled -= readMousePositionInput;
 
-        inputActions.Player.Disable();
+        //inputActions.Player.Disable();
 
 
 
@@ -111,9 +111,13 @@ public class Leafblower : Gun
 
     }
 
+
+
+
     private void cooldown()
     {
-        if (!Input.GetMouseButton(0) && delayTime >timeBetweenShots)
+
+        if (!isShooting && delayTime >timeBetweenShots)
         {
             
             heat -= Time.deltaTime;

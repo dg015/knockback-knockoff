@@ -32,13 +32,12 @@ public class UIManager : MonoBehaviour
     {
         if (gun.activeSelf == true)
         {
-            Debug.Log("gun active");
+            ;
             for (int i = 0; i < UIElments.Count; i++)
             {
-                Debug.Log(i);
+                
                 if (i == 0 || i == 1)
-                {
-                  //  Debug.Log(UIElments[i]);
+                {             
                     UIElments[i].SetActive(true);
                 }
             }

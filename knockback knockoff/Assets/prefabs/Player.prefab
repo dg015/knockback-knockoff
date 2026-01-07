@@ -890,7 +890,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5470887012127145505}
         m_TargetAssemblyTypeName: Gun, Assembly-CSharp
-        m_MethodName: readMousePositionInput
+        m_MethodName: onAim
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -902,7 +902,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 761809842256683199}
         m_TargetAssemblyTypeName: Leafblower, Assembly-CSharp
-        m_MethodName: readMousePositionInput
+        m_MethodName: onAim
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -914,8 +914,12 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 0396ccbe-a155-4f75-8b43-eb0d65e90766
     m_ActionName: 'Player/Aim[/Mouse/position]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2337646d-36bd-487b-b771-b4e7c059ab4f
+    m_ActionName: 'Player/Join[/Keyboard/enter,/XInputControllerWindows/buttonSouth]'
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: Player keyboard
+  m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
@@ -1061,6 +1065,10 @@ PrefabInstance:
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4570528385328545413, guid: e1b5ddfe7928cbe40b8da5f123bff524, type: 3}
+      propertyPath: barrel
+      value: 
+      objectReference: {fileID: 987054494622799089}
+    - target: {fileID: 4570528385328545413, guid: e1b5ddfe7928cbe40b8da5f123bff524, type: 3}
       propertyPath: gunName
       value: Pistol
       objectReference: {fileID: 0}
@@ -1160,6 +1168,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   head: 0
   gun: {fileID: 1245828488714950925}
+--- !u!4 &987054494622799089 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8733325532131480661, guid: e1b5ddfe7928cbe40b8da5f123bff524, type: 3}
+  m_PrefabInstance: {fileID: 8395195250120458404}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1245828488714950925 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7335145470879111593, guid: e1b5ddfe7928cbe40b8da5f123bff524, type: 3}

@@ -94,7 +94,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             ""actions"": [
                 {
                     ""name"": ""Jump"",
-                    ""type"": ""Value"",
+                    ""type"": ""Button"",
                     ""id"": ""304e0277-7dec-43c8-83fe-3c5adff04160"",
                     ""expectedControlType"": """",
                     ""processors"": """",
@@ -200,7 +200,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""path"": ""<Gamepad>/leftStick"",
                     ""interactions"": """",
                     ""processors"": ""StickDeadzone(min=0.35)"",
-                    ""groups"": "";Game pad"",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -219,10 +219,10 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""eae3dae0-0acb-41ae-96ec-42a04771ba1d"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Game pad"",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -244,7 +244,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Game pad"",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""Shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -252,7 +252,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""e6ab0372-c546-4d7d-9c23-ee0a78bd4754"",
-                    ""path"": ""<Pointer>/position"",
+                    ""path"": ""<Mouse>/position"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Player keyboard"",
@@ -266,7 +266,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""path"": ""<Gamepad>/rightStick"",
                     ""interactions"": """",
                     ""processors"": ""StickDeadzone(min=0.35)"",
-                    ""groups"": "";Game pad"",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""Aim"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -288,7 +288,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Game pad"",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""Join"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -305,12 +305,17 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""devicePath"": ""<Keyboard>"",
                     ""isOptional"": false,
                     ""isOR"": false
+                },
+                {
+                    ""devicePath"": ""<Mouse>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
                 }
             ]
         },
         {
-            ""name"": ""Game pad"",
-            ""bindingGroup"": ""Game pad"",
+            ""name"": ""Gamepad"",
+            ""bindingGroup"": ""Gamepad"",
             ""devices"": [
                 {
                     ""devicePath"": ""<Gamepad>"",
@@ -566,7 +571,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     {
         get
         {
-            if (m_GamepadSchemeIndex == -1) m_GamepadSchemeIndex = asset.FindControlSchemeIndex("Game pad");
+            if (m_GamepadSchemeIndex == -1) m_GamepadSchemeIndex = asset.FindControlSchemeIndex("Gamepad");
             return asset.controlSchemes[m_GamepadSchemeIndex];
         }
     }
