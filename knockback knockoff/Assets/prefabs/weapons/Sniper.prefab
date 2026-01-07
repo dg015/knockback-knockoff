@@ -81,11 +81,19 @@ MonoBehaviour:
   pivot: {fileID: 0}
   bullet: {fileID: 2207976954983804641, guid: 58e3ce25b856ce6438b65b09e4faf88e, type: 3}
   noBarrel: 0
-  barrel: {fileID: 0}
+  barrel: {fileID: 8429164342904643162}
   playerRb: {fileID: 0}
   force: 60
+  currentVelocity: {x: 0, y: 0}
+  initialVelocityInfluence: 0.6
   controller: {fileID: 0}
   timeBetweenShots: 4
+  delayTime: 0
+  readyToFire: 0
+  isShooting: 0
+  triggerInput: 0
+  coroutineRunning: 0
+  isSelected: 0
   Cinemachine: {fileID: 0}
   shake: {fileID: 0}
   shakeIntensity: 5

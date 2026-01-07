@@ -1,12 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class gunHolder : MonoBehaviour
 {
     
-    [SerializeField]public List<GameObject> weapons = new List<GameObject>();
+    [SerializeField] public List<GameObject> weapons = new List<GameObject>();
     [SerializeField] public int selectedWeaponIndex;
+
+    [SerializeField] private PlayerInput playerInputComponent;
+
+
+    [SerializeField] private Vector2 scrollValue;
+    [SerializeField] private float buttonValue;
+    [SerializeField] private PlayerInputActions inputActions;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,41 +33,75 @@ public class gunHolder : MonoBehaviour
         }
     }
 
-    private void getScroll()
+    public void GetButtonChange(InputAction.CallbackContext context)
     {
-        if(Input.GetAxis("Mouse ScrollWheel") > 0.1)
+        buttonValue = context.ReadValue<float>();
+        if (context.performed)
         {
-            if (selectedWeaponIndex >= weapons.Count -1 )
+            if (buttonValue > 0.1)
             {
-                selectedWeaponIndex = 0;
+                if (selectedWeaponIndex >= weapons.Count - 1)
+                {
+
+                    selectedWeaponIndex = 0;
+                }
+                else
+                {
+                    selectedWeaponIndex++;
+                }
             }
-            else
+            if (buttonValue < -0.1)
             {
-                selectedWeaponIndex++;
+                if (selectedWeaponIndex <= 0)
+                {
+                    selectedWeaponIndex = weapons.Count - 1;
+                }
+                else
+                {
+                    selectedWeaponIndex--;
+                }
             }
-           // Debug.Log(selectedWeaponIndex);
             swapWeapons();
         }
-        if (Input.GetAxis("Mouse ScrollWheel") < -0.1)
+    }
+
+    public void getScroll(InputAction.CallbackContext context)
+    {
+
+       scrollValue = context.ReadValue<Vector2>();
+            
+        if (context.performed)
         {
-            if (selectedWeaponIndex <= 0)
+            if (scrollValue.y > 0.1)
             {
-                selectedWeaponIndex = weapons.Count - 1;
+                if (selectedWeaponIndex >= weapons.Count - 1)
+                {
+
+                    selectedWeaponIndex = 0;
+                }
+                else
+                {
+                    selectedWeaponIndex++;
+                }
             }
-            else
+            if (scrollValue.y < -0.1)
             {
-                selectedWeaponIndex--;
+                if (selectedWeaponIndex <= 0)
+                {
+                    selectedWeaponIndex = weapons.Count - 1;
+                }
+                else
+                {
+                    selectedWeaponIndex--;
+                }
             }
-            
-            
-            //Debug.Log(selectedWeaponIndex);
             swapWeapons();
         }
-   
     }
     
     private void swapWeapons()
     {
+        Debug.Log("swapping weapons");
         for (int i = 0; i < weapons.Count; i++)
         {
             if (i != selectedWeaponIndex)
@@ -87,6 +130,6 @@ public class gunHolder : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        getScroll();
+        //getScroll();
     }
 }

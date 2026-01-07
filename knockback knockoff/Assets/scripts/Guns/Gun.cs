@@ -38,7 +38,7 @@ public class Gun : MonoBehaviour
     [SerializeField] protected float timeBetweenShots;
     [SerializeField] protected float delayTime;
     [SerializeField] protected bool readyToFire;
-    [SerializeField] protected bool isShooting;
+    [SerializeField]  protected bool isShooting;
     [SerializeField] protected float triggerInput;
     [SerializeField] private bool coroutineRunning;
     public bool isSelected;
@@ -232,7 +232,7 @@ public class Gun : MonoBehaviour
     {
         
         aimInput = context.ReadValue<Vector2>();
-        Debug.Log(aimInput);
+        
     }
 
     public void aim()
