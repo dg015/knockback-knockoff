@@ -15,10 +15,13 @@ public class MultiplayerScoreManager : MonoBehaviour
 
     [SerializeField] private List<LayerMask> playerLayers;
 
+    [SerializeField] private List<Camera> cameraList;
+
     [SerializeField] private GameObject spawner;
     [SerializeField] private float delay;
     [SerializeField] private float currentTime;
     [SerializeField] private PlayerInputManager playerInputManager;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -31,6 +34,8 @@ public class MultiplayerScoreManager : MonoBehaviour
         playersControllers.Add(playerController);
         playerScores.Add(score);
         PlayerList.Add(playerObject);
+        
+        
     }
 
     
@@ -57,11 +62,47 @@ public class MultiplayerScoreManager : MonoBehaviour
 
         //set the layer
         playerParent.GetComponentInChildren<CinemachineVirtualCamera>().gameObject.layer = layerToAdd;
+        cameraList.Add(playerParent.GetComponentInChildren<Camera>());
+
         //add the layer
         playerParent.GetComponentInChildren<Camera>().cullingMask |= 1 << layerToAdd;
         //set the action in the custom cinemachine input handler
 
+        manageCamera();
+    }
 
+    private void manageCamera()
+    {
+        
+        int numberOfPlayers= PlayerList.Count;
+        Debug.Log(numberOfPlayers);
+        switch (numberOfPlayers)
+        {
+            case 2:
+                Debug.Log("two players");
+                cameraList[0].rect = new Rect(0f,0.5f,1f,0.5f);
+                cameraList[1].rect = new Rect(0f, 0f, 1f, 0.5f);
+                
+                break;
+            
+            case 3:
+                Debug.Log("three players");
+                cameraList[0].rect = new Rect(0f, 0.5f, 0.5f, 0.5f);
+                cameraList[1].rect = new Rect(0.5f, 0.5f, 0.5f, 0.5f);
+                cameraList[2].rect = new Rect(0f, 0f, 1f, 0.5f);
+                
+                break;
+
+            case 4:
+                Debug.Log("four players");
+                cameraList[0].rect = new Rect(0f, 0.5f, 0.5f, 0.5f);
+                cameraList[1].rect = new Rect(0.5f, 0.5f, 0.5f, 0.5f);
+                cameraList[2].rect = new Rect(0f, 0f, 0.5f, 0.5f);
+                cameraList[3].rect = new Rect(0.5f, 0f, 0.5f, 0.5f);
+                
+                break;
+        }
+            
     }
 
     public void endGame(int maxScore)
