@@ -48,7 +48,7 @@ public class MultiplayerScoreManager : MonoBehaviour
 
     public void processLayer(GameObject player)
     {
-
+        Debug.Log("procesing layer");
         Transform playerParent = player.transform.parent;
         
 
