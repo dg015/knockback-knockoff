@@ -28,7 +28,7 @@ public class Gun : MonoBehaviour
     [SerializeField] private float initialVelocityInfluence = 0.6f;
 
     [Header("aiming")]
-    protected Vector3 aimInput;
+    public Vector3 aimInput;
     protected Vector2 angle;
     protected float direction;
 
@@ -37,8 +37,8 @@ public class Gun : MonoBehaviour
     [Header("isShooting")]
     [SerializeField] protected float timeBetweenShots;
     [SerializeField] protected float delayTime;
-    [SerializeField] protected bool readyToFire;
-    [SerializeField]  protected bool isShooting;
+    [SerializeField] public bool readyToFire;
+    [SerializeField] public bool isShooting;
     [SerializeField] protected float triggerInput;
     [SerializeField] private bool coroutineRunning;
     public bool isSelected;
@@ -151,37 +151,37 @@ public class Gun : MonoBehaviour
         }
     }
 
-    public void callShootMethod(InputAction.CallbackContext context)
-    {
-        triggerInput = context.ReadValue<float>();
+    //public void callShootMethod(InputAction.CallbackContext context)
+    //{
+    //    triggerInput = context.ReadValue<float>();
 
 
-        if (context.started)
-        {
-            if (triggerInput > 0.25f && readyToFire)
-            {
-                //Debug.Log("started action");
-                isShooting = true;
-            }
-        }
-        else if (context.performed)
-        {
-            if (triggerInput > 0.25f && readyToFire)
-            {
-                // Debug.Log("continuing action");
-                isShooting = true;
-            }
-        }
-        else if (context.canceled)
-        {
-            if (triggerInput < 0.25f)
-            {
-                //Debug.Log("Button released");
-                isShooting = false;
-            }
-        }
+    //    if (context.started)
+    //    {
+    //        if (triggerInput > 0.25f && readyToFire)
+    //        {
+    //            //Debug.Log("started action");
+    //            isShooting = true;
+    //        }
+    //    }
+    //    else if (context.performed)
+    //    {
+    //        if (triggerInput > 0.25f && readyToFire)
+    //        {
+    //            // Debug.Log("continuing action");
+    //            isShooting = true;
+    //        }
+    //    }
+    //    else if (context.canceled)
+    //    {
+    //        if (triggerInput < 0.25f)
+    //        {
+    //            //Debug.Log("Button released");
+    //            isShooting = false;
+    //        }
+    //    }
     
-    }
+    //}
 
     protected IEnumerator isShootingCycle()
     {
@@ -227,13 +227,12 @@ public class Gun : MonoBehaviour
 
     }
 
-
+    /*
     public void onAim(InputAction.CallbackContext context)
     {
-        
-        aimInput = context.ReadValue<Vector2>();
-        
+        aimInput = context.ReadValue<Vector2>();   
     }
+    */
 
     public void aim()
     {

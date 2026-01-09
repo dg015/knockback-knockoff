@@ -61,13 +61,18 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private PlayerInput playerInputComponent;
     [SerializeField] private PlayerInputActions inputActions;
 
+
     protected void Awake()
     {
+        scoreManager = GameObject.Find("Score manager").GetComponent<MultiplayerScoreManager>();
+        
         PlayerCount++;
+        
 
     }
     private void Start()
     {
+        
         score = 0;
         speedChecker = gameObject.GetComponent<SpeedChecker>();
 
@@ -84,27 +89,15 @@ public class PlayerController : MonoBehaviour
 
         playerInputComponent = GetComponent<PlayerInput>();
 
-        scoreManager.addPlayerToScoreBoard(this,score);
 
+        
+
+        scoreManager.addPlayerToScoreBoard(this,score,this.gameObject);
+
+
+        scoreManager.processLayer(this.gameObject);
     }
 
-    private void OnEnable()
-    {
-       //inputActions = new PlayerInputActions();
-       //inputActions.Player.Enable();
-       //inputActions.Player.Move.performed += checkHorizontalInput;
-       //inputActions.Player.Jump.performed += jump;
-       //inputActions.Player.Move.canceled += resetInput;
-    }
-
-    private void OnDisable()
-    {
-       
-        //inputActions.Player.Move.performed -= checkHorizontalInput;
-        //inputActions.Player.Jump.performed -= jump;
-        //inputActions.Player.Move.canceled -= resetInput;
-        //inputActions.Player.Disable();
-    }
 
     // Update is called once per frame
     void Update()
@@ -143,6 +136,10 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    private void OnDestroy()
+    {
+        alive = false;
+    }
     private void hasHitWall()
     {
         //check with boxcast if the player has hit the ceiling, if yes then reset speed and let them fall down
@@ -184,15 +181,20 @@ public class PlayerController : MonoBehaviour
 
             if(speedChecker.KillSpeed == true)
             {
+                
                 scoreManager.updateScore(this,score);
                 scoreManager.endGame(score);
-                Destroy(collision.gameObject);
+                //disable it is easier then destroying
+                collision.gameObject.GetComponent<PlayerController>().alive = false;
+                collision.gameObject.SetActive(false);
+                
                 score++;
                 Debug.Log("killed player");
             }
             
         }
     }
+
 
 
     private bool isGrounded()

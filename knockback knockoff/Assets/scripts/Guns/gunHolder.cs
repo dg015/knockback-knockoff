@@ -7,6 +7,7 @@ public class gunHolder : MonoBehaviour
 {
     
     [SerializeField] public List<GameObject> weapons = new List<GameObject>();
+    [SerializeField] private List<Gun> gunList = new List<Gun>();
     [SerializeField] public int selectedWeaponIndex;
 
     [SerializeField] private PlayerInput playerInputComponent;
@@ -14,7 +15,11 @@ public class gunHolder : MonoBehaviour
 
     [SerializeField] private Vector2 scrollValue;
     [SerializeField] private float buttonValue;
-    [SerializeField] private PlayerInputActions inputActions;
+
+    [SerializeField] private Vector2 aimValue;
+
+
+    [SerializeField] private float triggerInput;
 
     // Start is called before the first frame update
     void Start()
@@ -30,7 +35,57 @@ public class gunHolder : MonoBehaviour
         foreach (Transform child in transform)
         {
            weapons.Add(child.gameObject);
+            gunList.Add(child.gameObject.GetComponent<Gun>());
         }
+    }
+
+    /*
+    public void callAim()
+    {
+        foreach (Gun gun in gunList)
+        {
+            gun.aim();
+            gun.shoot();
+        }
+    }
+    */
+
+    public void callShootMethod(InputAction.CallbackContext context)
+    {
+        triggerInput = context.ReadValue<float>();
+
+
+        if (context.started)
+        {
+            if (triggerInput > 0.25f && gunList[selectedWeaponIndex].readyToFire)
+            {
+                //Debug.Log("started action");
+                gunList[selectedWeaponIndex].isShooting = true;
+            }
+        }
+        else if (context.performed)
+        {
+            if (triggerInput > 0.25f && gunList[selectedWeaponIndex].readyToFire)
+            {
+                // Debug.Log("continuing action");
+                gunList[selectedWeaponIndex].isShooting = true;
+            }
+        }
+        else if (context.canceled)
+        {
+            if (triggerInput < 0.25f)
+            {
+                //Debug.Log("Button released");
+                gunList[selectedWeaponIndex].isShooting = false;
+            }
+        }
+
+    }
+
+
+    public void onAim(InputAction.CallbackContext context)
+    {
+        aimValue = context.ReadValue<Vector2>();
     }
 
     public void GetButtonChange(InputAction.CallbackContext context)
@@ -127,9 +182,21 @@ public class gunHolder : MonoBehaviour
             }
         }
     }
+
+
+
+    private void addWeaponsToInput()
+    {
+        for (int i = 0; i < weapons.Count; i++)
+        {
+            
+        }
+    }
     // Update is called once per frame
     void Update()
     {
-        //getScroll();
+        gunList[selectedWeaponIndex].aimInput = aimValue;
+
+        
     }
 }
