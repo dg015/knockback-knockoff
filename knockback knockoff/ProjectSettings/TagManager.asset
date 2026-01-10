@@ -8,6 +8,10 @@ TagManager:
   - bullet
   - Weapon spawner
   - ScoreManager
+  - Camera1
+  - Camera2
+  - camera3
+  - camera4
   layers:
   - Default
   - TransparentFX
