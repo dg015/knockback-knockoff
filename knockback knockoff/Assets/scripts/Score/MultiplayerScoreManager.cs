@@ -138,6 +138,7 @@ public class MultiplayerScoreManager : MonoBehaviour
             currentTime = 0;
             player.transform.position = spawner.transform.position;
             player.gameObject.SetActive(true);
+            manageCamera();
         }
     }
 
