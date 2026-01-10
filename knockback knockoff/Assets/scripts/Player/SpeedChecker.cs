@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class SpeedChecker : MonoBehaviour
 {
-    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private PlayerController playerController;
     [SerializeField] private Image speedBar;
     public bool KillSpeed;
 
@@ -14,7 +14,7 @@ public class SpeedChecker : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rb= gameObject.GetComponent<Rigidbody2D>();
+        playerController = gameObject.GetComponent<PlayerController>();
         speedBar = GameObject.Find("bar fill").GetComponent<Image>();
         
     }
@@ -29,7 +29,7 @@ public class SpeedChecker : MonoBehaviour
 
     private void killSpeed()
     {
-        if(rb.linearVelocity.magnitude / maxspeed > 1)
+        if(playerController.PVelocity.magnitude / maxspeed >= 1)
         {
             KillSpeed = true;
             Debug.Log("kill speed");
@@ -47,7 +47,8 @@ public class SpeedChecker : MonoBehaviour
 
     private void fill()
     {
-        speedBar.fillAmount = rb.linearVelocity.magnitude / maxspeed;
+        
+        speedBar.fillAmount = Mathf.Clamp01(playerController.PVelocity.magnitude / maxspeed);
     }
 
 }

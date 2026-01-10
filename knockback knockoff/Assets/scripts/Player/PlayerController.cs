@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour
 
     protected void Awake()
     {
-        scoreManager = GameObject.Find("Score manager").GetComponent<MultiplayerScoreManager>();
+        scoreManager = GameObject.Find("Game manager").GetComponent<MultiplayerScoreManager>();
         
         PlayerCount++;
         
@@ -315,10 +315,13 @@ public class PlayerController : MonoBehaviour
 
     private void VerticalForces()
     {
-        if(isGrounded() && PVelocity.y <0 )
+        if(isGrounded())
         {
-            PVelocity.y = 0;
-            
+            if (PVelocity.y < 0)
+            {
+                
+                PVelocity.y = 0;
+            }
         }
         else
         {
