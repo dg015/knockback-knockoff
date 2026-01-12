@@ -11,15 +11,18 @@ public class MultiplayerScoreManager : MonoBehaviour
     [SerializeField] private List<PlayerController> playersControllers  = new List<PlayerController> ();
     [SerializeField] private List<GameObject> PlayerList = new List<GameObject>();
     [SerializeField] private List<int> playerScores= new List<int>();
+    [SerializeField] private List<GameObject> spawners = new List<GameObject>();
+
     [SerializeField] private int maxScore;
 
     [SerializeField] private List<LayerMask> playerLayers;
 
     [SerializeField] private List<Camera> cameraList;
 
-    [SerializeField] private GameObject spawner;
+    //[SerializeField] private GameObject spawner;
     [SerializeField] private float delay;
     [SerializeField] private float currentTime;
+
     [SerializeField] private PlayerInputManager playerInputManager;
 
 
@@ -123,20 +126,21 @@ public class MultiplayerScoreManager : MonoBehaviour
             if (PlayerList[i].gameObject.activeSelf == false)
             {
                 //respawn
-                respawnDeadPlayers(PlayerList[i].gameObject, spawner, delay);
+                respawnDeadPlayers(PlayerList[i].gameObject, delay);
                 Debug.Log("respawn");
             }
         }
     }
 
 
-    private void respawnDeadPlayers(GameObject player,GameObject spawner, float delay)
+    public void respawnDeadPlayers(GameObject player, float delay)
     {
         currentTime += Time.deltaTime;
         if (currentTime >= delay)
         {
+            int i = Random.Range(0, spawners.Count - 1);
             currentTime = 0;
-            player.transform.position = spawner.transform.position;
+            player.transform.position = spawners[i].transform.position;
             player.gameObject.SetActive(true);
             manageCamera();
         }

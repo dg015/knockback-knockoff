@@ -53,6 +53,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private SpeedChecker speedChecker;
     [SerializeField] public int score;
     [SerializeField] private MultiplayerScoreManager scoreManager;
+    [SerializeField] bool isMultiplayerSpawner;
+
 
     [Header("Animation")]
     [SerializeField] private Animator animator;
@@ -60,6 +62,7 @@ public class PlayerController : MonoBehaviour
     [Header("new Input system")]
     [SerializeField] private PlayerInput playerInputComponent;
     [SerializeField] private PlayerInputActions inputActions;
+
 
 
     protected void Awake()
@@ -70,6 +73,26 @@ public class PlayerController : MonoBehaviour
         
 
     }
+
+    private void OnEnable()
+    {
+        
+    }
+
+
+    private void spawnOnSpawner(bool isMultiplayer)
+    {
+        if (isMultiplayer)
+        {
+            Debug.Log("spwaning");
+            scoreManager.respawnDeadPlayers(this.gameObject,0);
+        }
+        else
+        {
+
+        }
+    }
+
     private void Start()
     {
         
@@ -96,6 +119,7 @@ public class PlayerController : MonoBehaviour
 
 
         scoreManager.processLayer(this.gameObject);
+        spawnOnSpawner(isMultiplayerSpawner);
     }
 
 
