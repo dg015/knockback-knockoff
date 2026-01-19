@@ -513,8 +513,8 @@ MonoBehaviour:
   fireballSpriteRenderer: {fileID: 8621833327097616524}
   fireballTransparency: 0
   maxTransperency: 250
-  startFireBallSpeed: 25
-  maxspeed: 35
+  startFireBallSpeed: 20
+  maxspeed: 26
 --- !u!114 &474328147534728663
 MonoBehaviour:
   m_ObjectHideFlags: 0
