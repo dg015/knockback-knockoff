@@ -86,6 +86,7 @@ MonoBehaviour:
   force: 60
   currentVelocity: {x: 0, y: 0}
   initialVelocityInfluence: 0.6
+  aimInput: {x: 0, y: 0, z: 0}
   controller: {fileID: 0}
   timeBetweenShots: 4
   delayTime: 0
@@ -112,7 +113,7 @@ GameObject:
   - component: {fileID: 2192591056614252384}
   - component: {fileID: 3449774251061125736}
   m_Layer: 0
-  m_Name: sniper
+  m_Name: Texture
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

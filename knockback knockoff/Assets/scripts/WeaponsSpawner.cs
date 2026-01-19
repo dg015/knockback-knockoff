@@ -96,7 +96,7 @@ public class WeaponsSpawner : MonoBehaviour
                 //get current weapon
                 GameObject currentSelectedGun;
                 currentSelectedGun = gunHolderScript.weapons[gunHolderScript.selectedWeaponIndex];
-                currentSelectedGun.SetActive(false);
+                currentSelectedGun.transform.GetChild(0).gameObject.SetActive(false);
 
                 //add selected weapons
                 GameObject newGun = Instantiate(Weapons[GunIndex], gunHolderTransform);

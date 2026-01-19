@@ -31,24 +31,16 @@ public class gunHolder : MonoBehaviour
     public void getWeapons()
     {
         weapons.Clear();
+        gunList.Clear();
         //adds starting weapons to list
         foreach (Transform child in transform)
         {
+            
            weapons.Add(child.gameObject);
-            gunList.Add(child.gameObject.GetComponent<Gun>());
+           gunList.Add(child.gameObject.GetComponent<Gun>());
         }
     }
 
-    /*
-    public void callAim()
-    {
-        foreach (Gun gun in gunList)
-        {
-            gun.aim();
-            gun.shoot();
-        }
-    }
-    */
 
     public void callShootMethod(InputAction.CallbackContext context)
     {
@@ -173,8 +165,8 @@ public class gunHolder : MonoBehaviour
             if ( i == selectedWeaponIndex )
             {
                 weapons[i].transform.GetChild(0).gameObject.SetActive(true);
-                
 
+                Debug.Log(weapons[i].transform.GetChild(0).name.ToString());
                 if (weapons[i].gameObject.GetComponent<Gun>())
                     weapons[i].gameObject.GetComponent<Gun>().isSelected = true;
                 else
