@@ -102,6 +102,8 @@ public class WeaponsSpawner : MonoBehaviour
                 GameObject newGun = Instantiate(Weapons[GunIndex], gunHolderTransform);
                 gunHolderScript.weapons.Add(newGun);
                 gunHolderScript.getWeapons();
+                //gunHolderScript.selectedWeaponIndex = gunHolderScript.weapons.Count -1;
+                gunHolderScript.forceSelect(newGun);
 
             }
 

@@ -146,6 +146,18 @@ public class gunHolder : MonoBehaviour
         }
     }
     
+
+    public void forceSelect(GameObject gun)
+    {
+        selectedWeaponIndex = weapons.Count - 1;
+        // -1 so it doesnt reach the last weapon
+        for (int i = 0; i < weapons.Count -1; i++) 
+        {
+            weapons[i].gameObject.GetComponent<Gun>().isSelected = false;
+        }
+        gun.gameObject.GetComponent<Gun>().isSelected = true;
+    }
+
     private void swapWeapons()
     {
         Debug.Log("swapping weapons");
