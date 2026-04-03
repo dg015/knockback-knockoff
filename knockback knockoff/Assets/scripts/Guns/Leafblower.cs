@@ -1,6 +1,8 @@
+using Cinemachine;
+using FMOD;
+using FMODUnity;
 using System.Collections;
 using System.Collections.Generic;
-using Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -12,8 +14,8 @@ public class Leafblower : Gun
     [SerializeField] public float minimumHeat;
 
     [SerializeField] private float heatTapTime;
+    [SerializeField] private StudioEventEmitter shootingSound;
 
-    
 
     private void OnEnable()
     {
@@ -86,8 +88,13 @@ public class Leafblower : Gun
                 delayTime = 0;
                 heat += Time.deltaTime;
                 shoot();
+                
             }
 
+        }
+        else
+        {
+            shootingSound.Stop();
         }
 
     }
@@ -101,11 +108,13 @@ public class Leafblower : Gun
         {
             
             readyToFire = false;
+            shootingSound.Play();
 
         }
         if ( heat < minimumHeat)
         {
             readyToFire = true;
+            shootingSound.Stop();
         }
         
 

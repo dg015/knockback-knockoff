@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
+using FMODUnity;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -55,6 +56,8 @@ public class Gun : MonoBehaviour
     [SerializeField] protected PlayerInputActions inputActions;
     private Vector3 lastAimLocaiton;
 
+    [Header("audio")]
+    [SerializeField] private StudioEventEmitter sound;
 
     // Start is called before the first frame update
 
@@ -128,7 +131,7 @@ public class Gun : MonoBehaviour
             StartCoroutine(isShootingCycle());
             delayTime = 0;
             delayTime += Time.deltaTime;
-            
+            sound.Play();
         }
 
 

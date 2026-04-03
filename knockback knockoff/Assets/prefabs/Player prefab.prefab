@@ -491,6 +491,7 @@ MonoBehaviour:
   speedChecker: {fileID: 0}
   score: 0
   scoreManager: {fileID: 0}
+  isMultiplayerSpawner: 0
   animator: {fileID: 0}
   playerInputComponent: {fileID: 0}
 --- !u!114 &3092863746720351950
@@ -1391,6 +1392,7 @@ GameObject:
   - component: {fileID: 4466936939051340415}
   - component: {fileID: 6333549218486396756}
   - component: {fileID: 8611949750788903950}
+  - component: {fileID: 5628753146571325974}
   m_Layer: 8
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1506,6 +1508,20 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5628753146571325974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4133594402314192263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nonRigidbodyVelocity: 0
+  attenuationObject: {fileID: 0}
 --- !u!1 &4225123585611672028
 GameObject:
   m_ObjectHideFlags: 0
