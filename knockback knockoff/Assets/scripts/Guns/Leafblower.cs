@@ -1,5 +1,4 @@
 using Cinemachine;
-using FMOD;
 using FMODUnity;
 using System.Collections;
 using System.Collections.Generic;
@@ -15,7 +14,7 @@ public class Leafblower : Gun
 
     [SerializeField] private float heatTapTime;
     [SerializeField] private StudioEventEmitter shootingSound;
-
+    private bool isPlayingSound = false;
 
     private void OnEnable()
     {
@@ -87,14 +86,32 @@ public class Leafblower : Gun
             {
                 delayTime = 0;
                 heat += Time.deltaTime;
+
                 shoot();
-                
+
+                //only play once
+                if(!isPlayingSound)
+                {
+                    shootingSound.Play();
+                    isPlayingSound = true;
+                }
+
+            }
+            else
+            {
+                //disable is not holding the button anymore
+                if(isPlayingSound)
+                {
+                    shootingSound.Stop();
+                    isPlayingSound = false;
+                }
             }
 
         }
         else
         {
             shootingSound.Stop();
+            isPlayingSound = false;
         }
 
     }
@@ -108,13 +125,13 @@ public class Leafblower : Gun
         {
             
             readyToFire = false;
-            shootingSound.Play();
+           
 
         }
         if ( heat < minimumHeat)
         {
             readyToFire = true;
-            shootingSound.Stop();
+            
         }
         
 
