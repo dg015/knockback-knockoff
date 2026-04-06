@@ -1,3 +1,4 @@
+using FMODUnity;
 using System;
 using UnityEditor;
 using UnityEngine;
@@ -63,21 +64,25 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private PlayerInput playerInputComponent;
     [SerializeField] private PlayerInputActions inputActions;
 
-
+    [Header("walking")]
+    [SerializeField] private float walkingTimer;
+    float walkingCurrentTime;
+    [SerializeField] private StudioEventEmitter footstep;
 
     protected void Awake()
     {
         scoreManager = GameObject.Find("Game manager").GetComponent<MultiplayerScoreManager>();
         
         PlayerCount++;
-        
-
+       
     }
 
     private void OnEnable()
     {
         
     }
+
+
 
 
     private void spawnOnSpawner(bool isMultiplayer)
@@ -276,13 +281,24 @@ public class PlayerController : MonoBehaviour
     }
 
 
+    private void footstepManager()
+    {
+        walkingCurrentTime += Time.deltaTime;
+        if(walkingCurrentTime >= walkingTimer)
+        {
+            footstep.Play();
+            walkingCurrentTime = 0;
+        }
+    }
+
     /// <param name="playerInput"></param>
     public void Movement(Vector2 playerInput)
     {
 
         if(playerInput.x != 0)
         {
-
+            //footsteps sound
+           
             //apply velocity
             if (!MaxVelocityReached) 
             {
@@ -300,6 +316,7 @@ public class PlayerController : MonoBehaviour
             if(isGrounded())
             {
                 animator.SetBool("IsWalking", true);
+                footstepManager();
             }
         }
         else // here for decealartion 
@@ -324,6 +341,10 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+
+
+
+
 
     private void CheckMaxVelocity()
     {

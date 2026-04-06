@@ -184,6 +184,69 @@ MonoBehaviour:
   OverrideAttenuation: 0
   OverrideMinDistance: 1
   OverrideMaxDistance: 20
+--- !u!1 &31940718
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 31940719}
+  - component: {fileID: 31940720}
+  m_Layer: 0
+  m_Name: Sound player
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &31940719
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 31940718}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6067296489039957284}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &31940720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 31940718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 548657927
+      Data2: 1173793524
+      Data3: 47284669
+      Data4: -1790131119
+    Path: event:/Item Spawner
+  Event: 
+  EventPlayTrigger: 1
+  EventStopTrigger: 2
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &177110658
 GameObject:
   m_ObjectHideFlags: 0
@@ -1007,6 +1070,69 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1127263694
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1127263695}
+  - component: {fileID: 1127263696}
+  m_Layer: 0
+  m_Name: FootstepAudio
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1127263695
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1127263694}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2115639694}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1127263696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1127263694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1451465398
+      Data2: 1255008103
+      Data3: -1663856964
+      Data4: -1398495557
+    Path: event:/Footsteps
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &1145695601
 GameObject:
   m_ObjectHideFlags: 0
@@ -1857,6 +1983,8 @@ MonoBehaviour:
   isMultiplayerSpawner: 0
   animator: {fileID: 0}
   playerInputComponent: {fileID: 0}
+  walkingTimer: 0
+  footstep: {fileID: 0}
 --- !u!50 &1532613933
 Rigidbody2D:
   serializedVersion: 5
@@ -25045,6 +25173,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 728801957085776648, guid: 9c7406cb36c8b66428973e2d04314222, type: 3}
   m_PrefabInstance: {fileID: 6193176922599111127}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &2115639694 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 191984329222350137, guid: 9c7406cb36c8b66428973e2d04314222, type: 3}
+  m_PrefabInstance: {fileID: 6193176922599111127}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6067296489039957283
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25099,9 +25232,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 6622239467130863487, guid: ad707263ed16c384cad4ad86e282049b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 31940719}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad707263ed16c384cad4ad86e282049b, type: 3}
+--- !u!4 &6067296489039957284 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6622239467130863487, guid: ad707263ed16c384cad4ad86e282049b, type: 3}
+  m_PrefabInstance: {fileID: 6067296489039957283}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6193176922599111127
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25162,6 +25303,14 @@ PrefabInstance:
       propertyPath: sound
       value: 
       objectReference: {fileID: 16126901}
+    - target: {fileID: 3093896015297249559, guid: 9c7406cb36c8b66428973e2d04314222, type: 3}
+      propertyPath: footstep
+      value: 
+      objectReference: {fileID: 1127263696}
+    - target: {fileID: 3093896015297249559, guid: 9c7406cb36c8b66428973e2d04314222, type: 3}
+      propertyPath: walkingTimer
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 5787228941461168903, guid: 9c7406cb36c8b66428973e2d04314222, type: 3}
       propertyPath: m_BoundingShape2D
       value: 
@@ -25179,6 +25328,9 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 4669164153579994160, guid: 9c7406cb36c8b66428973e2d04314222, type: 3}
     m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 191984329222350137, guid: 9c7406cb36c8b66428973e2d04314222, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1127263695}
     - targetCorrespondingSourceObject: {fileID: 8885631867715712366, guid: 9c7406cb36c8b66428973e2d04314222, type: 3}
       insertIndex: -1
       addedObject: {fileID: 16126900}
