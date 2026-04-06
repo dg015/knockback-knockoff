@@ -68,6 +68,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float walkingTimer;
     float walkingCurrentTime;
     [SerializeField] private StudioEventEmitter footstep;
+    [SerializeField] private StudioEventEmitter jumpSound;
 
     protected void Awake()
     {
@@ -378,7 +379,7 @@ public class PlayerController : MonoBehaviour
     {
         if(isGrounded() == true)
         {
-      
+            jumpSound.Play();
             animator.SetTrigger("Jumping");
             PVelocity.y = intialJumpSpeed;
         }
