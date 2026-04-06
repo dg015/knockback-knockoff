@@ -16,6 +16,10 @@ public class Leafblower : Gun
     [SerializeField] private StudioEventEmitter shootingSound;
     private bool isPlayingSound = false;
 
+    private bool fadingOut = false;
+    private float fadeDuration = 2f;
+    private float fadeTimer = 0f;
+
     private void OnEnable()
     {
         //inputActions = new PlayerInputActions();
@@ -75,6 +79,7 @@ public class Leafblower : Gun
         cooldown();
         heat = Mathf.Clamp(heat, 0, overheatMaximum);
         delayTime += Time.deltaTime;
+        fadeSoundOut();
     }
 
     private void firing()
@@ -92,8 +97,12 @@ public class Leafblower : Gun
                 //only play once
                 if(!isPlayingSound)
                 {
+                    Debug.Log("playing sound");
+                    shootingSound.SetParameter("Leafblower volume", 1.00f);
                     shootingSound.Play();
                     isPlayingSound = true;
+                    fadingOut = false;
+                    fadeTimer = 0f;
                 }
 
             }
@@ -102,7 +111,8 @@ public class Leafblower : Gun
                 //disable is not holding the button anymore
                 if(isPlayingSound)
                 {
-                    shootingSound.Stop();
+                    
+                    fadingOut = true;
                     isPlayingSound = false;
                 }
             }
@@ -110,11 +120,36 @@ public class Leafblower : Gun
         }
         else
         {
-            shootingSound.Stop();
+            
+            fadingOut = true;
             isPlayingSound = false;
         }
 
     }
+
+
+    private void fadeSoundOut()
+    {
+        if(fadingOut)
+        {
+            Debug.Log("fading out");
+            //increase timer
+            fadeTimer += Time.deltaTime;
+            //normalize the timer
+            float t = fadeTimer / fadeDuration;
+            //1f - t is subtracting by normalized timer
+            shootingSound.SetParameter("Leafblower volume", 1f - t);
+            if(t >= 1f)
+            {
+                Debug.Log("stoppd");
+                shootingSound.Stop();
+                fadingOut = false;
+                fadeTimer = 0f;
+                shootingSound.SetParameter("Leafblower volume", 1.00f);
+            }
+        }
+    }
+
 
 
     // idea, add delay for firing
