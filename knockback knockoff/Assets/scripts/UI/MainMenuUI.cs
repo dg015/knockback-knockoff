@@ -7,6 +7,7 @@ public class MainMenuUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 {
     [SerializeField] private StudioEventEmitter hover;
     [SerializeField] private StudioEventEmitter click;
+    [SerializeField] private StudioEventEmitter gameNameAnouncer;
 
     void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
     {
@@ -32,8 +33,9 @@ public class MainMenuUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     public void singlePlayerChosen()
     {
         //load scene
-        Invoke(nameof(singlePlayerChosen), 3f);
+        Invoke(nameof(loadSinglePlayer), 1.5f);
         //play audio saying "knockback knockof" kinda like resident evil
+        gameNameAnouncer.Play();
     }
 
     public void loadSinglePlayer()
