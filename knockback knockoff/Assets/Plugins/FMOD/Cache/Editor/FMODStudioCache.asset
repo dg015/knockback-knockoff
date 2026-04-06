@@ -93,10 +93,10 @@ MonoBehaviour:
   Path: Assets/knockback knockoff fmod/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639110808573589508
+  lastModified: 639110825156744539
   FileSizes:
   - Name: Desktop
-    Value: 1226
+    Value: 1318
   Exists: 1
 --- !u!114 &-3017659923917357321
 MonoBehaviour:
@@ -125,6 +125,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 285
+--- !u!114 &-1654427560326026052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Sniper shot
+  m_EditorClassIdentifier: 
+  Path: event:/Sniper shot
+  Guid:
+    Data1: -906830736
+    Data2: 1279752006
+    Data3: -2144980856
+    Data4: -1434939471
+  Banks:
+  - {fileID: 7396775140888108507}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 980
 --- !u!114 &-1183064980685663963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,13 +205,15 @@ MonoBehaviour:
   - {fileID: -6525899236762676944}
   - {fileID: -3836480575560031942}
   - {fileID: 2323411339524733813}
+  - {fileID: 4451965676151927950}
+  - {fileID: -1654427560326026052}
   EditorParameters: []
   MasterBanks:
   - {fileID: 7396775140888108507}
   StringsBanks:
   - {fileID: -3182113664404647045}
   cacheVersion: 131848
-  cacheTime: 639110808573589508
+  cacheTime: 639110825156744539
   SerializableEventsDict:
   - key: event:/Leafblower
     index: 0
@@ -206,6 +235,10 @@ MonoBehaviour:
     index: 8
   - key: event:/Jump
     index: 9
+  - key: event:/Hit wall
+    index: 10
+  - key: event:/Sniper shot
+    index: 11
 --- !u!114 &1544691680751857771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,6 +294,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 156
+--- !u!114 &4451965676151927950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Hit wall
+  m_EditorClassIdentifier: 
+  Path: event:/Hit wall
+  Guid:
+    Data1: -921071309
+    Data2: 1119853385
+    Data3: -709531503
+    Data4: -251486877
+  Banks:
+  - {fileID: 7396775140888108507}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 188
 --- !u!114 &4893481855574368757
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -330,10 +390,10 @@ MonoBehaviour:
   Path: Assets/knockback knockoff fmod/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639110808573559461
+  lastModified: 639110825156724554
   FileSizes:
   - Name: Desktop
-    Value: 1227008
+    Value: 1243744
   Exists: 1
 --- !u!114 &7642835540869180901
 MonoBehaviour:

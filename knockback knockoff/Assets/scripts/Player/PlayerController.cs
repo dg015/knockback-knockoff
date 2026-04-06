@@ -69,7 +69,7 @@ public class PlayerController : MonoBehaviour
     float walkingCurrentTime;
     [SerializeField] private StudioEventEmitter footstep;
     [SerializeField] private StudioEventEmitter jumpSound;
-
+    [SerializeField] private StudioEventEmitter hitWallSound;
     protected void Awake()
     {
         scoreManager = GameObject.Find("Game manager").GetComponent<MultiplayerScoreManager>();
@@ -177,6 +177,7 @@ public class PlayerController : MonoBehaviour
         {
             //Debug.Log("has hit ceiling");
             PVelocity.y = 0;
+            
         }
         // now check if the have hit a wall if so then reset their fall speed
             //this one checks for the right side
@@ -184,13 +185,17 @@ public class PlayerController : MonoBehaviour
         {
             //Debug.Log("has hit right wall");
             PVelocity.x = 0;
+
+            //hitWallSound.Play();
         }
         else if (Physics2D.BoxCast(transform.position, boxSize, 0, -transform.right, castDistance, ground) && !isGrounded())
         {
             //Debug.Log("has hit left wall");
             PVelocity.x = 0;
-        }
 
+            //hitWallSound.Play();
+        }
+       
     }
 
 
