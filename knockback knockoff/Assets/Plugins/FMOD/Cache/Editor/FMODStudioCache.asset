@@ -39,11 +39,38 @@ MonoBehaviour:
   Path: Assets/knockback knockoff fmod/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639110085270273729
+  lastModified: 639110704489595014
   FileSizes:
   - Name: Desktop
-    Value: 1036
+    Value: 1074
   Exists: 1
+--- !u!114 &-3017659923917357321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/UI hover
+  m_EditorClassIdentifier: 
+  Path: event:/UI hover
+  Guid:
+    Data1: 1979704305
+    Data2: 1120746140
+    Data3: 740722582
+    Data4: -1931955904
+  Banks:
+  - {fileID: 7396775140888108507}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 285
 --- !u!114 &-1183064980685663963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93,13 +120,14 @@ MonoBehaviour:
   - {fileID: 4893481855574368757}
   - {fileID: -1183064980685663963}
   - {fileID: 7642835540869180901}
+  - {fileID: -3017659923917357321}
   EditorParameters: []
   MasterBanks:
   - {fileID: 7396775140888108507}
   StringsBanks:
   - {fileID: -3182113664404647045}
   cacheVersion: 131848
-  cacheTime: 639110085270273729
+  cacheTime: 639110704489595014
   SerializableEventsDict:
   - key: event:/Leafblower
     index: 0
@@ -113,6 +141,8 @@ MonoBehaviour:
     index: 4
   - key: event:/Item Spawner
     index: 5
+  - key: event:/UI hover
+    index: 6
 --- !u!114 &1544691680751857771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,10 +240,10 @@ MonoBehaviour:
   Path: Assets/knockback knockoff fmod/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639110085270253735
+  lastModified: 639110704489575023
   FileSizes:
   - Name: Desktop
-    Value: 1163392
+    Value: 1169568
   Exists: 1
 --- !u!114 &7642835540869180901
 MonoBehaviour:
@@ -239,8 +269,8 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 0
   Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
+  MinDistance: 5
+  MaxDistance: 50
   Length: 16000
 --- !u!114 &8647268772533909350
 MonoBehaviour:
