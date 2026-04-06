@@ -24,6 +24,11 @@ public class MainMenuUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         
     }
 
+    public void playClickSound()
+    {
+        click.Play();
+    }
+
     public void singlePlayerChosen()
     {
         //load scene
