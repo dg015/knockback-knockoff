@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{a7d36817-fac0-4fc2-8a3b-075168ab9e9d}">
+		<property name="assetPath">
+			<value>Announcer finish.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.49687074829931971</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{b75f9f60-14b0-46b3-b549-086fe413b129}</destination>
+		</relationship>
+	</object>
+</objects>

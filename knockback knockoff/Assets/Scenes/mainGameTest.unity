@@ -818,7 +818,7 @@ GameObject:
   - component: {fileID: 740783655}
   - component: {fileID: 740783656}
   m_Layer: 0
-  m_Name: Song
+  m_Name: ambiance
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -846,7 +846,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 740783654}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
   m_Name: 
@@ -2290,6 +2290,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EndLevel: 0
   timer: {fileID: 0}
+  ambianceSound: {fileID: 0}
+  endSound: {fileID: 0}
 --- !u!61 &1576345203
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -25049,6 +25051,69 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1931784266
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1931784267}
+  - component: {fileID: 1931784268}
+  m_Layer: 0
+  m_Name: Win effect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1931784267
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1931784266}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1969248206}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1931784268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1931784266}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1538845879
+      Data2: 1253060992
+      Data3: -1144167545
+      Data4: -715119684
+    Path: event:/Win sound
+  Event: 
+  EventPlayTrigger: 1
+  EventStopTrigger: 2
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &1969248201
 GameObject:
   m_ObjectHideFlags: 0
@@ -25129,6 +25194,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EndLevel: 0
   timer: {fileID: 1062591127}
+  ambianceSound: {fileID: 740783656}
+  endSound: {fileID: 1931784268}
 --- !u!95 &1969248204
 Animator:
   serializedVersion: 7
@@ -25220,6 +25287,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 740783655}
+  - {fileID: 1931784267}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1985583191 stripped
@@ -25433,11 +25501,11 @@ PrefabInstance:
       objectReference: {fileID: 16126901}
     - target: {fileID: 2988731981390675049, guid: 9c7406cb36c8b66428973e2d04314222, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.270996
+      value: 7.283081
       objectReference: {fileID: 0}
     - target: {fileID: 2988731981390675049, guid: 9c7406cb36c8b66428973e2d04314222, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5810745
+      value: 1.5810444
       objectReference: {fileID: 0}
     - target: {fileID: 3093896015297249559, guid: 9c7406cb36c8b66428973e2d04314222, type: 3}
       propertyPath: footstep
