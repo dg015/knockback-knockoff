@@ -58,6 +58,7 @@ public class Gun : MonoBehaviour
 
     [Header("audio")]
     [SerializeField] private StudioEventEmitter sound;
+    [SerializeField] private StudioEventEmitter reaload;
 
     // Start is called before the first frame update
 
@@ -196,6 +197,8 @@ public class Gun : MonoBehaviour
         yield return new WaitForSeconds(timeBetweenShots);
         
         readyToFire = true;
+        if(reaload != null)
+        reaload.Play();
     }
 
     protected void CameraShake()

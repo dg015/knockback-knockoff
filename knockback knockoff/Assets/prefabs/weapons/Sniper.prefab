@@ -127,6 +127,7 @@ Transform:
   - {fileID: 1790633481966697224}
   - {fileID: 8429164342904643162}
   - {fileID: 6601928912538752896}
+  - {fileID: 1130431409962596489}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1738064869446585106
@@ -166,6 +167,7 @@ MonoBehaviour:
   shaketimeMax: 0.25
   playerInputComponent: {fileID: 0}
   sound: {fileID: 6671958021907853563}
+  reaload: {fileID: 7570943305467049869}
 --- !u!1 &3779001459852718494
 GameObject:
   m_ObjectHideFlags: 0
@@ -268,3 +270,66 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   head: 0
   gun: {fileID: 0}
+--- !u!1 &7226191991723397847
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1130431409962596489}
+  - component: {fileID: 7570943305467049869}
+  m_Layer: 0
+  m_Name: Reload sound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1130431409962596489
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7226191991723397847}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 251059786367037433}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7570943305467049869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7226191991723397847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 550806802
+      Data2: 1111073163
+      Data3: 96138932
+      Data4: 1330828832
+    Path: event:/weapon reload
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20

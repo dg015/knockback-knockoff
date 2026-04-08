@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
+using FMODUnity;
 
 public class WeaponsSpawner : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class WeaponsSpawner : MonoBehaviour
     [SerializeField] private List<GameObject> Weapons;
 
     [SerializeField] private bool alreadyHasWeapon;
+    [SerializeField] private StudioEventEmitter pickupSound;
 
     //NEED TO MAKE IT INSTANTIATE ONLY ONCE, RN ITS GOING TO INSTANTIATE A LOT OF OBJECTS AT ONCE
     //Gun 1: pistol
@@ -104,6 +106,8 @@ public class WeaponsSpawner : MonoBehaviour
                 gunHolderScript.getWeapons();
                 //gunHolderScript.selectedWeaponIndex = gunHolderScript.weapons.Count -1;
                 gunHolderScript.forceSelect(newGun);
+
+                pickupSound.Play();
 
             }
 

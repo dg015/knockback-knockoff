@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{76dd8f03-b8f6-4a31-94e7-ceffcb555f87}">
+		<property name="assetPath">
+			<value>weapon pickup.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.483718820861678</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{b75f9f60-14b0-46b3-b549-086fe413b129}</destination>
+		</relationship>
+	</object>
+</objects>

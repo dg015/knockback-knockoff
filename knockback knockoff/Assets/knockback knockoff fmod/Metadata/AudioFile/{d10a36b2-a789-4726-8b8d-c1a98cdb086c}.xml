@@ -5,13 +5,13 @@
 			<value>radarSound.wav</value>
 		</property>
 		<property name="frequencyInKHz">
-			<value>44.0999985</value>
+			<value>48</value>
 		</property>
 		<property name="channelCount">
 			<value>2</value>
 		</property>
 		<property name="length">
-			<value>4</value>
+			<value>4.3738958333333331</value>
 		</property>
 		<relationship name="masterAssetFolder">
 			<destination>{b75f9f60-14b0-46b3-b549-086fe413b129}</destination>

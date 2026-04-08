@@ -854,11 +854,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: -840306243
-      Data2: 1109570824
-      Data3: -1249980280
-      Data4: 1528199799
-    Path: event:/Jazz song
+      Data1: -1604646849
+      Data2: 1308713246
+      Data3: -441865798
+      Data4: 2110439623
+    Path: event:/flag
   Event: 
   EventPlayTrigger: 1
   EventStopTrigger: 2
@@ -868,8 +868,8 @@ MonoBehaviour:
   NonRigidbodyVelocity: 0
   Params: []
   OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
+  OverrideMinDistance: 2.2
+  OverrideMaxDistance: 40
 --- !u!1 &766845071
 GameObject:
   m_ObjectHideFlags: 0
@@ -1133,6 +1133,69 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1117563903
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1117563904}
+  - component: {fileID: 1117563905}
+  m_Layer: 0
+  m_Name: Reload sound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1117563904
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1117563903}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1056562637}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1117563905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1117563903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 550806802
+      Data2: 1111073163
+      Data3: 96138932
+      Data4: 1330828832
+    Path: event:/weapon reload
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &1127263694
 GameObject:
   m_ObjectHideFlags: 0
@@ -2340,6 +2403,69 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 2, y: 2}
   m_EdgeRadius: 0
+--- !u!1 &1604028223
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1604028224}
+  - component: {fileID: 1604028225}
+  m_Layer: 0
+  m_Name: Sound pickup
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1604028224
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1604028223}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6067296489039957284}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1604028225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1604028223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 631975271
+      Data2: 1302188781
+      Data3: 840120722
+      Data4: -1273995174
+    Path: event:/Weapon pickup
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &1631043072
 GameObject:
   m_ObjectHideFlags: 0
@@ -25384,6 +25510,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4146759639600589922, guid: ad707263ed16c384cad4ad86e282049b, type: 3}
+      propertyPath: pickupSound
+      value: 
+      objectReference: {fileID: 1604028225}
     - target: {fileID: 6622239467130863487, guid: ad707263ed16c384cad4ad86e282049b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 59.8
@@ -25434,6 +25564,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6622239467130863487, guid: ad707263ed16c384cad4ad86e282049b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 31940719}
+    - targetCorrespondingSourceObject: {fileID: 6622239467130863487, guid: ad707263ed16c384cad4ad86e282049b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1604028224}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad707263ed16c384cad4ad86e282049b, type: 3}
 --- !u!4 &6067296489039957284 stripped
@@ -25501,6 +25634,10 @@ PrefabInstance:
       propertyPath: sound
       value: 
       objectReference: {fileID: 16126901}
+    - target: {fileID: 2447275060434408002, guid: 9c7406cb36c8b66428973e2d04314222, type: 3}
+      propertyPath: reaload
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2988731981390675049, guid: 9c7406cb36c8b66428973e2d04314222, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.270996
@@ -25554,6 +25691,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8885631867715712366, guid: 9c7406cb36c8b66428973e2d04314222, type: 3}
       insertIndex: -1
       addedObject: {fileID: 16126900}
+    - targetCorrespondingSourceObject: {fileID: 8885631867715712366, guid: 9c7406cb36c8b66428973e2d04314222, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1117563904}
     - targetCorrespondingSourceObject: {fileID: 4867796804257739261, guid: 9c7406cb36c8b66428973e2d04314222, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1156631358}

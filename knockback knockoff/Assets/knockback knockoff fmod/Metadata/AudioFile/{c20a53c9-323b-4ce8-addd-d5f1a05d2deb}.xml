@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{c20a53c9-323b-4ce8-addd-d5f1a05d2deb}">
+		<property name="assetPath">
+			<value>weapon reload.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.42052154195011338</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{b75f9f60-14b0-46b3-b549-086fe413b129}</destination>
+		</relationship>
+	</object>
+</objects>
