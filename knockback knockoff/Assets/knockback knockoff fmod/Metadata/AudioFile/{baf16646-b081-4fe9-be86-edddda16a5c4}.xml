@@ -5,13 +5,13 @@
 			<value>pistolShoot3.wav</value>
 		</property>
 		<property name="frequencyInKHz">
-			<value>44.0999985</value>
+			<value>48</value>
 		</property>
 		<property name="channelCount">
 			<value>2</value>
 		</property>
 		<property name="length">
-			<value>0.11197278911564626</value>
+			<value>0.083291666666666667</value>
 		</property>
 		<relationship name="masterAssetFolder">
 			<destination>{b75f9f60-14b0-46b3-b549-086fe413b129}</destination>
